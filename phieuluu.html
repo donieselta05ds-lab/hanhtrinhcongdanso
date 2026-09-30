@@ -164,6 +164,7 @@ const hash=(x,y)=>{let h=x*374761393+y*668265263;h=(h^(h>>13))*1274126177;return
 
 const BUILDINGS=[
  {x:3,y:2,w:9,h:6,door:[7,7],wall:"#F6E3A6",roof:"#C0392B",sign:"UBND PHƯỜNG GIA ĐỊNH",flag:true},
+ {x:13,y:2,w:5,h:4,door:[15,5],wall:"#FDF2E0",roof:"#1F5FA8",sign:"MTTQ PHƯỜNG"},
  {x:27,y:2,w:9,h:6,door:[31,7],wall:"#E9E4CF",roof:"#3E6B3F",sign:"CÔNG AN PHƯỜNG",star:true},
  {x:3,y:17,w:8,h:4,door:[6,20],wall:"#FCE9D2",roof:"#D35400",sign:"NHÀ VĂN HÓA KP"},
  {x:12,y:17,w:5,h:3,door:[14,19],wall:"#FFF3E0",roof:"#E74C3C",sign:"TẠP HÓA",awning:true},
@@ -181,7 +182,7 @@ function buildMap(){
   fill(1,13,38,14,R);fill(19,1,20,28,R);fill(1,22,38,22,R);fill(21,20,37,20,PAVE);fill(3,21,17,21,PAVE);fill(21,27,37,27,PAVE);
   fill(1,25,16,26,WATER);
   BUILDINGS.forEach(b=>fill(b.x,b.y,b.x+b.w-1,b.y+b.h-1,BLD));
-  [[2,4],[2,6],[13,3],[13,6],[16,3],[15,9],[17,11],[22,3],[24,6],[25,10],[37,4],[37,8],[37,11],[2,17],[2,19],[18,17],[11,23],[13,24],[17,24],[21,17],[38,17],[38,24],[21,24],[22,11],[16,15],[10,16],[5,15],[27,15],[34,15],[38,26]].forEach(([x,y])=>put(x,y,TREE));
+  [[2,4],[2,6],[18,3],[18,6],[15,9],[17,11],[22,3],[24,6],[25,10],[37,4],[37,8],[37,11],[2,17],[2,19],[18,17],[11,23],[13,24],[17,24],[21,17],[38,17],[38,24],[21,24],[22,11],[16,15],[10,16],[5,15],[27,15],[34,15],[38,26]].forEach(([x,y])=>put(x,y,TREE));
   [[14,15],[24,15],[31,16],[8,16],[36,15]].forEach(([x,y])=>put(x,y,BUSH));
   [[3,9],[11,9],[3,12],[11,12],[27,9],[35,9],[27,12],[35,12]].forEach(([x,y])=>put(x,y,FLOW));
   for(let y=15;y<=24;y++)for(let x=1;x<=38;x++)if(at(x,y)===G&&hash(x,y)>.9)put(x,y,FLOW);
@@ -263,6 +264,7 @@ const PAL={
  doan:{id:"doan",H:"#1E1E1E",C:"#1FA0E0",D:"#167BB0",P:"#1F3B57"},
  kp:{id:"kp",H:"#555",C:"#8E6BBF",D:"#6E4F9A",P:"#3E3E3E"},
  lan:{id:"lan",H:"#1B1B1B",C:"#FFFFFF",D:"#DDE3EA",P:"#2C3E50"},
+ mttqp:{id:"mttqp",H:"#2B2B2B",C:"#1F5FA8",D:"#184C87",P:"#2C3E50"},
  khoa:{id:"khoa",H:"#111",C:"#1FA0E0",D:"#167BB0",P:"#2C3E50"},
  hung:{id:"hung",H:"#111",C:"#6B8E3D",D:"#557230",P:"#4A6328",hat:"#4A6328"},
  tu:{id:"tu",H:"#E0E0E0",C:"#F5F5F5",D:"#D6D6D6",P:"#6D4C41"},
@@ -281,7 +283,8 @@ const PAL={
 };
 const NPCS=[
  {id:"lan",name:"Cán bộ Bộ phận Một cửa",x:7,y:8,dir:0},
- {id:"khoa",name:"Bí thư Đoàn phường",x:10,y:10,dir:0},
+ {id:"khoa",name:"Bí thư Đoàn phường",x:17,y:7,dir:0},
+ {id:"mttqp",name:"Cán bộ Ủy ban MTTQ phường",x:15,y:6,dir:0},
  {id:"hung",name:"Cán bộ Công an phường",x:31,y:8,dir:0},
  {id:"tu",name:"Trưởng khu phố",x:6,y:21,dir:0},
  {id:"bay",name:"Chủ tiệm tạp hóa",x:14,y:20,dir:0},
@@ -303,6 +306,7 @@ const IDLE={
  hoa:["Cô đang tưới cây, con đi đâu đó?","Nghe nói giờ làm thủ tục trên điện thoại được hết hả con?"],
  ti:["Chào! Cần hỗ trợ cài ứng dụng thì gọi mình nha!","Tải ứng dụng thì chỉ vào CH Play hoặc App Store thôi nhé."],
  ba:["Ông ra bờ kênh hóng mát. Lúc nãy có đứa gọi xưng ngân hàng, ông cúp máy liền!","Mã OTP là như chìa khóa nhà, ai xin cũng không đưa."],
+ mttqp:["Ủy ban Mặt trận Tổ quốc phường luôn lắng nghe ý kiến bà con.","Đoàn thanh niên, Hội Phụ nữ đều nhận nhiệm vụ từ Mặt trận đó."],
  mai:["Phòng Văn hóa - Xã hội theo dõi hoạt động của Tổ công nghệ số cộng đồng 50 khu phố đó.","Có gì khó khăn cứ báo cô nha."],
  thu:["Bánh chị mới ra lò nè, đặt online có giao tận nhà!","Khách chuyển khoản, chị chờ ngân hàng báo tiền vô rồi mới giao."],
  be:["Anh chị ơi, mẹ em mới cài VNeID mức 2 rồi đó!","Em đang chơi, không nói chuyện với người lạ đâu!"]
@@ -406,19 +410,19 @@ const ROLES={
    {npc:"tu",goal:"Đến Nhà văn hóa lắng nghe ý kiến bà con",run:async n=>{
      await say(n,"Bà con có ý kiến nè {name}:");
      await quiz(n,Q("\"Tôi nhận tin nhắn trúng thưởng, bảo nộp phí mới nhận quà.\" Trả lời sao?",["Không nộp phí, không bấm link. Trúng thưởng mà đòi phí trước là lừa đảo","Nộp nhanh kẻo hết hạn","Bấm link xem thử cho biết"],"Giải thưởng thật không bắt nộp phí trước.","Bạn có tham gia chương trình nào đâu?"));
-     await say(n,"Bà con ghi nhận rồi. {name} tổng hợp ý kiến gửi phường nha.");
+     await say(n,"Bà con ghi nhận rồi. {name} tổng hợp ý kiến gửi Mặt trận phường nha.");
    }},
-   {npc:"mai",goal:"Lên UBND phường gửi người gợi ý tổng hợp ý kiến bà con",run:async n=>{
-     await say(n,"Cảm ơn {name} đã tổng hợp ý kiến! Phường sắp vận động bà con đặt mật khẩu mạnh.");
+   {npc:"mttqp",goal:"Về Ủy ban MTTQ phường gửi tổng hợp ý kiến bà con",run:async n=>{
+     await say(n,"Cảm ơn {name} đã tổng hợp ý kiến! Mặt trận phường sắp vận động bà con đặt mật khẩu mạnh.");
      await quiz(n,Q("Mật khẩu nào mạnh nhất?",["Dài từ 8 ký tự, có chữ hoa, chữ thường, số và ký tự đặc biệt","123456","Ngày sinh của mình"],"Mật khẩu càng dài, càng đa dạng ký tự thì càng khó đoán.","Tránh những gì người khác dễ đoán."));
      await say(n,"Tuyệt! Ban Mặt trận khu phố mình làm việc chu đáo quá.");
    }}
   ]},
  doan:{label:"Bí thư Chi đoàn",pal:"doan",desc:"Xung kích hướng dẫn kỹ năng số: giúp bà con khó khăn dùng điện thoại, đưa thanh niên học AI.",title:"Bí thư Chi đoàn số xung kích",
-  intro:["Chào đồng chí {name}, Bí thư Chi đoàn khu phố! Đoàn thanh niên là lực lượng xung kích của Tổ công nghệ số.","Lên UBND phường gặp Bí thư Đoàn phường để nhận nhiệm vụ nhé."],
+  intro:["Chào đồng chí {name}, Bí thư Chi đoàn khu phố! Đoàn thanh niên là lực lượng xung kích của Tổ công nghệ số.","Đến trụ sở Ủy ban MTTQ phường (mái xanh, cạnh UBND phường) nhận nhiệm vụ nhé."],
   steps:[
-   {npc:"khoa",goal:"Đến UBND phường gặp Bí thư Đoàn phường nhận nhiệm vụ",run:async n=>{
-     await say(n,"Chào {name}! Tuần này Đoàn phường ra quân \"Bình dân học vụ số\", hỗ trợ bà con khó khăn dùng điện thoại.");
+   {npc:"mttqp",goal:"Đến Ủy ban MTTQ phường nhận nhiệm vụ",run:async n=>{
+     await say(n,"Chào {name}! Ủy ban Mặt trận phường giao Đoàn thanh niên ra quân \"Bình dân học vụ số\", hỗ trợ bà con khó khăn dùng điện thoại.");
      await quiz(n,Q("Khi hỗ trợ bà con, cách làm nào đúng?",["Hướng dẫn từng bước để bà con tự làm, tự giữ mật khẩu","Hỏi mật khẩu, mã OTP rồi làm giùm cho nhanh","Cài giùm mọi ứng dụng bà con thấy quảng cáo"],"Mình hướng dẫn, bà con tự thao tác và tự giữ mật khẩu. Vừa an toàn, vừa giúp bà con tự tin hơn.","Mật khẩu, OTP là của riêng mỗi người."));
      await say(n,"Chuẩn! Nhiệm vụ của em: về khu phố giúp cụ bà hàng xóm, rồi đưa các bạn đoàn viên học AI.");
    }},
@@ -434,7 +438,7 @@ const ROLES={
      await quiz(n,Q("Giới thiệu các bạn học ở đâu?",["Cổng đào tạo AI cho cộng đồng (aicongdong.ptit.edu.vn), học miễn phí","Khóa học qua link lạ \"giảm giá 90%\", chuyển khoản trước","Không cần học, AI tự biết hết"],"Cổng đào tạo AI cho cộng đồng có các khóa học miễn phí về kỹ năng dùng AI.","Có cổng học AI miễn phí dành cho cộng đồng."));
      await quiz(n,Q("Dùng công cụ AI cần lưu ý gì?",["Không nhập mật khẩu, số căn cước vào AI; kiểm chứng lại thông tin AI trả lời","Tin 100% mọi câu trả lời","Đưa hết giấy tờ cá nhân cho AI lưu giùm"],"AI hữu ích nhưng có thể sai, và thông tin cá nhân phải được giữ kín.","Thông tin cá nhân cần được bảo vệ."));
    }},
-   {npc:"khoa",goal:"Quay lại UBND phường báo cáo Bí thư Đoàn phường",run:async n=>{
+   {npc:"mttqp",goal:"Quay lại Ủy ban MTTQ phường báo cáo kết quả",run:async n=>{
      await say(n,"Nghe cụ bà với các bạn đoàn viên khen em quá trời! Câu hỏi cuối nè.");
      await quiz(n,Q("Ngày Chuyển đổi số quốc gia là ngày nào?",["Ngày 10 tháng 10","Ngày 2 tháng 9","Ngày 1 tháng 6"],"Ngày 10/10 hằng năm là Ngày Chuyển đổi số quốc gia.","Chính là dịp mình đang hưởng ứng đó!"));
      await say(n,"Nhiệm vụ hoàn thành xuất sắc. Cảm ơn đồng chí {name}!");
@@ -458,7 +462,7 @@ const ROLES={
      await quiz(n,Q("Dạy em bé thế nào?",["Không gửi gì hết, kể ngay với ba mẹ và chặn người đó","Gửi vì người ta hứa tặng quà","Gửi địa chỉ thôi, không gửi ảnh"],"Trẻ không chia sẻ thông tin cá nhân với người lạ trên mạng và luôn kể với người lớn.","Người lạ trên mạng có đáng tin không?"));
      await say(n,"Dạ con nhớ rồi! Con kể mẹ liền.");
    }},
-   {npc:"mai",goal:"Lên UBND phường báo cáo người gợi ý về hoạt động của chi hội",run:async n=>{
+   {npc:"mttqp",goal:"Về Ủy ban MTTQ phường báo cáo hoạt động của chi hội",run:async n=>{
      await say(n,"Chào {name}! Chị em trong khu phố hay hỏi gì nhất?");
      await quiz(n,Q("\"Bật xác thực hai lớp để làm gì?\" Trả lời chị em sao?",["Kẻ gian có mật khẩu vẫn không đăng nhập được nếu thiếu lớp xác thực thứ hai","Để điện thoại chạy nhanh hơn","Để khỏi cần mật khẩu nữa"],"Lớp thứ hai (mã trên điện thoại, ứng dụng xác thực) là tấm khiên bảo vệ thêm cho tài khoản.","Hai lớp khóa thì chắc hơn một lớp."));
      await say(n,"Cảm ơn {name}. Chi hội Phụ nữ khu phố mình làm tốt lắm!");
