@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;700;800&display=swap">
 <style>
-:root{color-scheme:dark;--bg:#1B2A3A;--ink:#22223A;--paper:#FFF8E7;--line:#22223A;--acc:#F2C94C;--ok:#2E9E6B;--bad:#D0563F;--sea:#2C6E9E;--muted:#6B6A80}
+:root{--bg:#1B2A3A;--ink:#22223A;--paper:#FFF8E7;--line:#22223A;--acc:#F2C94C;--ok:#2E9E6B;--bad:#D0563F;--sea:#2C6E9E;--muted:#6B6A80}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 [hidden]{display:none!important}
 html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Be Vietnam Pro",system-ui,sans-serif;overscroll-behavior:none}
@@ -71,8 +71,8 @@ body{min-height:100vh;min-height:100dvh}
 .big{font-weight:800;font-size:2.1rem;line-height:1.1;margin:0;color:var(--acc);text-shadow:3px 3px 0 #000}
 .over p{margin:0;color:#C9D6E3;line-height:1.55}
 .field{display:grid;gap:6px;font-weight:700;font-size:14px}
-.field select{font:inherit;font-size:16px;padding:12px;border-radius:8px;border:3px solid var(--line);background:var(--paper)}
-.field input{font:inherit;font-size:16px;padding:12px;border-radius:8px;border:3px solid var(--line);background:var(--paper)}
+.field select{font:inherit;font-size:16px;padding:12px;border-radius:8px;border:3px solid var(--line);background:var(--paper);color:var(--ink);color-scheme:light}
+.field input{font:inherit;font-size:16px;padding:12px;border-radius:8px;border:3px solid var(--line);background:var(--paper);color:var(--ink);color-scheme:light}
 .roles{display:grid;gap:10px}
 .role{display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:center;text-align:left;font:inherit;color:var(--ink);background:var(--paper);border:4px solid var(--line);border-radius:10px;padding:10px;cursor:pointer;box-shadow:4px 4px 0 #000}
 .role canvas{width:64px;height:64px;image-rendering:pixelated;background:#9FD37C;border:3px solid var(--line);border-radius:8px}
@@ -761,7 +761,6 @@ async function drawCert(stars){
   x.fillStyle="#22223A";x.font="700 26px 'Be Vietnam Pro',sans-serif";x.fillText("#CongDanSoGiaDinh",W/2,H-100);
   $("cert").src=c.toDataURL("image/png");
 }
-if(window.claude){$("save").hidden=true}
 $("save").onclick=()=>{const a=document.createElement("a");a.href=$("cert").src;a.download="giay-khen-cong-dan-so.png";document.body.appendChild(a);a.click();a.remove()};
 $("again").onclick=()=>{$("end").hidden=true;$("title").hidden=false;S=null;closeDlg();$("title").scrollTop=0};
 
