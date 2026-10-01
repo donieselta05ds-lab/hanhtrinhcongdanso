@@ -112,11 +112,47 @@ body{min-height:100vh;min-height:100dvh;display:grid;place-items:center}
 .center{text-align:center}
 .slog{position:absolute;inset:0;z-index:10;display:grid;place-items:center;background:rgba(10,18,30,.55);animation:fadein .3s}
 @keyframes fadein{from{opacity:0}}
-.slog .box{width:86%;background:#C8102E;border:4px solid var(--acc);border-radius:10px;padding:14px 12px;text-align:center;color:#FFE27A;box-shadow:0 0 0 4px var(--line),0 0 30px rgba(255,201,60,.8);animation:zoom .5s}
-@keyframes zoom{from{transform:scale(.3) rotate(-8deg)}}
-.slog .k{font-size:11px;color:#fff;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
-.slog .t{font-size:17px;font-weight:800;line-height:1.35;margin:8px 0}
-.slog .s{font-size:11.5px;color:#fff}
+.slog{gap:10px;align-content:center;justify-items:center}
+.slog .lbl{background:var(--line);color:#fff;border:2px solid var(--acc);border-radius:8px;padding:4px 10px;font-size:12px;font-weight:800;text-align:center;max-width:92%}
+.slog .s{font-size:11.5px;color:#fff;font-weight:700;margin-top:18px;background:rgba(0,0,0,.45);padding:3px 10px;border-radius:999px}
+.it{animation:zoom .5s;color:#1A1A2E;text-align:center;font-weight:800;line-height:1.3}
+@keyframes zoom{from{transform:scale(.3) rotate(-8deg);opacity:0}}
+@keyframes wave{50%{transform:skewY(1.5deg) translateY(2px)}}
+/* băng rôn: tấm vải đỏ căng dây giữa 2 cột */
+.it-banner{position:relative;width:96%;padding:16px 12px 6px}
+.it-banner .pole{position:absolute;top:0;bottom:-12px;width:6px;background:linear-gradient(90deg,#8C8C8C,#E0E0E0,#8C8C8C);border:1px solid #333;border-radius:3px}
+.it-banner .pole.l{left:0}.it-banner .pole.r{right:0}
+.it-banner .rope{position:absolute;left:6px;right:6px;top:10px;height:2px;background:#5D4037}
+.it-banner .cloth{position:relative;margin:0 8px;background:linear-gradient(180deg,#D61F2C,#B3121F);border-top:3px solid #FFD23F;border-bottom:3px solid #FFD23F;padding:10px 12px;color:#FFE27A;text-transform:uppercase;font-size:14px;letter-spacing:.02em;box-shadow:0 6px 0 rgba(0,0,0,.25);animation:wave 2.4s ease-in-out infinite}
+.it-banner .cloth::before,.it-banner .cloth::after{content:"";position:absolute;top:6px;width:7px;height:7px;border-radius:50%;background:#EEE;border:2px solid #555}
+.it-banner .cloth::before{left:4px}.it-banner .cloth::after{right:4px}
+.it-banner .tie{position:absolute;top:10px;width:14px;height:2px;background:#5D4037}
+/* áp phích: tờ giấy dán băng keo */
+.it-poster{position:relative;width:66%;background:#FFFDF5;border:3px solid #1A1A2E;box-shadow:6px 6px 0 rgba(0,0,0,.35);transform:rotate(-2deg)}
+.it-poster::before,.it-poster::after{content:"";position:absolute;top:-10px;width:46px;height:18px;background:rgba(255,236,150,.85);border:1px solid rgba(0,0,0,.15)}
+.it-poster::before{left:-12px;transform:rotate(-30deg)}.it-poster::after{right:-12px;transform:rotate(30deg)}
+.it-poster .top{background:linear-gradient(180deg,#1E6FE0,#4FA3FF);color:#fff;padding:10px 6px 30px;font-size:13px;position:relative}
+.it-poster .top b{display:block;font-size:22px;color:#FFE27A;text-shadow:2px 2px 0 #0B4FB3}
+.it-poster .city{position:absolute;left:0;right:0;bottom:0;height:24px;background:repeating-linear-gradient(90deg,#0B4FB3 0 14px,#2A65C9 14px 22px,#0B4FB3 22px 30px,transparent 30px 34px);clip-path:polygon(0 40%,8% 40%,8% 10%,18% 10%,18% 50%,30% 50%,30% 0,40% 0,40% 35%,55% 35%,55% 15%,65% 15%,65% 45%,78% 45%,78% 5%,88% 5%,88% 40%,100% 40%,100% 100%,0 100%)}
+.it-poster .body{padding:10px 10px 6px;font-size:14px;color:#0B3D91}
+.it-poster .foot{font-size:10px;color:#5E5D75;padding:0 0 8px}
+/* cờ phướn: dải vải dọc treo trên thanh ngang, đuôi xẻ */
+.it-phuon{position:relative;width:48%;padding-top:10px}
+.it-phuon .rod{position:absolute;top:0;left:-14px;right:-14px;height:8px;border-radius:4px;background:linear-gradient(#E0E0E0,#8C8C8C);border:1px solid #333}
+.it-phuon .cloth{background:linear-gradient(180deg,#1E6FE0,#0B4FB3);color:#fff;padding:14px 10px 46px;font-size:13.5px;clip-path:polygon(0 0,100% 0,100% 100%,50% 86%,0 100%);border-left:4px solid #FFD23F;border-right:4px solid #FFD23F;animation:wave 2.8s ease-in-out infinite;transform-origin:top}
+.it-phuon .cloth .h{display:block;color:#FFE27A;font-size:11px;letter-spacing:.1em;margin-bottom:6px}
+/* tờ rơi: tờ giấy gấp đôi */
+.it-flyer{width:78%;background:linear-gradient(90deg,#fff 49.5%,#D9D9D9 50%,#fff 50.5%);border:3px solid #1A1A2E;box-shadow:5px 5px 0 rgba(0,0,0,.35);transform:rotate(3deg);display:grid;grid-template-columns:1fr 1fr;text-align:left}
+.it-flyer .a{padding:10px;font-size:13px;color:#0B3D91;border-top:12px solid #2E9E44}
+.it-flyer .b{padding:10px;font-size:11px;color:#1A1A2E;border-top:12px solid #FFC93C;display:grid;gap:6px;align-content:start}
+.it-flyer .qr{width:44px;height:44px;background:conic-gradient(#1A1A2E 25%,#fff 0 50%,#1A1A2E 0 75%,#fff 0) 0 0/11px 11px;border:3px solid #1A1A2E}
+/* standee: tấm bảng đứng trên chân */
+.it-standee{position:relative;width:58%;padding-bottom:34px}
+.it-standee .board{background:linear-gradient(180deg,#00A3E0,#1E6FE0 60%,#0B4FB3);border:3px solid #1A1A2E;border-radius:18px 18px 4px 4px;color:#fff;padding:12px 10px 16px;font-size:14px;box-shadow:5px 5px 0 rgba(0,0,0,.3)}
+.it-standee .board .h{display:inline-block;background:#FFC93C;color:#1A1A2E;border-radius:999px;padding:2px 10px;font-size:11px;margin-bottom:8px}
+.it-standee .board img{width:40px;height:40px;border-radius:50%;background:#fff;display:block;margin:0 auto 6px}
+.it-standee::before,.it-standee::after{content:"";position:absolute;bottom:4px;width:6px;height:32px;background:#555;border:1px solid #1A1A2E}
+.it-standee::before{left:28%;transform:rotate(12deg)}.it-standee::after{right:28%;transform:rotate(-12deg)}
 .lb{display:grid;gap:6px}
 .lbrow{display:grid;grid-template-columns:40px 1fr auto;gap:8px;align-items:center;background:var(--paper);color:var(--ink);border:3px solid var(--line);border-radius:10px;padding:7px 10px;font-weight:700}
 .lbrow.me{background:var(--acc);animation:glow 1.2s infinite}
@@ -397,7 +433,8 @@ function renderMap(){
 /* phần treo phía trên (băng rôn, dây cờ) vẽ đè lên nhân vật */
 function drawOverhead(cx,cy){
   const ban=(x1,x2,y,txt)=>{const X=x1*TS+8-cx,W=(x2-x1)*TS,Y=y-cy;if(X>VW*TS||X+W<0||Y<-30||Y>VH*TS)return;
-    px(ctx,"#1A1A2E",X-1,Y-1,W+2,14);px(ctx,"#C8102E",X,Y,W,12);px(ctx,"#FFD23F",X,Y,W,1);px(ctx,"#FFD23F",X,Y+11,W,1);
+    px(ctx,"#5D4037",X-8,Y-6,8,1);px(ctx,"#5D4037",X+W,Y-6,8,1);px(ctx,"#5D4037",X-1,Y-6,1,6);px(ctx,"#5D4037",X+W,Y-6,1,6);
+    px(ctx,"#1A1A2E",X-1,Y-1,W+2,14);px(ctx,"#C8102E",X,Y,W,12);for(let i=0;i<W;i+=10)px(ctx,"rgba(0,0,0,.12)",X+i+5,Y+1,1,10);px(ctx,"#EEE",X+2,Y+2,2,2);px(ctx,"#EEE",X+W-4,Y+2,2,2);px(ctx,"#FFD23F",X,Y,W,1);px(ctx,"#FFD23F",X,Y+11,W,1);
     ctx.fillStyle="#FFE27A";ctx.font="bold 7px 'Be Vietnam Pro',sans-serif";ctx.textBaseline="middle";ctx.textAlign="center";ctx.fillText(txt,X+W/2,Y+6.5,W-6);ctx.textAlign="left"};
   ban(12,23,11*TS-12,"NHIỆT LIỆT CHÀO MỪNG NGÀY CHUYỂN ĐỔI SỐ QUỐC GIA 10/10");
   ban(26,34,14*TS-18,"MỖI NGƯỜI DÂN MỘT KỸ NĂNG SỐ");
@@ -553,7 +590,15 @@ function giveHint(why){
   const item=ITEMS[(S.items-1)%ITEMS.length];
   return new Promise(res=>{
     const d=document.createElement("div");d.className="slog";
-    d.innerHTML=`<div class="box"><div class="k">🎁 Nhận: ${esc(item)} · +1 💡 gợi ý${why?" · "+esc(why):""}</div><div class="t">“${esc(SLOGANS[idx])}”</div><div class="s">Bấm để tiếp tục</div></div>`;
+    const t=esc(SLOGANS[idx]),lg=document.querySelector(".logo img").src;
+    const art={
+     "Băng rôn tuyên truyền":`<div class="it it-banner"><span class="pole l"></span><span class="pole r"></span><span class="rope"></span><div class="cloth">${t}</div></div>`,
+     "Áp phích Ngày 10/10":`<div class="it it-poster"><div class="top">Hưởng ứng<b>NGÀY CHUYỂN ĐỔI SỐ 10/10</b><span class="city"></span></div><div class="body">${t}</div><div class="foot">Phường Gia Định · 2026</div></div>`,
+     "Cờ phướn chuyển đổi số":`<div class="it it-phuon"><span class="rod"></span><div class="cloth"><span class="h">CHUYỂN ĐỔI SỐ</span>${t}</div></div>`,
+     "Tờ rơi Công dân số":`<div class="it it-flyer"><div class="a">${t}</div><div class="b"><b>Công dân số<br>phường Gia Định</b><span>Học kỹ năng số, dùng dịch vụ số an toàn.</span><span class="qr"></span></div></div>`,
+     "Standee Ngày hội":`<div class="it it-standee"><div class="board"><img src="${lg}" alt=""><span class="h">NGÀY HỘI 10/10</span><br>${t}</div></div>`
+    }[item];
+    d.innerHTML=`<div class="lbl">🎁 Nhận: ${esc(item)} · +1 💡 gợi ý${why?" · "+esc(why):""}</div>${art}<div class="s">Bấm để tiếp tục</div>`;
     $("stage").appendChild(d);
     const done=()=>{if(!d.isConnected)return;d.remove();res()};
     d.addEventListener("click",done);setTimeout(()=>{S._slogClose=done},250);
@@ -665,20 +710,36 @@ function setPad(kind){$("joy").hidden=kind==="dpad";$("dpad").hidden=kind!=="dpa
 setPad(store.get("pl_pad","joy"));
 $("swap").onclick=()=>setPad($("dpad").hidden?"dpad":"joy");
 $("fbtn").addEventListener("pointerdown",e=>{e.preventDefault();action()});
+/* chạm thẳng vào NPC trên màn hình để nói chuyện */
+$("cv").addEventListener("pointerdown",e=>{
+  if(!S||S.busy||!$("dlg").hidden)return;
+  const r=cv.getBoundingClientRect(),[cx,cy]=camera();
+  const mx=(e.clientX-r.left)/r.width*cv.width+cx,my=(e.clientY-r.top)/r.height*cv.height+cy;
+  const n=npcs.find(n=>!n.hidden&&!n.temp&&mx>=n.px-2&&mx<=n.px+18&&my>=n.py-6&&my<=n.py+18);
+  if(!n)return;
+  if(Math.max(Math.abs(n.x-S.p.x),Math.abs(n.y-S.p.y))>2){toast("Lại gần hơn chút nha!");return}
+  const save=S.p.dir;S.p.dir=Math.abs(n.x-S.p.x)>Math.abs(n.y-S.p.y)?(n.x<S.p.x?1:2):(n.y<S.p.y?3:0);
+  const near=nearNpc();if(near!==n){S.p.dir=save;toast("Lại gần hơn chút nha!");return}
+  action();
+});
 
 /* NPC ở cạnh (kể cả chéo), ưu tiên người đang đối mặt */
 function nearNpc(){
   if(!S)return null;const p=S.p;const [fx,fy]=DIRS[p.dir];
-  let best=null,bs=9;
-  npcs.forEach(n=>{if(n.hidden||n.temp)return;const dx=n.x-p.x,dy=n.y-p.y;if(Math.max(Math.abs(dx),Math.abs(dy))!==1)return;
-    const s=(dx===fx&&dy===fy)?0:(Math.abs(dx)+Math.abs(dy)===1?1:2);if(s<bs){bs=s;best=n}});
+  let best=null,bs=1e9;
+  npcs.forEach(n=>{if(n.hidden||n.temp)return;
+    const dx=n.x-p.x,dy=n.y-p.y,ch=Math.max(Math.abs(dx),Math.abs(dy));
+    /* đứng cạnh hoặc chéo, hoặc cách 2 ô theo đường thẳng (kể cả khi bị bàn, người khác chắn) */
+    const ok=ch===1||(ch===2&&(dx===0||dy===0));if(!ok)return;
+    const s=ch*10+((dx===fx*ch&&dy===fy*ch)?0:1)+Math.hypot(n.px-p.px,n.py-p.py)/100;if(s<bs){bs=s;best=n}});
   return best;
 }
 const face=(n,p)=>{const dx=p.x-n.x,dy=p.y-n.y;n.dir=Math.abs(dx)>Math.abs(dy)?(dx<0?1:2):(dy<0?3:0)};
 async function action(){
   if(!S)return;
   if(advance())return;
-  if(S.busy||S.p.moving||S.ended)return;
+  if(S.busy||S.ended)return;
+  if(S.p.moving){S.p.onArrive=()=>action();return}
   const n=nearNpc();if(!n)return;
   S.busy=true;held=null;face(n,S.p);
   const pdx=n.x-S.p.x,pdy=n.y-S.p.y;S.p.dir=Math.abs(pdx)>Math.abs(pdy)?(pdx<0?1:2):(pdy<0?3:0);
