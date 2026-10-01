@@ -1104,7 +1104,14 @@ function drawTile2(c,t,x,y){
   if(t===TABLE){px(c,"#D9B27C",X,Y+5,TS,7);px(c,"#1A1A2E",X,Y+12,TS,1);px(c,"#FFFFFF",X+3,Y+6,6,4);return}
   if(t===POT&&y<=12){px(c,"#B5532A",X+4,Y+9,8,6);c.fillStyle="#2E9E44";c.beginPath();c.arc(X+8,Y+7,5,0,7);c.fill();return}
   if(t===PARK||t===BIKE){px(c,"#6B707C",X,Y,TS,TS);if(y%2===0)px(c,"#F5F5F5",X,Y,TS,1);
-    if(t===BIKE){const col=["#E53935","#1E88E5","#43A047","#FB8C00","#8E24AA"][(x*3+y)%5];px(c,"#111",X+2,Y+9,4,4);px(c,"#111",X+10,Y+9,4,4);px(c,col,X+4,Y+5,8,5);px(c,"#333",X+11,Y+2,2,4);px(c,"#222",X+5,Y+4,5,2)}return}
+    if(t===BIKE){ /* xe máy tay ga nhìn ngang */
+      const col=["#E53935","#1E88E5","#43A047","#FB8C00","#8E24AA","#F5F5F5"][(x*3+y)%6];
+      c.fillStyle="#111";c.beginPath();c.arc(X+4,Y+12,3.2,0,7);c.arc(X+12.5,Y+12,3.2,0,7);c.fill();
+      px(c,"#9E9E9E",X+3,Y+11,2,2);px(c,"#9E9E9E",X+12,Y+11,2,2);
+      px(c,col,X+3,Y+7,7,3);px(c,col,X+9,Y+5,4,6);px(c,col,X+2,Y+8,2,2);
+      px(c,"#1A1A2E",X+3,Y+5,6,2);px(c,"#555",X+7,Y+10,5,1);
+      px(c,"#333",X+12,Y+2,1,4);px(c,"#333",X+11,Y+2,3,1);px(c,"#FFF59D",X+13,Y+5,2,2);
+      px(c,"rgba(0,0,0,.25)",X+1,Y+15,14,1)}return}
   if(t===BED){px(c,"#B5532A",X,Y+2,TS,14);px(c,"#8D3F1F",X,Y+15,TS,1);c.fillStyle=h>.5?"#2E9E44":"#3CB55A";c.beginPath();c.arc(X+8,Y+6,7,0,7);c.fill();if(h>.6){px(c,"#FF4D6D",X+5,Y+3,2,2);px(c,"#FFD23F",X+10,Y+6,2,2)}return}
   if(t===STAIRS){for(let i=0;i<4;i++)px(c,i%2?"#C9CED6":"#E6E9EE",X,Y+i*4,TS,4);px(c,"#9AA3B5",X,Y,1,TS);return}
   if(t===GATE){px(c,"#F2DFA8",X,Y,TS,TS);px(c,"#555",X,Y,2,TS);px(c,"#555",X+14,Y,2,TS);return}
@@ -1128,7 +1135,17 @@ function paint2(c){
   c.textAlign="left";
 }
 /* màn hình treo trên quầy + bảng gọi số lớn */
+function banner2(x1,x2,Yp,txt,cx,cy){
+  const X=x1*TS-cx,W=(x2-x1)*TS,Y=Yp-cy;if(X>VW*TS||X+W<0||Y<-20||Y>VH*TS)return;
+  px(ctx,"#5D4037",X-6,Y-4,6,1);px(ctx,"#5D4037",X+W,Y-4,6,1);
+  px(ctx,"#1A1A2E",X-1,Y-1,W+2,14);px(ctx,"#C8102E",X,Y,W,12);px(ctx,"#FFD23F",X,Y,W,1);px(ctx,"#FFD23F",X,Y+11,W,1);
+  for(let i=0;i<W;i+=10)px(ctx,"rgba(0,0,0,.12)",X+i+5,Y+1,1,10);px(ctx,"#EEE",X+2,Y+2,2,2);px(ctx,"#EEE",X+W-4,Y+2,2,2);
+  ctx.fillStyle="#FFE27A";ctx.font="bold 7px 'Be Vietnam Pro',sans-serif";ctx.textBaseline="middle";ctx.textAlign="center";ctx.fillText(txt,X+W/2,Y+6.5,W-8);ctx.textAlign="left";
+}
 function overhead2(cx,cy){
+  banner2(5,24,12*TS-4,"NHIỆT LIỆT CHÀO MỪNG NGÀY CHUYỂN ĐỔI SỐ QUỐC GIA 10/10",cx,cy);
+  banner2(1,13,29*TS-8,"CHUYỂN ĐỔI SỐ THIẾT THỰC, AN TOÀN, HIỆU QUẢ",cx,cy);
+  banner2(17,28,29*TS-8,"MỖI NGƯỜI DÂN MỘT KỸ NĂNG SỐ",cx,cy);
   ctx.font="bold 6px 'Be Vietnam Pro',sans-serif";ctx.textBaseline="middle";ctx.textAlign="center";
   const Q=[{n:1,x:5},{n:2,x:9},{n:3,x:13},{n:4,x:17},{n:5,x:21}];
   const lab={1:"QUẦY 1",2:"SAO Y – CHỨNG THỰC",3:"tạm nghỉ",4:"KINH TẾ – CÔNG THƯƠNG",5:"ĐỊA CHÍNH – XÂY DỰNG"};
