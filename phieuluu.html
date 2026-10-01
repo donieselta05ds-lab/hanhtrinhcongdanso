@@ -320,7 +320,7 @@ const BUILDINGS=[
  {x:6,y:7,w:4,h:4,door:[7,10],wall:"#D8F0FF",roof:"#2F80ED"},
  {x:2,y:2,w:4,h:4,door:[3,5],wall:"#FFF1D6",roof:"#27AE60"},
  {x:6,y:2,w:4,h:4,door:[7,5],wall:"#FDE2F3",roof:"#9B51E0"},
- {x:13,y:2,w:10,h:4,door:[17,5],wall:"#FFF4C2",roof:"#D35400",sign:"NHÀ VĂN HÓA KHU PHỐ",flag:true},
+ {x:13,y:2,w:10,h:4,door:[17,5],wall:"#FFF4C2",roof:"#D35400",sign:"NHÀ VĂN HÓA KHU PHỐ"},
  {x:26,y:7,w:5,h:4,door:[27,10],wall:"#F7E1C8",roof:"#8B4513",sign:"CÀ PHÊ",awning:"#2E7D32"},
  {x:31,y:7,w:4,h:4,door:[32,10],wall:"#E3F6E8",roof:"#16A085"},
  {x:26,y:2,w:4,h:4,door:[27,5],wall:"#FFF0E0",roof:"#C0392B"},
@@ -375,9 +375,8 @@ function drawBuilding(c,b){
   px(c,"#1A1A2E",dx+3,dy+2,10,14);px(c,"#9C5B2E",dx+4,dy+3,8,13);px(c,"#FFC93C",dx+10,dy+9,1,2);
   if(b.sign){c.font="bold 7px 'Be Vietnam Pro',sans-serif";const tw=Math.ceil(c.measureText(b.sign).width)+8;const sx=Math.round(X+W/2-tw/2),sy=Y+3;
     px(c,"#1A1A2E",sx-1,sy-1,tw+2,12);px(c,"#FFF8E7",sx,sy,tw,10);c.fillStyle="#B71C1C";c.textBaseline="middle";c.fillText(b.sign,sx+4,sy+5.5)}
-  if(b.flag){const fx=X+W-8,fy=Y-14;px(c,"#9E9E9E",fx,fy,2,18);px(c,"#DA251D",fx+2,fy,12,8);px(c,"#FFDD00",fx+7,fy+3,2,2)}
   // cờ phướn trước nhà mặt hẻm
-  if(b.y+b.h===11||b.y===15){const fx=X+2,fy=Y+rh-2;px(c,"#7A7A7A",fx,fy,1,12);px(c,"#E53935",fx+1,fy,4,9);px(c,"#FFD23F",fx+2,fy+3,2,2)}
+  if(b.y+b.h===11||b.y===15){const fx=X+2,fy=Y+rh-2;px(c,"#7A7A7A",fx,fy,1,12);px(c,"#1E6FE0",fx+1,fy,4,9);px(c,"#FFFFFF",fx+1,fy+3,4,1);px(c,"#2E9E44",fx+1,fy+6,4,1)}
 }
 function drawDeco(c,d){
   const X=d.x*TS,Y=d.y*TS;
