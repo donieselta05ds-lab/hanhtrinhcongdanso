@@ -164,9 +164,6 @@ body{min-height:100vh;min-height:100dvh;display:grid;place-items:center}
     <label class="field">Tên của bạn (hiện trên bảng xếp hạng)
       <input id="pname" maxlength="20" placeholder="Ví dụ: An Gia Định" autocomplete="off">
     </label>
-    <label class="field">Bạn ở khu phố nào?
-      <select id="pkp"></select>
-    </label>
     <div class="card" style="grid-template-columns:64px 1fr;align-items:center"><canvas id="pav" width="16" height="16" style="width:64px;height:64px;image-rendering:pixelated;background:#8FD16A;border:3px solid var(--line);border-radius:8px"></canvas><div><b>Người dân phường Gia Định</b><br><span style="font-size:13px;color:var(--muted)">Nhân vật của bạn trong game</span></div></div>
     <button class="go" id="start" type="button" disabled>Vào game</button>
     <button class="go alt" id="lbopen" type="button">🏆 Bảng xếp hạng</button>
@@ -498,11 +495,11 @@ const HONG={
 /* ===== TRẠNG THÁI ===== */
 let S=null;const npcs=[];
 const STEP_FR=11; /* số khung hình mỗi ô: chậm hơn bản cũ khoảng 30% */
-function newGame(name,kp){
+function newGame(name){
   const qs=shuffle(BANK1.slice()).slice(0,10);
   const quizIds=NPCDEF.filter(d=>d.kind==="quiz").map(d=>d.id);
   const types=shuffle(Object.keys(EVTS)).slice(0,2);
-  S={name:name||"Bạn",kp,score:0,hints:0,slog:shuffle(SLOGANS.map((_,i)=>i)),items:0,
+  S={name:name||"Bạn",score:0,hints:0,slog:shuffle(SLOGANS.map((_,i)=>i)),items:0,
      quiz:{},done:new Set(),correct:0,answered:0,joined:new Set(),dovui:null,
      events:types.map(t=>({type:t,...EVTS[t][Math.random()*EVTS[t].length|0]})),evDone:0,evOk:0,
      pending:null,busy:true,ended:false,arrowAng:0,
@@ -891,16 +888,13 @@ function draw(){
 function loop(){update();draw();requestAnimationFrame(loop)}
 
 /* ===== MỞ ĐẦU ===== */
-/* 50 khu phố theo Nghị quyết số 12/NQ-HĐND ngày 22/6/2026 của HĐND phường Gia Định */
-const KP_SO=[1,2,4,5,6,8,9,10,11,12,13,16,17,20,21,22,23,24,25,26,27,28,29,30,31,32,33,35,37,39,40,41,43,44,45,47,48,49,51,52,53,54,55,56,57,58,59,60,61,62];
-$("pkp").innerHTML='<option value="">Chọn khu phố</option>'+KP_SO.map(n=>`<option value="${n}">Khu phố ${n}</option>`).join("");
-const canStart=()=>{$("start").disabled=!($("pkp").value&&$("pname").value.trim())};
-$("pkp").onchange=canStart;$("pname").oninput=canStart;
+const canStart=()=>{$("start").disabled=!$("pname").value.trim()};
+$("pname").oninput=canStart;
 $("pname").value=store.get("pl_name","");canStart();
 $("pav").getContext("2d").drawImage(sprite(PAL.me,0,0),0,0);
 $("start").onclick=async()=>{
   const nm=$("pname").value.trim().replace(/[<>]/g,"").slice(0,20);store.set("pl_name",nm);
-  newGame(nm,"Khu phố "+$("pkp").value);$("title").hidden=true;ac();sfx("win");music(true);pts();
+  newGame(nm);$("title").hidden=true;ac();sfx("win");music(true);pts();
   await intro();
 };
 async function intro(){
@@ -970,7 +964,7 @@ async function drawCert(rewards){
   x.fillStyle="#B71C1C";x.font="800 60px 'Be Vietnam Pro',sans-serif";x.fillText(gold?"GIẤY KHEN":"GIẤY CHỨNG NHẬN",W/2,200);
   x.fillStyle="#5E5D75";x.font="500 26px 'Be Vietnam Pro',sans-serif";x.fillText(gold?"Danh hiệu “Đại sứ Công dân số”":"Đã tham gia trò chơi Phiêu lưu Công dân số",W/2,245);
   x.fillStyle="#1A1A2E";x.font="800 58px 'Be Vietnam Pro',sans-serif";x.fillText(S.name,W/2,340,W-200);
-  x.fillStyle="#5E5D75";x.font="600 26px 'Be Vietnam Pro',sans-serif";x.fillText((S.kp||"")+" · phường Gia Định",W/2,385);
+  x.fillStyle="#5E5D75";x.font="600 26px 'Be Vietnam Pro',sans-serif";x.fillText("Người dân phường Gia Định",W/2,385);
   x.fillStyle="#1A1A2E";x.font="800 34px 'Be Vietnam Pro',sans-serif";x.fillText("🏅 Huy hiệu “Hàng xóm số”",W/2,465);
   x.fillStyle="#1E6FE0";x.font="800 40px 'Be Vietnam Pro',sans-serif";x.fillText(S.score+" điểm",W/2,535);
   x.fillStyle="#5E5D75";x.font="500 24px 'Be Vietnam Pro',sans-serif";x.fillText("“"+SLOGANS[3]+"”",W/2,620,W-160);
