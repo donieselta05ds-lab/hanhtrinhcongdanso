@@ -19,16 +19,16 @@ body{min-height:100vh;min-height:100dvh;display:grid;place-items:center}
 /* thanh trên cùng */
 .hud{position:absolute;left:6px;right:6px;top:6px;display:flex;gap:5px;align-items:flex-start;z-index:3;transition:opacity .3s}
 .hud.dim{opacity:.35}
-.quest{flex:1;min-width:0;background:rgba(255,248,231,.95);border:2px solid var(--line);border-radius:8px;padding:3px 8px;font-size:12px;font-weight:800;line-height:1.35;box-shadow:2px 2px 0 var(--line);cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.quest{flex:1;min-width:0;background:rgba(255,248,231,.95);border:2px solid var(--line);border-radius:8px;padding:4px 9px;font-size:14px;font-weight:800;line-height:1.35;box-shadow:2px 2px 0 var(--line);cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .quest.open{white-space:normal}
-.quest .more{display:none;font-weight:600;font-size:12px;margin-top:3px}
+.quest .more{display:none;font-weight:600;font-size:14px;margin-top:3px}
 .quest.open .more{display:block}
-.chip{background:var(--acc);border:2px solid var(--line);border-radius:8px;padding:3px 7px;font-weight:800;font-size:12.5px;box-shadow:2px 2px 0 var(--line);font-variant-numeric:tabular-nums;white-space:nowrap}
+.chip{background:var(--acc);border:2px solid var(--line);border-radius:8px;padding:4px 8px;font-weight:800;font-size:14.5px;box-shadow:2px 2px 0 var(--line);font-variant-numeric:tabular-nums;white-space:nowrap}
 .chip.hint{background:#FFF8E7}
 .bump{animation:bump .4s}
 @keyframes bump{50%{transform:scale(1.3)}}
-.iconbtn{width:30px;height:30px;border-radius:8px;border:2px solid var(--line);background:rgba(255,248,231,.95);font-weight:800;font-size:14px;cursor:pointer;color:var(--ink);padding:0;box-shadow:2px 2px 0 var(--line)}
-.toast{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);background:var(--line);color:#fff;border:2px solid var(--acc);border-radius:8px;padding:6px 12px;font-weight:800;font-size:15px;pointer-events:none;animation:toast 1.8s forwards;white-space:nowrap;z-index:9}
+.iconbtn{width:34px;height:34px;border-radius:8px;border:2px solid var(--line);background:rgba(255,248,231,.95);font-weight:800;font-size:14px;cursor:pointer;color:var(--ink);padding:0;box-shadow:2px 2px 0 var(--line)}
+.toast{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);background:var(--line);color:#fff;border:2px solid var(--acc);border-radius:8px;padding:7px 14px;font-weight:800;font-size:17px;pointer-events:none;animation:toast 1.8s forwards;white-space:nowrap;z-index:9}
 .toast.good{background:var(--ok)}.toast.badt{background:var(--bad)}
 @keyframes toast{0%{opacity:0;transform:translate(-50%,-30%)}15%{opacity:1;transform:translate(-50%,-50%)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-90%)}}
 .shake{animation:shake .35s}
@@ -50,17 +50,17 @@ body{min-height:100vh;min-height:100dvh;display:grid;place-items:center}
 .swap{position:absolute;right:8px;bottom:110px;pointer-events:auto;font-size:11px;width:auto;padding:0 6px}
 
 /* hội thoại */
-.dlg{position:absolute;left:6px;right:6px;bottom:6px;z-index:6;background:var(--paper);border:4px solid var(--line);border-radius:10px;padding:12px 12px 10px;box-shadow:4px 4px 0 var(--acc);display:grid;gap:7px;cursor:pointer;max-height:72%;overflow:auto}
-.dlg .who{justify-self:start;background:var(--line);color:#fff;font-weight:800;font-size:12.5px;padding:2px 9px;border-radius:6px}
-.dlg .txt{font-size:15px;font-weight:600;line-height:1.5;min-height:2.6em;white-space:pre-line}
+.dlg{position:absolute;left:6px;right:6px;bottom:6px;z-index:6;max-height:80%!important;background:var(--paper);border:4px solid var(--line);border-radius:10px;padding:12px 12px 10px;box-shadow:4px 4px 0 var(--acc);display:grid;gap:7px;cursor:pointer;max-height:72%;overflow:auto}
+.dlg .who{justify-self:start;background:var(--line);color:#fff;font-weight:800;font-size:14px;padding:2px 9px;border-radius:6px}
+.dlg .txt{font-size:17.5px;font-weight:600;line-height:1.5;min-height:2.6em;white-space:pre-line}
 .dlg .more{position:absolute;right:12px;bottom:6px;font-size:12px;animation:blink .8s steps(2) infinite}
 @keyframes blink{50%{opacity:0}}
 .choices{display:grid;gap:6px}
-.choice{font:inherit;text-align:left;font-size:14px;font-weight:700;padding:8px 10px 8px 24px;border:3px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);cursor:pointer;position:relative;line-height:1.35}
+.choice{font:inherit;text-align:left;font-size:16.5px;font-weight:700;padding:8px 10px 8px 24px;border:3px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);cursor:pointer;position:relative;line-height:1.35}
 .choice.sel{background:var(--acc)}
 .choice.sel::before{content:"▶";position:absolute;left:7px;top:50%;transform:translateY(-50%);font-size:10px}
 .choice.gone{opacity:.35;text-decoration:line-through;pointer-events:none;background:#eee}
-.hintbtn{justify-self:start;font:inherit;font-size:12.5px;font-weight:800;border:2px dashed var(--line);background:#FFF1C1;border-radius:8px;padding:5px 10px;cursor:pointer;color:var(--ink)}
+.hintbtn{justify-self:start;font:inherit;font-size:15px;font-weight:800;border:2px dashed var(--line);background:#FFF1C1;border-radius:8px;padding:5px 10px;cursor:pointer;color:var(--ink)}
 .hintbtn:disabled{opacity:.45;cursor:default}
 
 /* điện thoại */
@@ -219,8 +219,25 @@ body{min-height:100vh;min-height:100dvh;display:grid;place-items:center}
       <div class="stat"><b id="m1pts">0</b><span>điểm</span></div>
       <div class="stat"><b id="m1join">0/10</b><span>lần tham gia trò chuyện</span></div>
     </div>
-    <div class="card"><b>Màn 2 · Trung tâm Phục vụ hành chính công</b><p>Màn 2 và Màn 3 đang được hoàn thiện, hẹn bạn quay lại sớm nhé!</p></div>
-    <button class="go" id="toresult" type="button">Xem kết quả</button>
+    <div class="card"><b>Tiếp theo · Màn 2: Trung tâm Phục vụ hành chính công</b><p>Lên phường làm thủ tục, lấy số thứ tự và giúp bà con trong lúc chờ.</p></div>
+    <button class="go" id="tom2" type="button">Vào Màn 2 ➜</button>
+    <button class="go alt" id="toresult" type="button">Dừng ở đây, xem kết quả</button>
+  </div>
+</div>
+
+<!-- Kết thúc màn 2 -->
+<div class="over" id="m2end" hidden>
+  <div class="in">
+    <div class="logo"><img data-logo alt="">Hoàn thành Màn 2 · Trung tâm Phục vụ hành chính công</div>
+    <div class="medal" id="m2medal">🏅</div>
+    <h1 class="big center" id="m2title"></h1>
+    <div class="card"><b>Nhận xét</b><p id="m2eval"></p></div>
+    <div class="stats" style="grid-template-columns:1fr 1fr">
+      <div class="stat"><b id="m2ok">0/10</b><span>câu trả lời đúng</span></div>
+      <div class="stat"><b id="m2pts">0</b><span>điểm ở màn 2</span></div>
+    </div>
+    <div class="card"><b>Màn 3 · Ngày hội Chuyển đổi số</b><p>Màn 3 đang được hoàn thiện, hẹn bạn quay lại sớm nhé!</p></div>
+    <button class="go" id="toresult2" type="button">Xem kết quả</button>
   </div>
 </div>
 
@@ -284,43 +301,89 @@ const SLOGANS=[
 ];
 const ITEMS=["Băng rôn tuyên truyền","Áp phích Ngày 10/10","Cờ phướn chuyển đổi số","Tờ rơi Công dân số","Standee Ngày hội"];
 
-/* ===== NGÂN HÀNG CÂU HỎI MÀN 1 (đã đối chiếu căn cứ) ===== */
-const QZ=(q,a,w,ex)=>({q,a,w,ex});
+/* ===== NGÂN HÀNG CÂU HỎI (giải thích + nội dung căn cứ) ===== */
+const QZ=(q,a,w,ex,law)=>({q,a,w,ex,law});
 const BANK1=[
- QZ("Mật khẩu nào an toàn nhất?","Dài, có chữ hoa, chữ thường, số và ký hiệu",["Ngày sinh của mình","123456"],"Mật khẩu dễ đoán bị dò ra rất nhanh. Nên đặt mật khẩu dài, kết hợp nhiều loại ký tự."),
- QZ("Người xưng nhân viên ngân hàng xin mã OTP. Con làm gì?","Không đưa mã OTP cho bất kỳ ai",["Đưa vì họ là nhân viên ngân hàng","Đưa nếu họ hứa giúp"],"Ngân hàng không bao giờ hỏi mã OTP. OTP là chìa khóa tài khoản của mình."),
- QZ("Dùng Wi-Fi miễn phí ở quán cà phê, nên tránh việc gì?","Đăng nhập ngân hàng, chuyển tiền",["Đọc báo","Xem bản đồ"],"Wi-Fi công cộng có thể bị nghe lén dữ liệu, không nên giao dịch tiền."),
- QZ("Thấy tin \"cúp điện cả phường 3 ngày\" không rõ nguồn trên mạng xã hội. Làm gì?","Kiểm tra trên trang chính thức, không chia sẻ",["Chia sẻ ngay cho mọi người","Bình luận thêm cho sôi nổi"],"Điểm c, d khoản 1 Điều 7 Luật An ninh mạng 2025 nghiêm cấm đăng tải, phát tán thông tin sai sự thật gây hoang mang."),
- QZ("Tài khoản mạng xã hội ở Việt Nam phải xác thực bằng gì?","Số điện thoại di động tại Việt Nam (không có thì dùng số định danh cá nhân)",["Email bất kỳ","Không cần xác thực"],"Theo Nghị định 147/2024/NĐ-CP, hiệu lực từ 25/12/2024."),
- QZ("Đăng ảnh con cháu kèm tên trường, địa chỉ nhà ở chế độ công khai có nên không?","Không nên, kẻ xấu có thể lợi dụng",["Càng chi tiết càng tốt","Không sao cả"],"Luật Trẻ em 2016 bảo vệ bí mật đời sống riêng tư của trẻ; Luật Bảo vệ dữ liệu cá nhân 2025 bảo vệ dữ liệu của mỗi người."),
- QZ("Quét mã QR trả tiền ở quán, cần xem gì trước khi bấm xác nhận?","Tên người nhận hiện trên ứng dụng ngân hàng",["Màu của mã QR","Không cần xem gì"],"Kẻ gian có thể dán đè mã QR giả lên mã thật của quán."),
- QZ("Tin nhắn: \"Tài khoản ngân hàng của bạn bị khóa, bấm link để mở\". Làm gì?","Không bấm, gọi tổng đài in trên thẻ ngân hàng",["Bấm link để mở khóa","Nhắn lại mã OTP"],"Ngân hàng không gửi link yêu cầu đăng nhập qua tin nhắn."),
- QZ("Thanh toán không dùng tiền mặt có lợi gì?","Nhanh, có lịch sử giao dịch, tránh tiền giả",["Không cần giữ bí mật mật khẩu","Chuyển nhầm thì tự hoàn tiền"],"Theo Quyết định 1813/QĐ-TTg ngày 28/10/2021 về phát triển thanh toán không dùng tiền mặt."),
- QZ("Shop trên mạng xã hội bán rẻ bất thường, đòi chuyển khoản 100% trước. Làm gì?","Cảnh giác; mua trên sàn uy tín hoặc trả tiền khi nhận hàng",["Chuyển ngay kẻo hết","Chuyển thêm để giao nhanh"],"Đây là dấu hiệu lừa đảo mua bán online mà Công an thường cảnh báo."),
- QZ("Shipper giao món hàng mình không đặt, đòi thu tiền. Làm gì?","Kiểm tra đơn trên ứng dụng; không đặt thì từ chối",["Trả tiền cho nhanh","Nhận giùm rồi trả tiền"],"Chiêu \"giao hàng không đặt\" để thu tiền rất phổ biến."),
- QZ("Mua hàng online bị giao sai, mình có quyền gì?","Khiếu nại, yêu cầu đổi trả theo luật",["Không có quyền gì","Chỉ mua ở chợ mới được khiếu nại"],"Luật Bảo vệ quyền lợi người tiêu dùng 2023, hiệu lực từ 1/7/2024."),
- QZ("Trẻ em dưới 16 tuổi muốn có tài khoản mạng xã hội thì sao?","Cha, mẹ hoặc người giám hộ đăng ký bằng thông tin của mình và giám sát",["Mượn số điện thoại người lạ để đăng ký","Khai tăng tuổi cho đủ"],"Theo Nghị định 147/2024/NĐ-CP."),
- QZ("Người chơi dưới 18 tuổi được chơi game online tối đa bao lâu mỗi ngày?","Không quá 60 phút mỗi trò, tổng không quá 180 phút mỗi ngày",["Không giới hạn","5 tiếng mỗi trò"],"Điều 39 Nghị định 147/2024/NĐ-CP: doanh nghiệp game phải quản lý thời gian chơi của người dưới 18 tuổi."),
- QZ("Có người gửi link nhờ \"cài VNeID bản mới\" để nhận hỗ trợ. Làm gì?","Không bấm link; chỉ cài, cập nhật VNeID từ CH Play hoặc App Store",["Cài theo link cho nhanh","Gửi mật khẩu để họ cài giùm"],"Ứng dụng giả qua link lạ có thể chiếm quyền điện thoại. Mật khẩu VNeID là dữ liệu cá nhân nhạy cảm (Điều 4 Nghị định 356/2025/NĐ-CP)."),
- QZ("Chụp ảnh thẻ căn cước đăng lên mạng xã hội có an toàn không?","Không, ảnh thẻ căn cước là dữ liệu cá nhân nhạy cảm",["An toàn nếu che một góc","Chỉ cần để chế độ bạn bè"],"Điều 4 Nghị định 356/2025/NĐ-CP: hình ảnh thẻ căn cước thuộc danh mục dữ liệu cá nhân nhạy cảm."),
- QZ("Muốn học kỹ năng số miễn phí tại nhà, vào đâu?","Nền tảng \"Bình dân học vụ số\"",["Khóa học qua link lạ thu phí trước","Không có nơi miễn phí"],"Nền tảng học trực tuyến mở, miễn phí giúp mọi người dân phổ cập kỹ năng số."),
- QZ("Con học trực tuyến, phụ huynh nên làm gì?","Cài chế độ kiểm soát, giới hạn giờ, trò chuyện với con",["Cho dùng không giới hạn","Cấm hẳn không cho học"],"Kỹ năng giữ an toàn cho trẻ trên môi trường mạng."),
- QZ("Đăng ký tuyển sinh lớp 1, lớp 6 ở TP.HCM làm thế nào?","Trực tuyến trên cổng tuyển sinh đầu cấp của Sở Giáo dục và Đào tạo",["Nhờ người quen \"lo chỗ\"","Nộp tiền cho trang lạ"],"Cổng tuyển sinh đầu cấp TP.HCM: tuyensinhdaucap.hcm.edu.vn."),
- QZ("Trang web cơ quan nhà nước thường có đuôi tên miền gì?",".gov.vn",[".xyz",".top"],"Đây là tên miền dành cho cơ quan nhà nước Việt Nam. Coi chừng trang giả kiểu \"gov.vn.com\"."),
- QZ("Điện thoại báo có bản cập nhật phần mềm. Nên làm gì?","Cập nhật để vá lỗi bảo mật",["Không bao giờ cập nhật","Chờ máy hư mới cập nhật"],"Bản cập nhật vá các lỗ hổng mà kẻ gian có thể lợi dụng."),
- QZ("Muốn phản ánh tin nhắn rác, cuộc gọi lừa đảo thì liên hệ đâu?","Gọi tổng đài 156 hoặc nhắn tin tới 5656",["Gọi 1080","Không cần báo"],"Đầu số do Bộ Thông tin và Truyền thông (nay là Bộ Khoa học và Công nghệ) triển khai."),
- QZ("Lỡ chuyển tiền cho kẻ lừa đảo. Việc đầu tiên nên làm?","Báo ngay ngân hàng và trình báo Công an phường",["Im lặng cho qua","Thuê \"dịch vụ lấy lại tiền\" trên mạng"],"\"Dịch vụ lấy lại tiền bị lừa\" trên mạng thường là lừa đảo lần hai."),
- QZ("Thông tin nào là dữ liệu cá nhân?","Họ tên, số điện thoại, ảnh chân dung, số căn cước",["Chỉ số tài khoản ngân hàng","Không có gì cần giữ"],"Theo Luật Bảo vệ dữ liệu cá nhân (Luật số 91/2025/QH15), hiệu lực từ 1/1/2026."),
- QZ("Đèn đường trước hẻm bị hư, phản ánh nhanh qua đâu?","Ứng dụng Công dân số TP.HCM",["Đăng lên nhóm chợ","Chờ ai đó báo"],"Ứng dụng của Thành phố có mục phản ánh hiện trường, theo dõi được kết quả xử lý.")
+ QZ("Mật khẩu nào an toàn nhất?","Dài, có chữ hoa, chữ thường, số và ký hiệu",["Ngày sinh của mình","123456"],"Mật khẩu ngắn, dễ đoán như ngày sinh hay 123456 bị kẻ gian dò ra chỉ trong vài giây.","Khuyến cáo an toàn thông tin: mật khẩu nên dài từ 8 ký tự trở lên, kết hợp chữ hoa, chữ thường, số, ký hiệu và không dùng chung cho nhiều tài khoản."),
+ QZ("Người xưng nhân viên ngân hàng xin mã OTP. Con làm gì?","Không đưa mã OTP cho bất kỳ ai",["Đưa vì họ là nhân viên ngân hàng","Đưa nếu họ hứa giúp"],"OTP là \"chìa khóa\" để xác nhận giao dịch. Ai có OTP là có thể rút tiền trong tài khoản của mình.","Các ngân hàng đều thông báo: ngân hàng không bao giờ yêu cầu khách hàng cung cấp mật khẩu, mã OTP qua điện thoại, tin nhắn hay mạng xã hội."),
+ QZ("Dùng Wi-Fi miễn phí ở quán cà phê, nên tránh việc gì?","Đăng nhập ngân hàng, chuyển tiền",["Đọc báo","Xem bản đồ"],"Wi-Fi công cộng không có mật khẩu hoặc dùng chung mật khẩu có thể bị kẻ gian nghe lén dữ liệu.","Khuyến cáo an toàn thông tin: chỉ giao dịch ngân hàng bằng mạng di động (3G/4G/5G) hoặc Wi-Fi tin cậy ở nhà."),
+ QZ("Thấy tin \"cúp điện cả phường 3 ngày\" không rõ nguồn trên mạng xã hội. Làm gì?","Kiểm tra trên trang chính thức, không chia sẻ",["Chia sẻ ngay cho mọi người","Bình luận thêm cho sôi nổi"],"Chia sẻ tin chưa kiểm chứng là góp phần lan truyền tin giả, có thể bị xử lý.","Luật An ninh mạng 2025 (Điều 7, khoản 1, điểm c và d) nghiêm cấm đăng tải, phát tán thông tin bịa đặt, sai sự thật gây hoang mang trong Nhân dân."),
+ QZ("Tài khoản mạng xã hội ở Việt Nam phải xác thực bằng gì?","Số điện thoại di động tại Việt Nam (không có thì dùng số định danh cá nhân)",["Email bất kỳ","Không cần xác thực"],"Xác thực giúp biết ai đứng sau tài khoản, hạn chế tài khoản ảo lừa đảo, tung tin giả.","Nghị định 147/2024/NĐ-CP (hiệu lực 25/12/2024) quy định: tài khoản mạng xã hội phải được xác thực bằng số điện thoại di động tại Việt Nam; chỉ khi người dùng không có số điện thoại mới xác thực bằng số định danh cá nhân."),
+ QZ("Đăng ảnh con cháu kèm tên trường, địa chỉ nhà ở chế độ công khai có nên không?","Không nên, kẻ xấu có thể lợi dụng",["Càng chi tiết càng tốt","Không sao cả"],"Kẻ xấu có thể dùng thông tin để giả làm người quen đón trẻ, lừa phụ huynh chuyển tiền \"cấp cứu\".","Luật Trẻ em 2016 quy định trẻ em có quyền được bảo vệ bí mật đời sống riêng tư; Luật Bảo vệ dữ liệu cá nhân 2025 bảo vệ dữ liệu cá nhân của mỗi người."),
+ QZ("Quét mã QR trả tiền ở quán, cần xem gì trước khi bấm xác nhận?","Tên người nhận hiện trên ứng dụng ngân hàng",["Màu của mã QR","Không cần xem gì"],"Kẻ gian có thể dán đè mã QR giả lên mã thật của quán. Nhìn tên người nhận là biết tiền có tới đúng chủ quán không.","Khuyến cáo của Công an và các ngân hàng: kiểm tra kỹ tên chủ tài khoản nhận tiền trước khi xác nhận chuyển khoản."),
+ QZ("Tin nhắn: \"Tài khoản ngân hàng của bạn bị khóa, bấm link để mở\". Làm gì?","Không bấm, gọi tổng đài in trên thẻ ngân hàng",["Bấm link để mở khóa","Nhắn lại mã OTP"],"Link trong tin nhắn dẫn tới trang giả, đánh cắp tài khoản ngân hàng.","Các ngân hàng thông báo: ngân hàng không gửi đường link yêu cầu khách hàng đăng nhập hay cập nhật thông tin qua tin nhắn."),
+ QZ("Thanh toán không dùng tiền mặt có lợi gì?","Nhanh, có lịch sử giao dịch, tránh tiền giả",["Không cần giữ bí mật mật khẩu","Chuyển nhầm thì tự hoàn tiền"],"Mỗi giao dịch đều được lưu lại nên dễ đối chiếu, không lo thối nhầm hay nhận tiền giả.","Quyết định 1813/QĐ-TTg ngày 28/10/2021 của Thủ tướng phê duyệt Đề án phát triển thanh toán không dùng tiền mặt, khuyến khích người dân thanh toán điện tử."),
+ QZ("Shop trên mạng xã hội bán rẻ bất thường, đòi chuyển khoản 100% trước. Làm gì?","Cảnh giác; mua trên sàn uy tín hoặc trả tiền khi nhận hàng",["Chuyển ngay kẻo hết","Chuyển thêm để giao nhanh"],"Giá rẻ bất thường + bắt chuyển tiền trước là dấu hiệu lừa đảo bán hàng online.","Công an thường xuyên cảnh báo thủ đoạn lập trang bán hàng giả trên mạng xã hội, nhận tiền cọc rồi chặn liên lạc."),
+ QZ("Shipper giao món hàng mình không đặt, đòi thu tiền. Làm gì?","Kiểm tra đơn trên ứng dụng; không đặt thì từ chối",["Trả tiền cho nhanh","Nhận giùm rồi trả tiền"],"Kẻ gian gửi hàng kém chất lượng đến nhiều nhà, ai trả tiền là mất tiền.","Người tiêu dùng có quyền từ chối nhận hàng mình không đặt mua."),
+ QZ("Mua hàng online bị giao sai, mình có quyền gì?","Khiếu nại, yêu cầu đổi trả theo luật",["Không có quyền gì","Chỉ mua ở chợ mới được khiếu nại"],"Mua online cũng được bảo vệ như mua ở cửa hàng.","Luật Bảo vệ quyền lợi người tiêu dùng 2023 (hiệu lực 1/7/2024) quy định người tiêu dùng có quyền được cung cấp thông tin chính xác về hàng hóa, được khiếu nại, yêu cầu đổi trả, bồi thường khi hàng hóa không đúng như đã giao kết."),
+ QZ("Trẻ em dưới 16 tuổi muốn có tài khoản mạng xã hội thì sao?","Cha, mẹ hoặc người giám hộ đăng ký bằng thông tin của mình và giám sát",["Mượn số điện thoại người lạ để đăng ký","Khai tăng tuổi cho đủ"],"Trẻ em cần người lớn đồng hành để an toàn trên mạng.","Nghị định 147/2024/NĐ-CP quy định: người sử dụng mạng xã hội là trẻ em dưới 16 tuổi thì cha, mẹ hoặc người giám hộ đăng ký tài khoản bằng thông tin của mình và chịu trách nhiệm giám sát."),
+ QZ("Người chơi dưới 18 tuổi được chơi game online tối đa bao lâu mỗi ngày?","Không quá 60 phút mỗi trò, tổng không quá 180 phút mỗi ngày",["Không giới hạn","5 tiếng mỗi trò"],"Giới hạn giờ chơi giúp các em không bị nghiện game.","Điều 39 Nghị định 147/2024/NĐ-CP: doanh nghiệp game phải có hệ thống bảo đảm người chơi dưới 18 tuổi chơi không quá 60 phút mỗi trò chơi và không quá 180 phút mỗi ngày."),
+ QZ("Có người gửi link nhờ \"cài VNeID bản mới\" để nhận hỗ trợ. Làm gì?","Không bấm link; chỉ cài, cập nhật VNeID từ CH Play hoặc App Store",["Cài theo link cho nhanh","Gửi mật khẩu để họ cài giùm"],"Ứng dụng giả qua link lạ có thể chiếm quyền điều khiển điện thoại, rút sạch tiền.","Nghị định 356/2025/NĐ-CP (Điều 4) xếp tên đăng nhập, mật khẩu tài khoản định danh điện tử vào danh mục dữ liệu cá nhân nhạy cảm, cần được bảo vệ đặc biệt."),
+ QZ("Chụp ảnh thẻ căn cước đăng lên mạng xã hội có an toàn không?","Không, ảnh thẻ căn cước là dữ liệu cá nhân nhạy cảm",["An toàn nếu che một góc","Chỉ cần để chế độ bạn bè"],"Kẻ gian có thể dùng ảnh căn cước để mở tài khoản, vay tiền đứng tên mình.","Nghị định 356/2025/NĐ-CP (Điều 4) quy định hình ảnh thẻ căn cước, căn cước công dân, chứng minh nhân dân thuộc danh mục dữ liệu cá nhân nhạy cảm."),
+ QZ("Muốn học kỹ năng số miễn phí tại nhà, vào đâu?","Nền tảng \"Bình dân học vụ số\"",["Khóa học qua link lạ thu phí trước","Không có nơi miễn phí"],"Nền tảng có bài học ngắn về dùng điện thoại, dịch vụ công, an toàn trên mạng.","Bình dân học vụ số là nền tảng học trực tuyến mở, miễn phí, giúp mọi người dân phổ cập kỹ năng số."),
+ QZ("Con học trực tuyến, phụ huynh nên làm gì?","Cài chế độ kiểm soát, giới hạn giờ, trò chuyện với con",["Cho dùng không giới hạn","Cấm hẳn không cho học"],"Đồng hành cùng con giúp con học hiệu quả và tránh nội dung xấu.","Luật Trẻ em 2016 quy định cha mẹ có trách nhiệm bảo vệ trẻ em trên môi trường mạng."),
+ QZ("Đăng ký tuyển sinh lớp 1, lớp 6 ở TP.HCM làm thế nào?","Trực tuyến trên cổng tuyển sinh đầu cấp của Sở Giáo dục và Đào tạo",["Nhờ người quen \"lo chỗ\"","Nộp tiền cho trang lạ"],"Đăng ký trực tuyến minh bạch, không cần nhờ ai \"lo chỗ\".","Sở Giáo dục và Đào tạo TP.HCM tổ chức tuyển sinh lớp 1, lớp 6 trực tuyến tại cổng tuyensinhdaucap.hcm.edu.vn."),
+ QZ("Trang web cơ quan nhà nước thường có đuôi tên miền gì?",".gov.vn",[".xyz",".top"],"Coi chừng trang giả cố tình chèn chữ \"gov.vn\" vào giữa, kiểu \"dichvucong-gov.vn.com\".","Tên miền .gov.vn dành riêng cho cơ quan nhà nước Việt Nam."),
+ QZ("Điện thoại báo có bản cập nhật phần mềm. Nên làm gì?","Cập nhật để vá lỗi bảo mật",["Không bao giờ cập nhật","Chờ máy hư mới cập nhật"],"Bản cập nhật vá những lỗ hổng mà kẻ gian có thể lợi dụng.","Khuyến cáo an toàn thông tin: luôn cập nhật hệ điều hành và ứng dụng từ nguồn chính thức."),
+ QZ("Muốn phản ánh tin nhắn rác, cuộc gọi lừa đảo thì liên hệ đâu?","Gọi tổng đài 156 hoặc nhắn tin tới 5656",["Gọi 1080","Không cần báo"],"Phản ánh giúp nhà mạng chặn số điện thoại lừa đảo, bảo vệ người khác.","Bộ Thông tin và Truyền thông (nay là Bộ Khoa học và Công nghệ) triển khai đầu số 156 (gọi) và 5656 (nhắn tin) để tiếp nhận phản ánh tin nhắn rác, cuộc gọi lừa đảo."),
+ QZ("Lỡ chuyển tiền cho kẻ lừa đảo. Việc đầu tiên nên làm?","Báo ngay ngân hàng và trình báo Công an phường",["Im lặng cho qua","Thuê \"dịch vụ lấy lại tiền\" trên mạng"],"Báo càng sớm càng có cơ hội phong tỏa tài khoản nhận tiền.","Công an cảnh báo: các \"dịch vụ lấy lại tiền bị lừa\" trên mạng thường là lừa đảo lần hai."),
+ QZ("Thông tin nào là dữ liệu cá nhân?","Họ tên, số điện thoại, ảnh chân dung, số căn cước",["Chỉ số tài khoản ngân hàng","Không có gì cần giữ"],"Bất cứ thông tin nào giúp nhận ra một người đều là dữ liệu cá nhân.","Luật Bảo vệ dữ liệu cá nhân (Luật số 91/2025/QH15, hiệu lực 1/1/2026): dữ liệu cá nhân là thông tin gắn với một người cụ thể hoặc giúp xác định một người cụ thể."),
+ QZ("Đèn đường trước hẻm bị hư, phản ánh nhanh qua đâu?","Ứng dụng Công dân số TP.HCM",["Đăng lên nhóm chợ","Chờ ai đó báo"],"Phản ánh qua ứng dụng được chuyển đúng nơi xử lý, mình theo dõi được kết quả.","Ứng dụng Công dân số TP.HCM có mục phản ánh hiện trường, kết nối người dân với chính quyền Thành phố.")
 ];
 /* đố vui về Ngày 10/10 */
 const DOVUI=[
- QZ("Ngày Chuyển đổi số quốc gia là ngày nào?","Ngày 10 tháng 10 hằng năm",["Ngày 1 tháng 1","Ngày 2 tháng 9"],"Theo Quyết định 505/QĐ-TTg ngày 22/4/2022 của Thủ tướng Chính phủ."),
- QZ("Chủ đề Ngày Chuyển đổi số quốc gia năm 2026 nhấn mạnh điều gì?","Từ kiến trúc, nền tảng, dữ liệu đến kết quả thực chất",["Số hóa mọi lúc mọi nơi","Chuyển đổi số vì phường xanh"],"Chủ đề năm 2026: \"Chuyển đổi số quốc gia: Từ kiến trúc, nền tảng, dữ liệu đến kết quả thực chất, nâng cao hiệu quả quản trị quốc gia\"."),
- QZ("Luật Chuyển đổi số có hiệu lực từ khi nào?","Ngày 1/7/2026",["Ngày 10/10/2022","Chưa có luật này"],"Khoản 1 Điều 47 Luật Chuyển đổi số (Luật số 148/2025/QH15)."),
- QZ("Ba trụ cột của chuyển đổi số quốc gia là gì?","Chính phủ số, kinh tế số, xã hội số",["Internet, điện thoại, máy tính","Ngân hàng, chợ, trường học"],"Theo Quyết định 749/QĐ-TTg ngày 3/6/2020 về Chương trình Chuyển đổi số quốc gia."),
- QZ("Theo Luật Chuyển đổi số, người dân được bảo đảm quyền gì?","Được phổ cập năng lực số cơ bản",["Không có quyền gì","Chỉ doanh nghiệp được hỗ trợ"],"Khoản 4 Điều 41 Luật Chuyển đổi số 2025.")
+ QZ("Ngày Chuyển đổi số quốc gia là ngày nào?","Ngày 10 tháng 10 hằng năm",["Ngày 1 tháng 1","Ngày 2 tháng 9"],"Ngày này nhắc mọi người cùng tham gia chuyển đổi số.","Quyết định 505/QĐ-TTg ngày 22/4/2022 của Thủ tướng Chính phủ lấy ngày 10 tháng 10 hằng năm là Ngày Chuyển đổi số quốc gia."),
+ QZ("Chủ đề Ngày Chuyển đổi số quốc gia năm 2026 nhấn mạnh điều gì?","Từ kiến trúc, nền tảng, dữ liệu đến kết quả thực chất",["Số hóa mọi lúc mọi nơi","Chuyển đổi số vì phường xanh"],"Năm nay chuyển đổi số phải ra kết quả cụ thể, người dân thấy được lợi ích.","Chủ đề năm 2026: \"Chuyển đổi số quốc gia: Từ kiến trúc, nền tảng, dữ liệu đến kết quả thực chất, nâng cao hiệu quả quản trị quốc gia\"."),
+ QZ("Luật Chuyển đổi số có hiệu lực từ khi nào?","Ngày 1/7/2026",["Ngày 10/10/2022","Chưa có luật này"],"Đây là luật đầu tiên quy định toàn diện về chuyển đổi số ở Việt Nam.","Khoản 1 Điều 47 Luật Chuyển đổi số (Luật số 148/2025/QH15): Luật có hiệu lực thi hành từ ngày 01/7/2026."),
+ QZ("Ba trụ cột của chuyển đổi số quốc gia là gì?","Chính phủ số, kinh tế số, xã hội số",["Internet, điện thoại, máy tính","Ngân hàng, chợ, trường học"],"Ba trụ cột: chính quyền phục vụ trên môi trường số, doanh nghiệp làm ăn trên môi trường số, người dân sống trên môi trường số.","Quyết định 749/QĐ-TTg ngày 3/6/2020 phê duyệt Chương trình Chuyển đổi số quốc gia với 3 trụ cột: chính phủ số, kinh tế số, xã hội số."),
+ QZ("Theo Luật Chuyển đổi số, người dân được bảo đảm quyền gì?","Được phổ cập năng lực số cơ bản",["Không có quyền gì","Chỉ doanh nghiệp được hỗ trợ"],"Ai cũng được học để dùng được dịch vụ số.","Khoản 4 Điều 41 Luật Chuyển đổi số 2025: công dân được phổ cập năng lực số cơ bản.")
 ];
+/* ===== MÀN 2: CÂU HỎI CHUNG Ở TRUNG TÂM ===== */
+const BANK2=[
+ QZ("Tài khoản định danh điện tử mức 2 khác mức 1 ở điểm nào?","Được Công an xác thực trực tiếp, dùng được nhiều dịch vụ hơn",["Không khác gì","Mức 2 phải trả phí hằng tháng"],"Mức 2 dùng được hầu hết dịch vụ công trực tuyến và thay giấy tờ khi làm thủ tục.","Nghị định 69/2024/NĐ-CP: tài khoản mức 1 do người dân tự đăng ký trên ứng dụng VNeID; tài khoản mức 2 được cấp sau khi cơ quan Công an thu nhận, xác thực ảnh chân dung và vân tay."),
+ QZ("Cần chuẩn bị gì để được cấp tài khoản định danh điện tử mức 2?","Thẻ căn cước và số điện thoại đứng tên chính mình",["Sổ hộ khẩu và ảnh 3x4","Nộp phí qua điện thoại"],"Việc cấp tài khoản định danh điện tử không mất phí.","Nghị định 69/2024/NĐ-CP: công dân mang thẻ căn cước, dùng số điện thoại chính chủ, được thu nhận ảnh chân dung và vân tay tại cơ quan Công an."),
+ QZ("Căn cước điện tử trên VNeID có giá trị gì?","Chứng minh căn cước khi làm thủ tục, giao dịch",["Chỉ để xem","Phải kèm bản photo công chứng"],"Đi làm thủ tục chỉ cần mở VNeID, không cần mang bản photo.","Điều 33 Luật Căn cước 2023: căn cước điện tử có giá trị chứng minh về căn cước và các thông tin đã tích hợp khi thực hiện thủ tục hành chính, dịch vụ công và các giao dịch khác."),
+ QZ("Người quen mượn tài khoản VNeID \"làm hồ sơ giùm\". Bạn làm sao?","Không cho mượn, không đưa mật khẩu hay OTP",["Cho mượn vì là người quen","Đưa OTP, giữ mật khẩu"],"Tài khoản gắn với chính bạn; người khác dùng có thể làm việc xấu đứng tên bạn.","Nghị định 356/2025/NĐ-CP xếp tên đăng nhập, mật khẩu tài khoản định danh điện tử vào dữ liệu cá nhân nhạy cảm."),
+ QZ("Làm thủ tục còn phải nộp sổ hộ khẩu giấy không?","Không, sổ hộ khẩu đã hết giá trị từ 1/1/2023",["Vẫn phải nộp bản gốc","Phải nộp bản công chứng"],"Thông tin cư trú nay nằm trong Cơ sở dữ liệu về cư trú.","Khoản 3 Điều 38 Luật Cư trú 2020: sổ hộ khẩu, sổ tạm trú đã cấp chỉ được sử dụng đến hết ngày 31/12/2022."),
+ QZ("Thông tin đã có trong Cơ sở dữ liệu quốc gia về dân cư, cán bộ có được bắt nộp lại giấy tờ chứng minh không?","Không, cán bộ khai thác từ cơ sở dữ liệu",["Có, phải nộp đủ","Tùy cán bộ"],"Dữ liệu dùng chung giúp người dân đỡ phải mang nhiều giấy tờ.","Nghị định 104/2022/NĐ-CP bỏ yêu cầu xuất trình sổ hộ khẩu, sổ tạm trú; cơ quan giải quyết khai thác thông tin cư trú qua cơ sở dữ liệu, thẻ căn cước hoặc ứng dụng VNeID."),
+ QZ("Bước đầu tiên để nộp hồ sơ trên Cổng Dịch vụ công là gì?","Đăng nhập bằng tài khoản VNeID",["In hồ sơ ra giấy","Gọi cán bộ đọc thông tin"],"Sau khi đăng nhập: chọn thủ tục, điền tờ khai, đính kèm giấy tờ rồi nộp.","Cổng Dịch vụ công quốc gia dùng tài khoản định danh điện tử (VNeID) để đăng nhập một lần cho tất cả dịch vụ."),
+ QZ("Nộp hồ sơ xong, cần lưu gì để tra cứu tiến độ?","Mã hồ sơ",["Ảnh chụp trang chủ","Số điện thoại cán bộ"],"Có mã hồ sơ là tra cứu được trên Cổng Dịch vụ công hoặc ứng dụng Công dân số TP.HCM.","Mỗi hồ sơ được cấp một mã số riêng để theo dõi quá trình giải quyết."),
+ QZ("Văn bản ký bằng chữ ký số hợp lệ có giá trị thế nào?","Có giá trị pháp lý như chữ ký tay",["Phải in ra ký tay lại","Chỉ dùng trong nội bộ"],"Chữ ký số còn giúp phát hiện văn bản bị sửa sau khi ký.","Luật Giao dịch điện tử 2023 (hiệu lực 1/7/2024): chữ ký số bảo đảm an toàn có giá trị pháp lý tương đương chữ ký của người đó trên văn bản giấy."),
+ QZ("Kết quả giải quyết thủ tục bản điện tử có giá trị thế nào?","Giá trị pháp lý như bản giấy",["Chỉ để tham khảo","Phải in ra đóng dấu lại"],"Bản điện tử được lưu trong kho dữ liệu của mình, dùng lại được nhiều lần.","Nghị định 45/2020/NĐ-CP: kết quả giải quyết thủ tục hành chính bản điện tử có giá trị pháp lý như kết quả bằng giấy."),
+ QZ("Có xin được bản sao điện tử chứng thực từ bản chính không?","Có, tại cơ quan có thẩm quyền, dùng khi nộp hồ sơ trực tuyến",["Không, chỉ có bản giấy","Tự chụp điện thoại là được"],"Ảnh tự chụp không có giá trị như bản sao chứng thực.","Nghị định 45/2020/NĐ-CP (sửa đổi Nghị định 23/2015/NĐ-CP): bản sao điện tử chứng thực từ bản chính có giá trị sử dụng thay cho bản chính trong giao dịch điện tử."),
+ QZ("Bộ phận Một cửa ở Trung tâm làm nhiệm vụ gì?","Hướng dẫn, tiếp nhận hồ sơ và trả kết quả thủ tục",["Chỉ phát số thứ tự","Chỉ thu tiền lệ phí"],"Người dân chỉ cần đến một nơi, không phải chạy nhiều phòng.","Nghị định 61/2018/NĐ-CP về cơ chế một cửa: Bộ phận Một cửa hướng dẫn, tiếp nhận, chuyển hồ sơ và trả kết quả giải quyết thủ tục hành chính."),
+ QZ("Gia đình có người mất, liên thông thủ tục giải quyết cùng lúc những gì?","Đăng ký khai tử, xóa đăng ký thường trú, hưởng mai táng phí/tử tuất",["Chỉ khai tử","Phải đi 3 nơi riêng"],"Gia đình chỉ cần nộp một bộ hồ sơ.","Nghị định 63/2024/NĐ-CP quy định liên thông điện tử nhóm thủ tục: đăng ký khai tử – xóa đăng ký thường trú – hưởng chế độ tử tuất, mai táng phí."),
+ QZ("Nộp lệ phí thủ tục trực tuyến bằng cách nào?","Thanh toán trực tuyến ngay trên Cổng Dịch vụ công",["Chuyển khoản cá nhân cho người lạ","Đưa tiền cho người \"làm nhanh\""],"Thanh toán trên Cổng có biên lai điện tử, không lo bị lừa.","Cổng Dịch vụ công quốc gia có chức năng thanh toán trực tuyến phí, lệ phí và cấp biên lai điện tử."),
+ QZ("Trước cổng có người mời \"làm hồ sơ nhanh, có phí\". Bạn làm gì?","Từ chối; nộp tại quầy hoặc trực tuyến, cần thì hỏi cán bộ",["Đồng ý cho nhanh","Đưa luôn căn cước cho họ"],"\"Cò\" hồ sơ có thể làm lộ thông tin cá nhân và mất tiền oan.","Mọi thủ tục được công khai quy trình, thời hạn, lệ phí tại Bộ phận Một cửa; người dân không cần qua trung gian."),
+ QZ("Nộp hồ sơ trực tuyến có bắt buộc đến nhận kết quả không?","Không, có thể nhận qua bưu chính công ích hoặc bản điện tử",["Bắt buộc phải đến","Phải đến 2 lần"],"Ở nhà vẫn nhận được kết quả.","Quyết định 45/2016/QĐ-TTg: người dân có thể đăng ký nhận kết quả giải quyết thủ tục hành chính qua dịch vụ bưu chính công ích."),
+ QZ("Sau khi làm xong thủ tục, người dân có thể làm gì ngay tại quầy?","Đánh giá mức độ hài lòng trên máy tính bảng hoặc Cổng Dịch vụ công",["Không được đánh giá","Phải viết đơn gửi giấy"],"Ý kiến của người dân giúp Trung tâm phục vụ tốt hơn.","Nghị định 61/2018/NĐ-CP (sửa đổi bởi Nghị định 107/2021/NĐ-CP): tổ chức, cá nhân được đánh giá việc giải quyết thủ tục hành chính."),
+ QZ("Người lớn tuổi chưa rành nộp hồ sơ online thì nhờ ai?","Đoàn viên, Tổ công nghệ số cộng đồng hướng dẫn miễn phí",["Người lạ trên Facebook","Dịch vụ thu phí ngoài cổng"],"Ở Trung tâm và khu phố đều có người hỗ trợ miễn phí.","Tổ công nghệ số cộng đồng ở các khu phố có nhiệm vụ hướng dẫn người dân sử dụng nền tảng số, dịch vụ công trực tuyến."),
+ QZ("Giấy phép lái xe đã tích hợp vào VNeID có dùng được khi bị kiểm tra không?","Được, xuất trình trên VNeID thay bản giấy",["Không, phải mang bản giấy","Chỉ dùng ảnh chụp"],"Ảnh chụp giấy phép lái xe thì không có giá trị.","Từ ngày 1/7/2024, giấy phép lái xe đã tích hợp trên VNeID được xuất trình thay bản giấy (Luật Căn cước 2023)."),
+ QZ("Muốn xin Phiếu lý lịch tư pháp, có thể làm trực tuyến ở đâu?","Trên VNeID hoặc Cổng Dịch vụ công quốc gia",["Qua trang lạ thu phí","Không thể làm online"],"Không cần xếp hàng, kết quả có thể nhận bản điện tử.","Điều 22 Nghị định 216/2026/NĐ-CP: cá nhân yêu cầu cấp Phiếu lý lịch tư pháp trực tuyến thì khai tờ khai điện tử trên ứng dụng VNeID hoặc Cổng Dịch vụ công quốc gia."),
+ QZ("Lỡ để lộ mật khẩu VNeID. Bạn làm gì?","Đổi mật khẩu ngay, cần thì khóa tài khoản và báo Công an",["Để đó","Đăng lên mạng hỏi"],"Xử lý càng sớm càng tránh bị kẻ gian dùng tài khoản.","Nghị định 356/2025/NĐ-CP: mật khẩu tài khoản định danh điện tử là dữ liệu cá nhân nhạy cảm."),
+ QZ("Quên mật khẩu VNeID thì làm sao?","Dùng chức năng \"Quên mật khẩu\" trên ứng dụng chính thức",["Nhờ người lạ \"mở khóa có phí\"","Tạo tài khoản mới"],"Dịch vụ \"mở khóa VNeID\" trên mạng là lừa đảo.","Ứng dụng VNeID có chức năng lấy lại mật khẩu bằng số điện thoại đã đăng ký."),
+ QZ("Hồ sơ nộp còn thiếu giấy tờ, cán bộ phải làm gì?","Hướng dẫn người dân bổ sung, hoàn thiện hồ sơ",["Trả hồ sơ, không nói lý do","Bắt nộp lại từ đầu nhiều lần"],"Người dân được hướng dẫn rõ ràng, không phải đi lại nhiều lần.","Nghị định 61/2018/NĐ-CP: hồ sơ chưa đầy đủ thì cán bộ hướng dẫn người nộp bổ sung, hoàn thiện một lần, đầy đủ."),
+ QZ("Bị yêu cầu nộp thêm giấy tờ ngoài quy định, bạn có quyền gì?","Phản ánh, kiến nghị qua Cổng Dịch vụ công hoặc đường dây nóng",["Không có quyền gì","Phải làm theo"],"Thành phần hồ sơ đã được công khai, không được đòi thêm.","Nghị định 20/2008/NĐ-CP: người dân có quyền phản ánh, kiến nghị về quy định hành chính và hành vi của cán bộ khi giải quyết thủ tục."),
+ QZ("Hồ sơ giấy nộp tại quầy được số hóa để làm gì?","Lần sau tái sử dụng, không phải nộp lại",["Để bán dữ liệu","Không để làm gì"],"Giấy tờ đã số hóa được lưu trong kho dữ liệu của người dân.","Nghị định 45/2020/NĐ-CP và Nghị định 107/2021/NĐ-CP: hồ sơ, kết quả thủ tục được số hóa, lưu giữ để tái sử dụng.")
+];
+/* ===== MÀN 2: CÂU HỎI THEO THỦ TỤC ===== */
+const PROC={
+ A:{name:"Đăng ký khai sinh",quay:1,place:"Quầy 1",qs:[
+  QZ("Cha mẹ phải đăng ký khai sinh cho con trong thời hạn bao lâu?","60 ngày kể từ ngày sinh",["1 năm","Khi nào con đi học"],"Khai sinh đúng hạn để bé có ngay số định danh cá nhân, thẻ bảo hiểm y tế.","Khoản 1 Điều 15 Luật Hộ tịch 2014: trong thời hạn 60 ngày kể từ ngày sinh con, cha hoặc mẹ có trách nhiệm đăng ký khai sinh cho con."),
+  QZ("Đi đăng ký khai sinh cần nộp gì?","Tờ khai theo mẫu và giấy chứng sinh",["Sổ hộ khẩu","Ảnh 3x4 của bé"],"Giấy chứng sinh do bệnh viện, cơ sở y tế cấp khi bé chào đời.","Khoản 1 Điều 16 Luật Hộ tịch 2014: người đi đăng ký khai sinh nộp tờ khai theo mẫu và giấy chứng sinh cho cơ quan đăng ký hộ tịch."),
+  QZ("Cha mẹ không thể đi đăng ký khai sinh thì ai được làm thay?","Ông, bà, người thân thích khác hoặc người đang nuôi dưỡng trẻ",["Không ai được làm thay","Bất kỳ người lạ nào"],"Quan trọng là bé được khai sinh đúng hạn.","Khoản 1 Điều 15 Luật Hộ tịch 2014: trường hợp cha, mẹ không thể đăng ký khai sinh thì ông hoặc bà, người thân thích khác, cá nhân, tổ chức đang nuôi dưỡng trẻ có trách nhiệm đăng ký."),
+  QZ("Khai sinh cho bé dưới 6 tuổi theo liên thông được giải quyết cùng lúc những gì?","Khai sinh, đăng ký thường trú, cấp thẻ bảo hiểm y tế",["Chỉ khai sinh","Khai sinh và làm hộ chiếu"],"Nộp một lần, nhận đủ 3 kết quả.","Nghị định 63/2024/NĐ-CP (từ 1/7/2024): liên thông điện tử nhóm thủ tục đăng ký khai sinh – đăng ký thường trú – cấp thẻ bảo hiểm y tế cho trẻ dưới 6 tuổi.")]},
+ B:{name:"Chứng thực bản sao",quay:2,place:"Quầy 2 (Sao y – Chứng thực)",qs:[
+  QZ("Bản sao được chứng thực từ bản chính có giá trị thế nào?","Dùng thay cho bản chính đã đối chiếu trong giao dịch",["Chỉ dùng trong 3 tháng","Không có giá trị"],"Không phải mang bản gốc đi khắp nơi.","Khoản 2 Điều 3 Nghị định 23/2015/NĐ-CP: bản sao được chứng thực từ bản chính có giá trị sử dụng thay cho bản chính đã dùng để đối chiếu chứng thực trong các giao dịch."),
+  QZ("Giấy tờ bản chính bị tẩy xóa, sửa chữa có được chứng thực bản sao không?","Không",["Được nếu nộp thêm phí","Được nếu chỉ sửa ít"],"Giữ giấy tờ gốc cẩn thận, không tự sửa chữa.","Điều 22 Nghị định 23/2015/NĐ-CP: bản chính bị tẩy xóa, sửa chữa, thêm, bớt nội dung không hợp lệ thì không được dùng làm cơ sở chứng thực bản sao."),
+  QZ("Chứng thực chữ ký thì người yêu cầu phải làm gì?","Ký trước mặt người thực hiện chứng thực",["Ký sẵn ở nhà mang đến","Nhờ người khác ký giùm"],"Để xác nhận đúng là chữ ký của chính mình.","Điều 24 Nghị định 23/2015/NĐ-CP: người thực hiện chứng thực yêu cầu người yêu cầu chứng thực ký trước mặt."),
+  QZ("Muốn có bản sao điện tử để nộp hồ sơ online thì làm sao?","Yêu cầu chứng thực bản sao điện tử từ bản chính",["Tự chụp điện thoại là được","Không có cách nào"],"Bản sao điện tử chứng thực dùng được nhiều lần khi nộp hồ sơ trực tuyến.","Nghị định 45/2020/NĐ-CP: bản sao điện tử chứng thực từ bản chính có giá trị sử dụng thay cho bản chính trong giao dịch điện tử.")]},
+ C:{name:"Đăng ký thường trú",quay:0,place:"Công an phường",qs:[
+  QZ("Muốn đăng ký thường trú thì nộp hồ sơ ở đâu?","Công an phường nơi mình cư trú (hoặc nộp trực tuyến)",["Tổ dân phố","Trường học gần nhà"],"Đăng ký cư trú là việc của Công an phường, không làm ở Trung tâm Phục vụ hành chính công.","Luật Cư trú 2020 (khoản 4 Điều 2, khoản 1 Điều 22): cơ quan đăng ký cư trú là Công an cấp xã; người đăng ký thường trú nộp hồ sơ đến cơ quan đăng ký cư trú nơi mình cư trú."),
+  QZ("Khi nộp hồ sơ đăng ký thường trú, cơ quan đăng ký cư trú giao cho bạn gì?","Phiếu tiếp nhận hồ sơ; thiếu thì được hướng dẫn bổ sung",["Sổ hộ khẩu mới ngay tại chỗ","Không giao gì cả"],"Giữ phiếu tiếp nhận để theo dõi hồ sơ.","Khoản 2 Điều 22 Luật Cư trú 2020: cơ quan đăng ký cư trú kiểm tra, cấp phiếu tiếp nhận hồ sơ; hồ sơ chưa đầy đủ thì hướng dẫn bổ sung."),
+  QZ("Chuyển đến chỗ ở hợp pháp mới và đủ điều kiện, phải đăng ký thường trú trong bao lâu?","12 tháng kể từ ngày đủ điều kiện",["Không cần đăng ký","5 năm"],"Đăng ký đúng hạn để thông tin cư trú luôn chính xác.","Khoản 4 Điều 22 Luật Cư trú 2020: người đã đăng ký thường trú chuyển đến chỗ ở hợp pháp khác và đủ điều kiện thì phải đăng ký thường trú tại nơi ở mới trong thời hạn 12 tháng."),
+  QZ("Sau khi đăng ký thường trú, bạn có nhận sổ hộ khẩu không?","Không, thông tin được cập nhật vào Cơ sở dữ liệu về cư trú",["Có, nhận sổ mới","Nhận sổ tạm trú"],"Thông tin cư trú xem được trên ứng dụng VNeID.","Luật Cư trú 2020 (khoản 3 Điều 22, khoản 3 Điều 38): thông tin thường trú được cập nhật vào Cơ sở dữ liệu về cư trú; sổ hộ khẩu chỉ dùng đến hết 31/12/2022.")]}
+};
 
 /* ===== SỰ KIỆN NGẪU NHIÊN (6 dạng) ===== */
 const EVTS={
@@ -344,9 +407,9 @@ const EVTS={
 };
 
 /* ===== BẢN ĐỒ MÀN 1: HẺM KHU PHỐ ===== */
-const TS=16,VW=11,MW=36,MH=26;let VH=14;
+const TS=16,VW=11;let MW=36,MH=26,VH=14;let LV=null;
 const G=0,R=1,TREE=2,PAVE=3,BLD=4,FENCE=5,BUSH=6,FLOW=7,POT=8,DECO=9,ROAD=10;
-const map=new Uint8Array(MW*MH);
+let map=new Uint8Array(MW*MH);
 const at=(x,y)=>(x<0||y<0||x>=MW||y>=MH)?TREE:map[y*MW+x];
 const put=(x,y,v)=>{if(x>=0&&y>=0&&x<MW&&y<MH)map[y*MW+x]=v};
 const fill=(x1,y1,x2,y2,v)=>{for(let y=y1;y<=y2;y++)for(let x=x1;x<=x2;x++)put(x,y,v)};
@@ -426,12 +489,13 @@ function drawDeco(c,d){
 let mapImg=null;
 function renderMap(){
   mapImg=document.createElement("canvas");mapImg.width=MW*TS;mapImg.height=MH*TS;const c=mapImg.getContext("2d");
-  for(let y=0;y<MH;y++)for(let x=0;x<MW;x++){const t=at(x,y);drawTile(c,(t===BLD||t===DECO)?((x>=12&&x<=23&&y>=6&&y<=11)?PAVE:G):t,x,y)}
-  BUILDINGS.forEach(b=>drawBuilding(c,b));
-  DECOS.forEach(d=>drawDeco(c,d));
+  for(let y=0;y<MH;y++)for(let x=0;x<MW;x++)LV.tile(c,at(x,y),x,y);
+  LV.buildings.forEach(b=>drawBuilding(c,b));
+  LV.decos.forEach(d=>LV.deco(c,d));
+  if(LV.paint)LV.paint(c);
 }
 /* phần treo phía trên (băng rôn, dây cờ) vẽ đè lên nhân vật */
-function drawOverhead(cx,cy){
+function overhead1(cx,cy){
   const ban=(x1,x2,y,txt)=>{const X=x1*TS+8-cx,W=(x2-x1)*TS,Y=y-cy;if(X>VW*TS||X+W<0||Y<-30||Y>VH*TS)return;
     px(ctx,"#5D4037",X-8,Y-6,8,1);px(ctx,"#5D4037",X+W,Y-6,8,1);px(ctx,"#5D4037",X-1,Y-6,1,6);px(ctx,"#5D4037",X+W,Y-6,1,6);
     px(ctx,"#1A1A2E",X-1,Y-1,W+2,14);px(ctx,"#C8102E",X,Y,W,12);for(let i=0;i<W;i+=10)px(ctx,"rgba(0,0,0,.12)",X+i+5,Y+1,1,10);px(ctx,"#EEE",X+2,Y+2,2,2);px(ctx,"#EEE",X+W-4,Y+2,2,2);px(ctx,"#FFD23F",X,Y,W,1);px(ctx,"#FFD23F",X,Y+11,W,1);
@@ -527,32 +591,42 @@ const HONG={
  h3:{title:"chuyện quán cà phê",lines:[["chuA","Ông thấy tin trên mạng nói mai cúp điện cả phường chưa?"],["chuB","Thấy, mà chưa trang chính thức nào đăng. Tôi không chia sẻ đâu."],["chuA","Ừ, Luật An ninh mạng mới cấm phát tán tin sai sự thật gây hoang mang mà."],["chuB","Muốn biết thì xem trang của phường, của điện lực cho chắc."]]},
  h4:{title:"chuyện ở tiệm tạp hóa",lines:[["khach","Quét mã QR này trả tiền hả cô?"],["rau","Ừ, quét xong nhớ nhìn tên người nhận nha, có tiệm bị dán đè mã QR giả đó."],["khach","Vậy hả, để con coi kỹ."],["rau","Tiệm thấy báo tiền vào rồi mới giao hàng, hai bên đều yên tâm."]]}
 };
+const L1={id:1,MW:36,MH:26,build:buildMap,buildings:BUILDINGS,decos:DECOS,
+ tile:(c,t,x,y)=>drawTile(c,(t===BLD||t===DECO)?((x>=12&&x<=23&&y>=6&&y<=11)?PAVE:G):t,x,y),
+ deco:drawDeco,overhead:overhead1,npcDef:NPCDEF,start:{x:3,y:11,dir:0},
+ solidT:new Set([TREE,BLD,FENCE,BUSH,POT,DECO])};
 
 /* ===== TRẠNG THÁI ===== */
 let S=null;const npcs=[];
 const STEP_FR=11; /* số khung hình mỗi ô: chậm hơn bản cũ khoảng 30% */
 function newGame(name){
-  const qs=shuffle(BANK1.slice()).slice(0,10);
-  const quizIds=NPCDEF.filter(d=>d.kind==="quiz").map(d=>d.id);
-  const types=shuffle(Object.keys(EVTS)).slice(0,2);
-  S={name:name||"Bạn",score:0,hints:0,slog:shuffle(SLOGANS.map((_,i)=>i)),items:0,
-     quiz:{},done:new Set(),correct:0,answered:0,joined:new Set(),dovui:null,
-     events:types.map(t=>({type:t,...EVTS[t][Math.random()*EVTS[t].length|0]})),evDone:0,evOk:0,
-     pending:null,busy:true,ended:false,arrowAng:0,
-     p:{x:3,y:11,px:3*TS,py:11*TS,dir:0,frame:0,moving:null,walk:0,pal:PAL.me}};
-  quizIds.forEach((id,i)=>S.quiz[id]=qs[i]);
+  const types=shuffle(Object.keys(EVTS));
+  S={name:name||"Bạn",score:0,hints:0,slog:shuffle(SLOGANS.map((_,i)=>i)),items:0,evTypes:types,
+     pending:null,busy:true,ended:false,arrowAng:0,res:{},
+     p:{x:0,y:0,px:0,py:0,dir:0,frame:0,moving:null,walk:0,pal:PAL.me}};
+  loadLevel(L1);
+}
+/* nạp màn chơi: bản đồ, NPC, vị trí xuất phát */
+function loadLevel(L){
+  LV=L;MW=L.MW;MH=L.MH;map=new Uint8Array(MW*MH);L.build();renderMap();
   npcs.length=0;
-  NPCDEF.forEach(d=>npcs.push({...d,pal:PAL[d.pal||d.id],px:d.x*TS,py:d.y*TS,frame:0,moving:null,home:d.dir}));
+  L.npcDef.forEach(d=>npcs.push({...d,pal:d.obj?null:PAL[d.pal||d.id],px:d.x*TS,py:d.y*TS,frame:0,moving:null,home:d.dir}));
+  const p=S.p;Object.assign(p,{x:L.start.x,y:L.start.y,px:L.start.x*TS,py:L.start.y*TS,dir:L.start.dir,moving:null});
+  S.done=new Set();S.correct=0;S.answered=0;S.joined=new Set();S.quiz={};S.evDone=0;S.pending=null;S.ended=false;S.lvScore0=S.score;
+  S.events=S.evTypes.splice(0,2).map(t=>({type:t,...EVTS[t][Math.random()*EVTS[t].length|0]}));
+  if(L.init)L.init();
   updHud();
 }
+L1.init=()=>{
+  const qs=shuffle(BANK1.slice()).slice(0,10);
+  NPCDEF.filter(d=>d.kind==="quiz").forEach((d,i)=>S.quiz[d.id]=qs[i]);S.dovui=null;
+};
+L1.quest=()=>S.answered<10?`Màn 1 · Giúp bà con <b>${S.answered}/10</b> ▾`:`Ra <b>đầu hẻm</b> bên phải ➜ ▾`;
+L1.more=()=>`• Người có dấu <b>!</b> vàng đang cần bạn giúp.<br>• Bong bóng 💬 là chỗ đang có chuyện để hóng.<br>• Gặp ai đó, bấm <b>F</b> hoặc chạm vào người đó để nói chuyện.<br>• Bấm 💡 trong câu hỏi để loại 1 đáp án sai.<br>• Đúng +10 ★, sai −5 ★. Hóng chuyện: ${S.joined.size}/10.`;
 const fmt=t=>String(t).replace(/\{name\}/g,S?S.name:"bạn");
-function questText(){
-  const left=10-S.answered;
-  return left>0?`Màn 1 · Giúp bà con <b>${S.answered}/10</b> ▾`:`Ra <b>đầu hẻm</b> bên phải ➜ ▾`;
-}
 function updHud(){
   if(!S)return;
-  $("quest").innerHTML=questText()+`<div class="more">• Người có dấu <b>!</b> vàng đang cần bạn giúp.<br>• Bong bóng 💬 là chỗ đang có chuyện để hóng.<br>• Gặp ai đó, bấm <b>F</b> để nói chuyện.<br>• Bấm 💡 trong câu hỏi để loại 1 đáp án sai.<br>• Đúng +10 ★, sai −5 ★. Hóng chuyện: ${S.joined.size}/10.</div>`;
+  $("quest").innerHTML=LV.quest()+`<div class="more">${LV.more()}</div>`;
   $("hintc").textContent="💡 "+S.hints;
 }
 function pts(delta){const e=$("pts");e.textContent="★ "+S.score;e.classList.remove("bump");void e.offsetWidth;e.classList.add("bump")}
@@ -573,11 +647,15 @@ const mid=n=>440*Math.pow(2,(n-69)/12);
 /* giai điệu vui tươi cho Màn 1 (tự sáng tác) */
 const MEL=[72,0,76,79,76,0,72,74,76,0,74,72,69,0,72,0, 74,0,77,81,79,77,76,74,72,0,76,0,79,0,0,0, 72,0,76,79,81,79,76,74,72,74,76,77,79,0,76,0, 74,74,76,74,72,0,67,0,72,0,0,0,0,0,0,0];
 const BAS=[48,48,55,55,45,45,52,52,50,50,57,57,43,43,48,48];
+/* giai điệu Màn 2: nhẹ nhàng, chậm hơn */
+const MEL2=[67,0,72,0,71,72,74,0,72,0,69,0,67,0,0,0, 65,0,69,0,72,74,72,0,71,0,67,0,69,0,0,0, 67,0,72,0,76,74,72,0,74,0,77,76,74,0,72,0, 71,0,72,74,72,0,67,0,72,0,0,0,0,0,0,0];
+const BAS2=[48,48,45,45,41,41,43,43,48,48,45,45,43,43,48,48];
 let musT=null,musStep=0,musNext=0;
 function music(on){
+  const M=LV&&LV.id===2?MEL2:MEL,B=LV&&LV.id===2?BAS2:BAS,st=LV&&LV.id===2?.24:.2;
   clearInterval(musT);musT=null;if(!on||!soundOn||!ac())return;
   musNext=AC.currentTime+.1;
-  musT=setInterval(()=>{if(!AC)return;while(musNext<AC.currentTime+.25){const n=MEL[musStep%MEL.length];if(n)tone(mid(n),musNext,.16,"square",.022);if(musStep%4===0)tone(mid(BAS[(musStep/4|0)%BAS.length]),musNext,.3,"triangle",.05);musStep++;musNext+=.2}},60);
+  musT=setInterval(()=>{if(!AC)return;while(musNext<AC.currentTime+.25){const n=M[musStep%M.length];if(n)tone(mid(n),musNext,.16,"square",.022);if(musStep%4===0)tone(mid(B[(musStep/4|0)%B.length]),musNext,.3,"triangle",.05);musStep++;musNext+=st}},60);
 }
 $("snd").onclick=()=>{soundOn=!soundOn;store.set("pl_sound",soundOn);$("snd").textContent=soundOn?"♪":"×";music(soundOn&&S&&!S.ended)};
 $("snd").textContent=soundOn?"♪":"×";
@@ -649,15 +727,16 @@ $("dlg").addEventListener("click",()=>advance());
 async function quiz(n,qz,pre){
   const opts=shuffle([qz.a,...qz.w]);const correct=opts.indexOf(qz.a);
   const k=await ask(n,(pre?pre+"\n":"")+qz.q,opts,{correct});
-  if(k===correct){addScore(10);sfx("ok");vib(40);toast("+10 ★","good");await say(n,"Chính xác! "+qz.ex);return true}
+  const law=qz.law?"\n📘 Căn cứ: "+qz.law:"";
+  if(k===correct){addScore(10);sfx("ok");vib(40);toast("+10 ★","good");await say(n,"Chính xác! "+qz.ex+law);return true}
   addScore(-5);sfx("no");vib([100,50,100]);const st=$("stage");st.classList.remove("shake");void st.offsetWidth;st.classList.add("shake");toast("−5 ★","badt");
-  await say(n,"Chưa đúng rồi. Đáp án đúng: “"+qz.a+"”.\n"+qz.ex);return false;
+  await say(n,"Chưa đúng rồi. Đáp án đúng: “"+qz.a+"”.\n"+qz.ex+law);return false;
 }
 
 /* ===== DI CHUYỂN ===== */
 const DIRS=[[0,1],[-1,0],[1,0],[0,-1]];
 function solid(x,y,self){
-  const t=at(x,y);if(t===TREE||t===BLD||t===FENCE||t===BUSH||t===POT||t===DECO)return true;
+  if(LV.solidT.has(at(x,y)))return true;
   if(S&&self!==S.p&&S.p.x===x&&S.p.y===y)return true;
   return npcs.some(n=>n!==self&&!n.hidden&&n.x===x&&n.y===y);
 }
@@ -679,7 +758,7 @@ const moveNpc=(n,dir)=>new Promise(res=>{if(!startMove(n,dir,12)){n.dir=dir;retu
 let held=null;
 const KEYS={ArrowDown:0,ArrowLeft:1,ArrowRight:2,ArrowUp:3,s:0,a:1,d:2,w:3,S:0,A:1,D:2,W:3};
 addEventListener("keydown",e=>{
-  if(!S||!$("title").hidden||!$("end").hidden||!$("m1end").hidden||!$("lbv").hidden)return;
+  if(!S||!$("title").hidden||!$("end").hidden||!$("m1end").hidden||!$("m2end").hidden||!$("lbv").hidden)return;
   if(e.key in KEYS){e.preventDefault();
     if(!$("dlg").hidden&&D.choices){const k=KEYS[e.key];D.move(k===3||k===1?-1:1);return}
     held=KEYS[e.key];return}
@@ -745,7 +824,7 @@ async function action(){
   const pdx=n.x-S.p.x,pdy=n.y-S.p.y;S.p.dir=Math.abs(pdx)>Math.abs(pdy)?(pdx<0?1:2):(pdy<0?3:0);
   try{await talk(n)}finally{closeDlg();if(!n.temp)n.dir=n.home;S.busy=false;updHud()}
 }
-async function talk(n){
+L1.talk=async function(n){
   if(n.kind==="quiz"){
     if(S.done.has(n.id)){await say(n,n.thanks);return}
     const ok=await quiz(n,S.quiz[n.id],n.lead);
@@ -768,7 +847,8 @@ async function talk(n){
     if(S.dovui===null){await dovuiOffer(n);return}
     await say(n,S.answered<10?`Bà con có dấu ! đang cần bạn giúp đó. Còn ${10-S.answered} người nữa nha!`:"Bạn giúp đủ rồi, lên phường thôi! Ra đầu hẻm bên phải nha.");
   }
-}
+};
+const talk=n=>LV.talk(n);
 async function dovuiOffer(n){
   const k=await ask(n,"Bạn có muốn chơi đố vui 3 câu về Ngày 10/10 không? Đúng mỗi câu +10 ★, sai −5 ★.",["🎯 Chơi luôn","🏃 Tôi đang vội lên phường"]);
   if(k===1){S.dovui=false;await say(n,"Không sao, lúc nào rảnh quay lại tìm mình nha!");return}
@@ -869,18 +949,20 @@ function update(){
   tick++;if(!S)return;
   const p=S.p;
   if(stepEntity(p)){
-    if(p.x>=35&&!S.ended){onExit()}
+    if(LV.onStep&&LV.onStep(p)){}
     else if(S.pending&&--S.pending.walk<=0&&!S.busy){const ev=S.pending.ev;S.pending=null;runEvent(ev)}
   }
   npcs.forEach(stepEntity);
   if(!p.moving&&held!==null&&!S.busy&&$("dlg").hidden&&$("phonebox").hidden&&!S.ended){
     if(!startMove(p,held)){p.dir=held;if(tick%18===0)sfx("bump")}
   }
-  if(tick%170===0&&!S.busy)npcs.forEach(n=>{if(n.id==="bem"&&!n.moving){const d=Math.random()*4|0;const [dx,dy]=DIRS[d];const tx=n.x+dx,ty=n.y+dy;if(tx===12&&ty>=19&&ty<=23)startMove(n,d,16)}});
+  if(LV.tick)LV.tick();
   if(S.alert)S.alert--;
   const near=!S.busy&&$("dlg").hidden?nearNpc():null;$("fbtn").classList.toggle("near",!!near);
   const [,cy]=camera();$("hud").classList.toggle("dim",p.py-cy<52&&!$("quest").classList.contains("open"));
 }
+L1.onStep=p=>{if(p.x>=35&&!S.ended){onExit();return true}return false};
+L1.tick=()=>{if(tick%170===0&&!S.busy)npcs.forEach(n=>{if(n.id==="bem"&&!n.moving){const d=Math.random()*4|0;const [dx,dy]=DIRS[d];const tx=n.x+dx,ty=n.y+dy;if(tx===12&&ty>=19&&ty<=23)startMove(n,d,16)}})};
 async function onExit(){
   if(S.answered<10){
     S.busy=true;held=null;
@@ -889,6 +971,7 @@ async function onExit(){
   }
   S.ended=true;S.busy=true;held=null;music(false);sfx("win");
   await say("Gợi ý","Bạn ra tới đầu hẻm rồi! Cùng xem bà con khu phố đánh giá bạn thế nào nhé…");closeDlg();
+  S.res[1]={correct:S.correct,score:S.score-S.lvScore0,joined:S.joined.size};
   showM1End();
 }
 function drawBang(x,y,col){ // dấu "!" to, nảy, có vầng sáng
@@ -904,7 +987,8 @@ function drawBubble(x,y){
   ctx.fillStyle="#11111F";ctx.fillRect(x+4,y-6+b,3,3);
   const k=(tick/12|0)%4;for(let i=0;i<3;i++){ctx.fillStyle=i<k?"#1E6FE0":"#9AA3B5";ctx.fillRect(x+4+i*4,y-11+b,2,2)}
 }
-function target(){
+const target=()=>LV.target();
+L1.target=function(){
   const p=S.p;let best=null,bd=1e9;
   npcs.forEach(n=>{if(n.kind!=="quiz"||S.done.has(n.id))return;const d=Math.hypot(n.x-p.x,n.y-p.y);if(d<bd){bd=d;best=n}});
   return best||{x:35,y:12.5,px:35*TS,py:12.5*TS,exit:true};
@@ -919,12 +1003,13 @@ function draw(){
   const ents=npcs.filter(n=>!n.hidden).concat([p]).sort((a,b)=>a.py-b.py);
   ents.forEach(e=>{
     const x=Math.round(e.px-cx),y=Math.round(e.py-cy);if(x<-20||y<-30||x>VW*TS+20||y>VH*TS+20)return;
-    ctx.fillStyle="rgba(0,0,0,.28)";ctx.fillRect(x+3,y+14,10,3);
-    ctx.drawImage(sprite(e.pal,e.dir,e.frame),x,y-2);
+    if(!e.obj){ctx.fillStyle="rgba(0,0,0,.28)";ctx.fillRect(x+3,y+14,10,3)}
+    if(e.obj)LV.drawObj(ctx,e,x,y);else ctx.drawImage(sprite(e.pal,e.dir,e.frame),x,y-2);
   });
-  drawOverhead(cx,cy);
+  LV.overhead(cx,cy);
   if(!S.busy){
     npcs.forEach(n=>{if(n.hidden)return;const x=Math.round(n.px-cx),y=Math.round(n.py-cy);if(x<-20||y<-30||x>VW*TS||y>VH*TS)return;
+      if(LV.mark){LV.mark(n,x,y,tg);return}
       if(n.kind==="quiz"&&!S.done.has(n.id))drawBang(x,y,"#FFD23F");
       else if(n.kind==="hong"&&!S.joined.has(n.pair)&&HONG[n.pair].lines[0][0]===n.id)drawBubble(x+8,y);
       else if(n.kind==="idle"&&!S.joined.has(n.id))drawBubble(x,y);
@@ -971,6 +1056,242 @@ async function intro(){
   closeDlg();n.dir=n.home;S.busy=false;
 }
 
+/* ===== MÀN 2: TRUNG TÂM PHỤC VỤ HÀNH CHÍNH CÔNG PHƯỜNG GIA ĐỊNH =====
+   Bản đồ dựng theo bản vẽ tay và ảnh chụp bên trong Trung tâm (đã vẽ lại thành pixel, không dùng ảnh gốc). */
+const FLOOR=20,WWALL=21,WALLW=22,COUNTER=23,GLASS=24,BENCH=25,PCDESK=26,PILLAR=27,PARK=28,BIKE=29,BED=30,STAIRS=31,GATE=32,DOORT=33,COPY=34,TABLE=35;
+const B2=[{x:1,y:22,w:5,h:5,door:[3,26],wall:"#FFF3E0",roof:"#C62828",sign:"QUẦY TIẾP DÂN"}];
+function buildMap2(){
+  map.fill(G);
+  /* trong nhà */
+  fill(0,0,29,0,WALLW);fill(0,0,0,12,WALLW);fill(29,0,29,12,WALLW);
+  fill(1,1,28,1,WWALL);fill(1,2,28,11,FLOOR);
+  fill(5,3,24,3,COUNTER);fill(4,2,4,3,GLASS);fill(25,2,25,3,GLASS);
+  /* phòng tiếp công dân (vách kính) */
+  fill(1,5,6,5,GLASS);fill(1,9,6,9,GLASS);fill(6,5,6,9,GLASS);put(6,7,DOORT);put(2,7,TABLE);put(3,7,TABLE);
+  /* ghế chờ inox */
+  fill(8,6,12,6,BENCH);fill(16,6,20,6,BENCH);fill(8,8,12,8,BENCH);fill(16,8,20,8,BENCH);put(14,8,PILLAR);
+  /* bàn tra cứu, máy photocopy */
+  fill(28,5,28,8,PCDESK);put(28,11,COPY);put(1,2,POT);put(24,11,POT);put(1,11,POT);
+  /* vách kính mặt tiền + 2 cửa đẩy */
+  fill(1,12,28,12,GLASS);put(11,12,DOORT);put(12,12,DOORT);put(17,12,DOORT);put(18,12,DOORT);
+  /* ngoài sân */
+  fill(0,13,0,30,TREE);fill(29,13,29,30,TREE);
+  fill(1,13,28,14,PAVE);fill(24,13,27,14,STAIRS);
+  fill(1,15,6,19,PARK);fill(1,15,6,15,FENCE);fill(7,15,7,20,FENCE);fill(1,20,6,20,FENCE);
+  [[2,17],[3,17],[5,17],[2,19],[4,19]].forEach(([x,y])=>put(x,y,BIKE));
+  fill(9,16,12,17,BED);fill(17,16,21,17,BED);fill(13,15,16,28,PAVE);
+  fill(8,19,12,27,PARK);fill(17,19,22,27,PARK);
+  for(const y of [20,22,24,26]){fill(9,y,11,y,BIKE);fill(18,y,21,y,BIKE)}
+  B2.forEach(b=>fill(b.x,b.y,b.x+b.w-1,b.y+b.h-1,BLD));
+  fill(1,28,28,28,PAVE);fill(0,29,29,29,FENCE);put(14,29,GATE);put(15,29,GATE);fill(0,30,29,30,ROAD);
+  [[24,16],[27,17],[25,20],[27,23],[24,25],[26,26],[23,18],[2,21]].forEach(([x,y])=>{if(at(x,y)===G)put(x,y,TREE)});
+}
+function drawTile2(c,t,x,y){
+  const X=x*TS,Y=y*TS,h=hash(x,y);
+  if(t===FLOOR||t===DOORT||t===GLASS||t===TABLE||t===PCDESK||t===COPY||t===BENCH||t===PILLAR||t===COUNTER||(t===POT&&y<=12)){
+    px(c,(x+y)%2?"#E9ECEF":"#F3F5F7",X,Y,TS,TS);px(c,"#D5DAE0",X,Y,TS,1);px(c,"#D5DAE0",X,Y,1,TS);
+    if(t===DOORT){px(c,"#9AA3B5",X,Y,1,TS);px(c,"#9AA3B5",X+15,Y,1,TS)}
+  }
+  if(t===WWALL){px(c,"#C8955A",X,Y,TS,TS);for(let i=0;i<TS;i+=3)px(c,"#A87440",X+i,Y,1,TS);px(c,"#8A5A2B",X,Y+15,TS,1);return}
+  if(t===WALLW){px(c,"#F7F7F2",X,Y,TS,TS);px(c,"#DADAD2",X,Y+15,TS,1);return}
+  if(t===COUNTER){px(c,"#D9B27C",X,Y+3,TS,10);px(c,"#B98A4E",X,Y+12,TS,3);px(c,"#1A1A2E",X,Y+15,TS,1);px(c,"#BFE6FF",X,Y-2,TS,5);px(c,"#8FB8D6",X,Y-2,TS,1);if(x%4===0)px(c,"#8FB8D6",X,Y-6,1,9);
+    if(x%4===2){px(c,"#1A1A2E",X+2,Y-4,9,7);px(c,"#3A6EA5",X+3,Y-3,7,5);px(c,"#FFFFFF",X+12,Y+4,3,4)}return}
+  if(t===GLASS){px(c,"rgba(150,205,235,.45)",X,Y,TS,TS);px(c,"#8FB8D6",X,Y,TS,2);px(c,"#8FB8D6",X,Y+14,TS,2);px(c,"rgba(255,255,255,.7)",X+3+(h*6|0),Y+3,2,9);return}
+  if(t===BENCH){px(c,"#1A1A2E",X,Y+5,TS,8);px(c,"#C9CED6",X,Y+6,TS,6);for(let i=1;i<TS;i+=3)px(c,"#8C949F",X+i,Y+8,1,1);px(c,"#9AA3B5",X+2,Y+12,2,4);px(c,"#9AA3B5",X+12,Y+12,2,4);px(c,"#E6E9EE",X,Y+2,TS,3);return}
+  if(t===PCDESK){px(c,"#D9B27C",X,Y+6,TS,8);px(c,"#1A1A2E",X,Y+14,TS,2);px(c,"#1A1A2E",X+3,Y-2,10,9);px(c,"#2F4F6F",X+4,Y-1,8,6);px(c,"#1A1A2E",X+7,Y+7,2,2);px(c,"#333",X+3,Y+10,10,2);return}
+  if(t===PILLAR){px(c,"#C8955A",X+3,Y-8,10,24);for(let i=0;i<10;i+=3)px(c,"#A87440",X+3+i,Y-8,1,24);px(c,"#1A1A2E",X+3,Y+15,10,1);return}
+  if(t===COPY){px(c,"#1A1A2E",X+1,Y-4,14,20);px(c,"#F5F5F5",X+2,Y-3,12,18);px(c,"#9E9E9E",X+3,Y-2,10,3);px(c,"#BDBDBD",X+3,Y+5,10,2);px(c,"#BDBDBD",X+3,Y+9,10,2);return}
+  if(t===TABLE){px(c,"#D9B27C",X,Y+5,TS,7);px(c,"#1A1A2E",X,Y+12,TS,1);px(c,"#FFFFFF",X+3,Y+6,6,4);return}
+  if(t===POT&&y<=12){px(c,"#B5532A",X+4,Y+9,8,6);c.fillStyle="#2E9E44";c.beginPath();c.arc(X+8,Y+7,5,0,7);c.fill();return}
+  if(t===PARK||t===BIKE){px(c,"#6B707C",X,Y,TS,TS);if(y%2===0)px(c,"#F5F5F5",X,Y,TS,1);
+    if(t===BIKE){const col=["#E53935","#1E88E5","#43A047","#FB8C00","#8E24AA"][(x*3+y)%5];px(c,"#111",X+2,Y+9,4,4);px(c,"#111",X+10,Y+9,4,4);px(c,col,X+4,Y+5,8,5);px(c,"#333",X+11,Y+2,2,4);px(c,"#222",X+5,Y+4,5,2)}return}
+  if(t===BED){px(c,"#B5532A",X,Y+2,TS,14);px(c,"#8D3F1F",X,Y+15,TS,1);c.fillStyle=h>.5?"#2E9E44":"#3CB55A";c.beginPath();c.arc(X+8,Y+6,7,0,7);c.fill();if(h>.6){px(c,"#FF4D6D",X+5,Y+3,2,2);px(c,"#FFD23F",X+10,Y+6,2,2)}return}
+  if(t===STAIRS){for(let i=0;i<4;i++)px(c,i%2?"#C9CED6":"#E6E9EE",X,Y+i*4,TS,4);px(c,"#9AA3B5",X,Y,1,TS);return}
+  if(t===GATE){px(c,"#F2DFA8",X,Y,TS,TS);px(c,"#555",X,Y,2,TS);px(c,"#555",X+14,Y,2,TS);return}
+  if(t===FENCE&&y===29){px(c,"#74C94F",X,Y,TS,TS);px(c,"#3A3F4B",X,Y+4,TS,3);px(c,"#3A3F4B",X,Y+11,TS,3);for(let i=1;i<TS;i+=5)px(c,"#3A3F4B",X+i,Y,2,TS);return}
+  if(t===FENCE){px(c,"#6B707C",X,Y,TS,TS);px(c,"#E6E9EE",X,Y+6,TS,2);px(c,"#C62828",X,Y+8,TS,2);px(c,"#9E9E9E",X+7,Y+2,2,14);return}
+  if(t===BLD){drawTile(c,G,x,y);return}
+  if(t===FLOOR||t===DOORT)return;
+  drawTile(c,t,x,y);
+}
+function paint2(c){
+  c.font="bold 7px 'Be Vietnam Pro',sans-serif";c.textBaseline="middle";c.textAlign="center";
+  const T=(col,s,x,y,w)=>{c.fillStyle=col;c.fillText(s,x,y,w)};
+  px(c,"#B71C1C",9*TS,1*TS+3,12*TS,10);T("#FFE27A","TRUNG TÂM PHỤC VỤ HÀNH CHÍNH CÔNG PHƯỜNG GIA ĐỊNH",15*TS,1*TS+8.5,12*TS-4);
+  px(c,"#1E6FE0",1*TS+4,4*TS+3,5*TS-8,10);T("#fff","PHÒNG TIẾP CÔNG DÂN",3.5*TS,4*TS+8.5,5*TS-10);
+  px(c,"#1E6FE0",26*TS+2,4*TS+3,3*TS-6,10);T("#fff","BÀN TRA CỨU",27.4*TS,4*TS+8.5,3*TS-8);
+  px(c,"#C62828",1*TS+2,16*TS+2,5*TS-4,22);T("#fff","XE CÁN BỘ, CÔNG CHỨC",3.5*TS,16*TS+8,5*TS-6);T("#fff","Người dân không vào",3.5*TS,16*TS+17,5*TS-6);
+  px(c,"#1E6FE0",8*TS,18*TS+4,5*TS,10);T("#fff","NƠI GỬI XE",10.5*TS,18*TS+9.5);
+  px(c,"#1E6FE0",17*TS,18*TS+4,6*TS,10);T("#fff","NƠI GỬI XE",20*TS,18*TS+9.5);
+  px(c,"#1A1A2E",13*TS+8,30*TS+3,3*TS,10);T("#FFE27A","CỔNG RA VÀO",15*TS,30*TS+8.5,3*TS-2);
+  T("#1A1A2E","CẦU THANG ↑",26*TS,13*TS+4,4*TS);
+  c.textAlign="left";
+}
+/* màn hình treo trên quầy + bảng gọi số lớn */
+function overhead2(cx,cy){
+  ctx.font="bold 6px 'Be Vietnam Pro',sans-serif";ctx.textBaseline="middle";ctx.textAlign="center";
+  const Q=[{n:1,x:5},{n:2,x:9},{n:3,x:13},{n:4,x:17},{n:5,x:21}];
+  const lab={1:"QUẦY 1",2:"SAO Y – CHỨNG THỰC",3:"tạm nghỉ",4:"KINH TẾ – CÔNG THƯƠNG",5:"ĐỊA CHÍNH – XÂY DỰNG"};
+  const num={4:"4014",5:"5029"};if(S.m2&&S.m2.called&&S.m2.quay)num[S.m2.quay]=S.m2.ticket;
+  Q.forEach(q=>{const X=q.x*TS+4-cx,Y=2*TS-14-cy;if(X>VW*TS||X+56<0)return;
+    px(ctx,"#333",X+27,Y-8,2,8);px(ctx,"#1A1A2E",X-1,Y-1,58,22);px(ctx,"#D61F2C",X,Y,56,10);px(ctx,"#FFFFFF",X,Y+10,56,10);
+    ctx.fillStyle="#fff";ctx.fillText("QUẦY "+q.n,X+28,Y+3.5);ctx.font="bold 4px 'Be Vietnam Pro',sans-serif";ctx.fillText(lab[q.n],X+28,Y+8,54);ctx.font="bold 7px 'Be Vietnam Pro',sans-serif";
+    ctx.fillStyle="#C62828";ctx.fillText(num[q.n]||"",X+28,Y+15.5);ctx.font="bold 6px 'Be Vietnam Pro',sans-serif"});
+  /* bảng gọi số lớn trên tường trái */
+  const X=1*TS-cx+2,Y=2*TS-cy-4;
+  if(X<VW*TS&&Y<VH*TS){px(ctx,"#1A1A2E",X-1,Y-1,48,46);px(ctx,"#D61F2C",X,Y,46,7);px(ctx,"#EAF2FA",X,Y+7,46,37);
+    ctx.fillStyle="#fff";ctx.font="bold 4px 'Be Vietnam Pro',sans-serif";ctx.fillText("BẢNG GỌI SỐ",X+23,Y+3.8);
+    for(let i=1;i<=5;i++){ctx.fillStyle="#1E6FE0";ctx.fillText("QUẦY "+i,X+12,Y+5+i*7);ctx.fillStyle="#C62828";ctx.fillText(num[i]||"—",X+34,Y+5+i*7)}}
+  ctx.textAlign="left";
+}
+/* đồ vật: kiosk, bảng chỉ dẫn, standee */
+function drawObj2(c,e,x,y){
+  if(e.obj==="kiosk"||e.obj==="kiosk2"){px(c,"#1A1A2E",x+2,y-12,12,28);px(c,"#FFFFFF",x+3,y-11,10,26);px(c,"#1A1A2E",x+4,y-9,8,8);px(c,e.obj==="kiosk"?"#E8F1FB":"#FDECEA",x+5,y-8,6,6);px(c,"#D61F2C",x+5,y-8,6,1);px(c,"#9E9E9E",x+5,y+2,6,1);px(c,"#D61F2C",x+6,y+6,4,4);return}
+  if(e.obj==="standee"){px(c,"#555",x+4,y+8,2,8);px(c,"#555",x+10,y+8,2,8);px(c,"#1A1A2E",x+1,y-12,14,21);px(c,"#1E6FE0",x+2,y-11,12,19);px(c,"#FFC93C",x+3,y-9,10,3);px(c,"#FFFFFF",x+4,y-4,8,1);px(c,"#FFFFFF",x+4,y-1,8,1);px(c,"#FFFFFF",x+4,y+2,6,1);return}
+  if(e.obj==="sign"){px(c,"#555",x+7,y-2,2,18);px(c,"#1A1A2E",x-6,y-12,28,12);px(c,"#1E6FE0",x-5,y-11,26,10);c.fillStyle="#fff";c.font="bold 4px 'Be Vietnam Pro',sans-serif";c.textBaseline="middle";c.textAlign="center";c.fillText("CÔNG AN PHƯỜNG ➜",x+8,y-6,25);c.textAlign="left";return}
+}
+const PAL2={
+ doan:{id:"doan2",H:"#141414",C:"#1E88E5",D:"#1565C0",P:"#1B2A49",vest:"#FFD23F"},
+ baove:{id:"baove",H:"#333",C:"#5D7A3A",D:"#465E2B",P:"#2E3B1F",hat:"#465E2B"},
+ canbo:{id:"canbo",H:"#1A1A1A",C:"#DCEBF7",D:"#B9D3E8",P:"#2C3E50"},
+ canbo2:{id:"canbo2",H:"#2B1B14",C:"#DCEBF7",D:"#B9D3E8",P:"#37474F"},
+ ca:{id:"ca2",H:"#111",C:"#6B8E3D",D:"#557230",P:"#4A6328",hat:"#4A6328"}
+};
+Object.assign(PAL,PAL2);
+const NPC2=[
+ {id:"doan2",pal:"doan",name:"Bạn đoàn viên hỗ trợ",x:10,y:14,dir:0,kind:"door"},
+ {id:"st1",obj:"standee",name:"Standee",x:9,y:13,dir:0,kind:"idle",line:"Standee hướng dẫn: Quét mã để nộp hồ sơ trực tuyến, tra cứu tiến độ hồ sơ trên Cổng Dịch vụ công."},
+ {id:"st2",obj:"standee",name:"Standee",x:20,y:13,dir:0,kind:"idle",line:"Standee: Thủ tục, thành phần hồ sơ, lệ phí đều được niêm yết công khai. Cần hỗ trợ, hỏi bạn đoàn viên nha!"},
+ {id:"baove",pal:"baove",name:"Bác bảo vệ",x:8,y:17,dir:2,kind:"idle",line:"Khu bên trái là chỗ để xe của cán bộ, công chức, viên chức và người lao động, người dân không vào nha con. Bà con gửi xe ở hai bãi phía trước."},
+ {id:"tiepdan",pal:"canbo2",name:"Cán bộ quầy tiếp dân",x:3,y:27,dir:3,kind:"idle",line:"Quầy tiếp dân tiếp nhận ý kiến, phản ánh, kiến nghị của bà con. Làm thủ tục hành chính thì vào Trung tâm bên trong nha."},
+ {id:"sign",obj:"sign",name:"Bảng chỉ dẫn",x:27,y:27,dir:0,kind:"police"},
+ {id:"k1",obj:"kiosk",name:"Kiosk cấp số thứ tự",x:14,y:11,dir:0,kind:"kiosk"},
+ {id:"k2",obj:"kiosk2",name:"Kiosk tra cứu, scan hồ sơ",x:15,y:11,dir:0,kind:"idle",line:"Máy hỗ trợ tra cứu thủ tục và scan hồ sơ giấy để số hóa. Hồ sơ đã số hóa được lưu lại, lần sau không phải nộp lại."},
+ {id:"q1",pal:"canbo",name:"Cán bộ Quầy 1",x:6,y:2,dir:0,kind:"counter",quay:1},
+ {id:"q2",pal:"canbo2",name:"Cán bộ Quầy 2 · Sao y – Chứng thực",x:10,y:2,dir:0,kind:"counter",quay:2},
+ {id:"q4",pal:"canbo",name:"Cán bộ Quầy 4 · Kinh tế – Công thương",x:18,y:2,dir:0,kind:"counter",quay:4},
+ {id:"q5",pal:"canbo2",name:"Cán bộ Quầy 5 · Địa chính – Xây dựng",x:22,y:2,dir:0,kind:"counter",quay:5},
+ {id:"tcd",pal:"canbo",name:"Cán bộ tiếp công dân",x:2,y:6,dir:0,kind:"idle",line:"Phòng tiếp công dân tiếp nhận khiếu nại, tố cáo, kiến nghị, phản ánh của người dân theo quy định."},
+ {id:"g1",pal:"cohx",name:"Cô ngồi chờ",x:9,y:7,dir:0,kind:"gen",lead:"Con ơi, ngồi chờ buồn quá, cô hỏi cái này:"},
+ {id:"g2",pal:"chuB",name:"Chú ngồi chờ",x:18,y:7,dir:0,kind:"gen",lead:"Chờ tới số mình còn lâu, chú hỏi con nè:"},
+ {id:"g3",pal:"ongcu",name:"Cụ ông cần giúp",x:11,y:9,dir:3,kind:"gen",lead:"Cháu ơi, giúp ông với, ông không rành cái này:"},
+ {id:"g4",pal:"cho",name:"Chị bế con",x:19,y:9,dir:3,kind:"gen",lead:"Em ơi, chị đang thắc mắc:"},
+ {id:"g5",pal:"khach",name:"Anh tra cứu hồ sơ",x:27,y:6,dir:2,kind:"gen",lead:"Bạn ơi, mình đang tra cứu thì gặp câu này:"},
+ {id:"g6",pal:"dv",name:"Bạn đoàn viên ở bàn tra cứu",x:27,y:9,dir:2,kind:"gen",lead:"Thử thách nhỏ của Đoàn phường nè:"},
+ {id:"g7",pal:"chuA",name:"Chú chờ photocopy",x:27,y:11,dir:2,kind:"gen",lead:"Chờ photo, chú hỏi con chút:"}
+];
+const L2={id:2,MW:30,MH:31,build:buildMap2,buildings:B2,decos:[],tile:drawTile2,deco:()=>{},paint:paint2,overhead:overhead2,drawObj:drawObj2,npcDef:NPC2,start:{x:14,y:28,dir:3},
+ solidT:new Set([TREE,FENCE,POT,BLD,WWALL,WALLW,COUNTER,GLASS,BENCH,PCDESK,PILLAR,BIKE,BED,STAIRS,COPY,TABLE])};
+L2.init=()=>{
+  const proc=["A","B","C"][Math.random()*3|0];
+  S.m2={phase:"arrive",proc,quay:PROC[proc].quay,ticket:null,called:false,gen:0};
+  const qs=shuffle(BANK2.slice());NPC2.filter(d=>d.kind==="gen").forEach((d,i)=>S.quiz[d.id]=qs[i]);
+};
+L2.quest=()=>{const m=S.m2,P=PROC[m.proc];return "Màn 2 · "+({arrive:"Gặp <b>bạn đoàn viên</b> ở cửa",ticket:"Lấy <b>số thứ tự</b> ở kiosk",police:"Sang <b>Công an phường</b> (bảng chỉ dẫn)",gen:`Trong lúc chờ, giúp mọi người <b>${m.gen}/6</b>`,called:`Mời số <b>${m.ticket}</b> đến <b>${P.place}</b>`,done:"Xong thủ tục! Ra <b>cổng</b> để về"}[m.phase])+" ▾"};
+L2.more=()=>{const m=S.m2,P=PROC[m.proc];return `• Thủ tục của bạn: <b>${P.name}</b>${m.ticket?" · số thứ tự <b>"+m.ticket+"</b>":""}.<br>• Dấu <b>!</b> xanh là việc cần làm tiếp; dấu <b>!</b> vàng là người đang cần giúp.<br>• Bấm <b>F</b> hoặc chạm vào người, đồ vật để tương tác.<br>• Đúng +10 ★, sai −5 ★. Câu đúng: ${S.correct}/${S.answered}.`};
+L2.taskNpc=()=>{const m=S.m2;
+  if(m.phase==="arrive")return npcs.find(n=>n.id==="doan2");
+  if(m.phase==="ticket")return npcs.find(n=>n.id==="k1");
+  if(m.phase==="police")return npcs.find(n=>n.id==="sign");
+  if(m.phase==="called")return npcs.find(n=>n.kind==="counter"&&n.quay===m.quay);
+  return null};
+L2.target=()=>{const m=S.m2,t=L2.taskNpc();if(t)return t;
+  if(m.phase==="gen"){const p=S.p;let best=null,bd=1e9;npcs.forEach(n=>{if(n.kind!=="gen"||S.done.has(n.id))return;const d=Math.hypot(n.x-p.x,n.y-p.y);if(d<bd){bd=d;best=n}});if(best)return best}
+  return {x:14.5,y:29,px:14.5*TS,py:29*TS,exit:true}};
+L2.mark=(n,x,y,tg)=>{const m=S.m2;
+  if(n===L2.taskNpc()){drawBang(x,y,"#7CD6FF");return}
+  if(n.kind==="gen"&&!S.done.has(n.id)&&(m.phase==="gen"||m.phase==="called"||m.phase==="done"))drawBang(x,y,"#FFD23F");
+  else if(n.kind==="idle"&&!S.joined.has(n.id))drawBubble(x,y)};
+L2.onStep=p=>{
+  if(at(p.x,p.y)===GATE&&!S.ended&&!S.busy){
+    if(S.m2.phase==="done"){endM2();return true}
+    S.busy=true;held=null;
+    (async()=>{await say("Bác bảo vệ","Con chưa làm xong thủ tục mà, vào lại Trung tâm đi con!");closeDlg();startMove(S.p,3);S.busy=false})();return true}
+  return false};
+L2.talk=async function(n){
+  const m=S.m2,P=PROC[m.proc];
+  if(n.kind==="door"){
+    if(m.phase!=="arrive"){await say(n,m.phase==="done"?"Bạn làm xong rồi, chúc bạn một ngày vui nha!":"Cần gì cứ hỏi mình nha! Thủ tục của bạn: "+P.name+".");return}
+    await say(n,"Chào bạn! Mình là đoàn viên hỗ trợ ở Trung tâm Phục vụ hành chính công phường Gia Định. Bạn cần hỗ trợ gì nè?");
+    await say(S.name,"Hôm nay mình đến làm thủ tục "+P.name.toLowerCase()+".");
+    if(m.proc==="C"){
+      await say(n,"À, đăng ký thường trú là thủ tục của Công an phường, không làm ở Trung tâm này đâu. Bạn đi theo bảng chỉ dẫn bên phải sân để sang Công an phường nha!");
+      await say(n,"Bạn cũng có thể nộp hồ sơ trực tuyến trên Cổng Dịch vụ công hoặc ứng dụng VNeID cho nhanh.");m.phase="police";
+    }else{
+      await say(n,"Bạn vào trong, lấy số thứ tự ở kiosk cạnh cửa trước nha. Trong lúc chờ gọi số, có nhiều bà con cần giúp lắm đó!");m.phase="ticket";
+    }
+    sfx("win");toast("Nhiệm vụ mới!");return;
+  }
+  if(n.kind==="kiosk"){
+    if(m.phase==="arrive"){await say(n,"Màn hình: Chào mừng bạn đến Trung tâm. Hỏi bạn đoàn viên ở cửa nếu cần hướng dẫn nha.");return}
+    if(m.proc==="C"){await say(n,"Màn hình: Đăng ký cư trú thực hiện tại Công an phường.");return}
+    if(m.ticket){await say(n,"Bạn đã có số thứ tự "+m.ticket+" rồi, ngồi chờ gọi số nha.");return}
+    const opts=["Đăng ký khai sinh","Chứng thực bản sao","Đăng ký thường trú"];
+    while(true){const k=await ask(n,"Kiosk cấp số thứ tự · Bạn chọn thủ tục cần làm:",opts);
+      if(opts[k]===P.name)break;
+      await say(n,k===2?"Màn hình: Đăng ký thường trú thực hiện tại Công an phường. Bạn chọn lại nhé.":"Đây không phải thủ tục bạn cần làm. Chọn lại nhé!")}
+    m.ticket=String(m.quay*1000+30+(Math.random()*9|0));sfx("item");
+    await say(n,`🎫 Phiếu số thứ tự: ${m.ticket} · ${P.place}.\nVui lòng ngồi chờ, số sẽ hiện trên màn hình và được đọc qua loa.`);
+    m.phase="gen";return;
+  }
+  if(n.kind==="police"){
+    if(m.proc!=="C"){await say(n,"Bảng chỉ dẫn: Lối sang Công an phường ➜. Thủ tục của bạn làm ngay tại Trung tâm nha.");return}
+    if(m.phase!=="police"){await say(n,"Bạn đã làm xong ở Công an phường rồi.");return}
+    await say(n,"Bạn đi theo bảng chỉ dẫn sang Công an phường…");
+    const ca={name:"Cán bộ Công an phường"};
+    await say(ca,"Chào bạn! Đăng ký thường trú làm tại đây nha. Trước khi nộp, mình hỏi bạn vài câu để nắm quy định nhé.");
+    for(let i=0;i<4;i++){const ok=await quiz(ca,P.qs[i],`Câu ${i+1}/4:`);S.answered++;if(ok)S.correct++;updHud()}
+    await say(ca,"Hồ sơ của bạn đã được tiếp nhận, đây là phiếu tiếp nhận. Thông tin sẽ cập nhật vào Cơ sở dữ liệu về cư trú, bạn xem trên VNeID nha!");
+    await say("Gợi ý","Quay lại Trung tâm, trong sảnh có nhiều bà con đang cần giúp (dấu ! vàng). Giúp đủ 6 người rồi ra cổng về nhé.");
+    m.phase="gen";return;
+  }
+  if(n.kind==="gen"){
+    if(S.done.has(n.id)){await say(n,"Cảm ơn bạn đã giúp nha!");return}
+    if(m.phase==="arrive"||m.phase==="ticket"){await say(n,"Bạn lấy số thứ tự rồi ngồi chờ đi, lát mình hỏi bạn chuyện này nha!");return}
+    if(m.phase==="police"){await say(n,"Đăng ký thường trú bên Công an phường đó, bạn đi theo bảng chỉ dẫn ngoài sân nha!");return}
+    const ok=await quiz(n,S.quiz[n.id],n.lead);S.done.add(n.id);S.answered++;if(ok)S.correct++;
+    if(m.phase==="gen"){m.gen++;updHud();
+      if(m.gen===2||m.gen===5){const ev=S.events[S.evDone];if(ev)S.pending={ev,walk:3+(Math.random()*3|0)}}
+      if(m.gen>=6){
+        closeDlg();
+        if(m.proc==="C"){m.phase="done";sfx("win");await say("Gợi ý","Tuyệt vời! Bạn đã giúp đủ 6 người. Ra cổng để về nhé!")}
+        else{m.called=true;m.phase="called";sfx("ring");await sleep(300);sfx("win");toast("🔔 Đến lượt bạn!","good");
+          await say("Loa Trung tâm",`Kính mời công dân có số thứ tự ${m.ticket} đến ${P.place}.`)}
+      }}
+    return;
+  }
+  if(n.kind==="counter"){
+    if(m.phase==="called"&&n.quay===m.quay){
+      await say(n,"Chào bạn, mời bạn ngồi. Trước khi tiếp nhận hồ sơ "+P.name.toLowerCase()+", mình hỏi nhanh vài câu nha.");
+      for(let i=0;i<4;i++){const ok=await quiz(n,P.qs[i],`Câu ${i+1}/4:`);S.answered++;if(ok)S.correct++;updHud()}
+      await say(n,"Hồ sơ của bạn đã được tiếp nhận. Kết quả có thể nhận bản điện tử hoặc qua bưu chính công ích nha.");
+      const k=await ask(n,"Mời bạn đánh giá mức độ hài lòng trên máy tính bảng ở quầy:",["😊 Rất hài lòng","🙂 Hài lòng","😐 Chưa hài lòng"]);
+      await say(n,k===2?"Cảm ơn góp ý của bạn, Trung tâm sẽ cố gắng phục vụ tốt hơn!":"Cảm ơn bạn đã đánh giá! Chúc bạn một ngày vui.");
+      m.phase="done";sfx("win");toast("Xong thủ tục!","good");return;
+    }
+    if(m.called&&n.quay!==m.quay){await say(n,`Số ${m.ticket} được gọi ở ${P.place} nha bạn.`);return}
+    const line={1:"Bạn lấy số thứ tự ở kiosk rồi chờ gọi số nha.",2:"Quầy 2 giải quyết thủ tục sao y, chứng thực. Bạn lấy số ở kiosk rồi chờ gọi số nha.",4:"Quầy 4 giải quyết thủ tục lĩnh vực kinh tế, công thương.",5:"Quầy 5 giải quyết thủ tục lĩnh vực địa chính, xây dựng, đô thị và môi trường."}[n.quay];
+    await say(n,m.phase==="done"?"Chúc bạn một ngày vui!":line);return;
+  }
+  if(n.kind==="idle"){await say(n,n.line);if(!S.joined.has(n.id)){S.joined.add(n.id)}return}
+};
+async function startM2(){
+  $("m1end").hidden=true;S.busy=true;loadLevel(L2);music(true);
+  await say("Gợi ý","Màn 2 · Trung tâm Phục vụ hành chính công phường Gia Định. Bạn gửi xe xong, đi lên sân trước Trung tâm…");
+  await say(S.name,"Hôm nay mình phải làm thủ tục "+PROC[S.m2.proc].name.toLowerCase()+". Hỏi bạn đoàn viên ở cửa trước đã!");
+  closeDlg();S.busy=false;
+}
+async function endM2(){
+  S.ended=true;S.busy=true;held=null;music(false);sfx("win");
+  await say("Gợi ý","Bạn đã hoàn thành thủ tục ở Trung tâm Phục vụ hành chính công!");closeDlg();
+  S.res[2]={correct:S.correct,score:S.score-S.lvScore0};
+  const ok=S.correct>=7;S.reward2=ok;
+  $("m2title").textContent=ok?"Huy hiệu “Thủ tục nhanh gọn”":"Chưa đạt huy hiệu";$("m2medal").textContent=ok?"🏅":"🙂";
+  $("m2eval").textContent=(ok?"Bạn nắm chắc quy trình, vừa làm xong thủ tục vừa giúp được bà con xung quanh!":"Bạn đã làm xong thủ tục. Cần trả lời đúng từ 7/10 câu để nhận huy hiệu nha.")+" Thủ tục: "+PROC[S.m2.proc].name+".";
+  $("m2ok").textContent=S.correct+"/10";$("m2pts").textContent=S.res[2].score;
+  $("m2end").hidden=false;$("m2end").scrollTop=0;
+}
+
 /* ===== KẾT THÚC MÀN 1 ===== */
 function showM1End(){
   const j=S.joined.size,ok=S.correct>=7;S.reward1=ok;
@@ -981,8 +1302,10 @@ function showM1End(){
   $("m1end").hidden=false;$("m1end").scrollTop=0;closeDlg();
 }
 $("toresult").onclick=async()=>{$("m1end").hidden=true;await showEnd()};
+$("toresult2").onclick=async()=>{$("m2end").hidden=true;await showEnd()};
+$("tom2").onclick=()=>startM2();
 async function showEnd(){
-  const rewards=S.reward1?1:0;
+  const rewards=(S.reward1?1:0)+(S.reward2?1:0);
   $("end").hidden=false;$("end").scrollTop=0;
   $("endok").hidden=rewards===0;$("endsad").hidden=rewards>0;$("save").hidden=rewards===0;
   $("sadbtns").hidden=false;$("again").hidden=rewards===0;$("lbshow").hidden=rewards===0;
@@ -990,7 +1313,7 @@ async function showEnd(){
   submitScore();
   if(rewards>0){
     $("etitle").textContent=rewards>=3?"Đại sứ Công dân số":"Đã tham gia Hành trình Công dân số";
-    $("emsg").textContent=`${S.score} điểm · ${S.correct}/10 câu đúng ở Màn 1 · đã nhận ${rewards}/3 phần thưởng.`;
+    $("emsg").textContent=`${S.score} điểm · ${[1,2].filter(i=>S.res[i]).map(i=>`Màn ${i}: ${S.res[i].correct}/10 câu đúng`).join(" · ")} · đã nhận ${rewards}/3 phần thưởng.`;
     await drawCert(rewards);
   }else{sadAnim(false)}
 }
@@ -1008,7 +1331,7 @@ function sadAnim(cry){
     if(cry&&f%10<5){c.fillStyle="#5DADEC";c.fillRect(66,62,4,8);c.fillRect(90,62,4,8)}
   },70);
 }
-function restart(){clearInterval(sadT);$("end").hidden=true;$("m1end").hidden=true;S=null;closeDlg();$("title").hidden=false;$("title").scrollTop=0;music(false)}
+function restart(){clearInterval(sadT);$("end").hidden=true;$("m1end").hidden=true;$("m2end").hidden=true;S=null;closeDlg();$("title").hidden=false;$("title").scrollTop=0;music(false)}
 $("again").onclick=restart;
 async function drawCert(rewards){
   try{await document.fonts.ready}catch(e){}
@@ -1025,7 +1348,7 @@ async function drawCert(rewards){
   x.fillStyle="#5E5D75";x.font="500 26px 'Be Vietnam Pro',sans-serif";x.fillText(gold?"Danh hiệu “Đại sứ Công dân số”":"Đã tham gia trò chơi Phiêu lưu Công dân số",W/2,245);
   x.fillStyle="#1A1A2E";x.font="800 58px 'Be Vietnam Pro',sans-serif";x.fillText(S.name,W/2,340,W-200);
   x.fillStyle="#5E5D75";x.font="600 26px 'Be Vietnam Pro',sans-serif";x.fillText("Người dân phường Gia Định",W/2,385);
-  x.fillStyle="#1A1A2E";x.font="800 34px 'Be Vietnam Pro',sans-serif";x.fillText("🏅 Huy hiệu “Hàng xóm số”",W/2,465);
+  x.fillStyle="#1A1A2E";x.font="800 34px 'Be Vietnam Pro',sans-serif";x.fillText([S.reward1?"🏅 Hàng xóm số":"",S.reward2?"🏅 Thủ tục nhanh gọn":""].filter(Boolean).join("   "),W/2,465);
   x.fillStyle="#1E6FE0";x.font="800 40px 'Be Vietnam Pro',sans-serif";x.fillText(S.score+" điểm",W/2,535);
   x.fillStyle="#5E5D75";x.font="500 24px 'Be Vietnam Pro',sans-serif";x.fillText("“"+SLOGANS[3]+"”",W/2,620,W-160);
   x.fillStyle="#1A1A2E";x.font="700 26px 'Be Vietnam Pro',sans-serif";x.fillText("#CongDanSoGiaDinh",W/2,H-100);
@@ -1063,7 +1386,7 @@ function confetti(){
 $("lbopen").onclick=openBoard;$("lbshow").onclick=openBoard;$("lbclose").onclick=()=>{$("lbv").hidden=true};
 
 document.querySelectorAll('img[data-logo]').forEach(i=>i.src=document.querySelector('.logo img').src);
-buildMap();renderMap();loop();
+LV=L1;buildMap();renderMap();loop();
 (async()=>{try{await document.fonts.ready}catch(e){}renderMap()})();
 </script>
 </body>
