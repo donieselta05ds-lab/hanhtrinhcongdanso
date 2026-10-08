@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>Phiêu lưu Công dân số · Bản Dễ chơi</title>
+<link rel="icon" id="favicon" href="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;700;800&display=swap">
+<link rel="stylesheet" href="phieuluu/css/game.css?v=20261008">
+<link rel="stylesheet" href="dechoi/css/dechoi.css?v=20261008">
+</head>
+<body>
+<div id="app">
+  <header id="top">
+    <div class="row1">
+      <span class="chip" id="pts" title="Điểm">★ 0</span>
+      <span class="chip hint" id="hintc" title="Số lượt gợi ý">💡 0</span>
+      <span class="sp"></span>
+      <button class="iconbtn" id="help" type="button" aria-label="Xem hướng dẫn">?</button>
+      <button class="iconbtn" id="fsm" type="button" aria-label="Chữ nhỏ lại">A−</button>
+      <button class="iconbtn" id="fsp" type="button" aria-label="Chữ to lên">A+</button>
+      <button class="iconbtn" id="tts" type="button" aria-label="Bật/tắt đọc to">🔇</button>
+      <button class="iconbtn" id="snd" type="button" aria-label="Bật/tắt nhạc">♪</button>
+    </div>
+    <div class="quest" id="quest">Chào bạn!</div>
+  </header>
+  <div id="stage"><canvas id="cv" width="176" height="224" aria-label="Bản đồ trò chơi"></canvas></div>
+  <div id="panel">
+    <div class="ctrl" id="ctrl">
+      <div class="dpad" id="dpad">
+        <button class="u" data-d="3" type="button" aria-label="Lên">▲</button>
+        <button class="l" data-d="1" type="button" aria-label="Trái">◀</button>
+        <button class="r" data-d="2" type="button" aria-label="Phải">▶</button>
+        <button class="d" data-d="0" type="button" aria-label="Xuống">▼</button>
+      </div>
+      <button class="talk" id="fbtn" type="button">💬<span>Nói chuyện</span></button>
+      <button class="gonext" id="go" type="button">Đi tiếp<span>➜</span></button>
+    </div>
+    <div class="dlg" id="dlg" hidden>
+      <span class="who" id="dwho"></span>
+      <div class="txt" id="dtxt"></div>
+      <div class="choices" id="dch"></div>
+      <button class="hintbtn" id="dhint" type="button" hidden>💡 Gợi ý</button>
+      <button class="next" id="dnext" type="button">Tiếp tục ➜</button>
+    </div>
+  </div>
+  <div class="phonebox" id="phonebox" hidden><div class="phone" id="phone"><div class="pscreen" id="pscreen"></div></div></div>
+</div>
+
+<!-- Màn mở đầu -->
+<div class="over" id="title">
+  <div class="in">
+    <div class="logo"><img data-logo alt="Logo phường Gia Định">UBND phường Gia Định · Ngày Chuyển đổi số 10/10</div>
+    <h1 class="big">Phiêu lưu<br>Công dân số</h1>
+    <p class="tag">Bản Dễ chơi · chỉ cần bấm nút</p>
+    <p>Sáng 10/10, khu phố rộn ràng hưởng ứng Ngày Chuyển đổi số quốc gia. Cùng giúp bà con trong hẻm, lên phường làm thủ tục và đi Ngày hội Chuyển đổi số!</p>
+    <label class="field">Tên của bạn (hiện trên bảng xếp hạng)
+      <input id="pname" maxlength="20" placeholder="Ví dụ: Cô Lan khu phố 5" autocomplete="off">
+    </label>
+    <div class="card howto">
+      <b>Cách chơi</b>
+      <p>➜ Bấm nút <b>Đi tiếp</b>: nhân vật tự đi tới người cần gặp.</p>
+      <p>👆 Đọc câu hỏi rồi <b>chạm vào đáp án</b>.</p>
+      <p>💡 Câu khó thì bấm <b>Gợi ý</b> để bỏ bớt 1 đáp án sai.</p>
+      <p>🔊 Bấm nút loa ở trên cùng để điện thoại đọc to giùm bạn.</p>
+    </div>
+    <button class="go" id="start" type="button" disabled>Vào game</button>
+    <button class="go alt" id="lbopen" type="button">🏆 Bảng xếp hạng</button>
+    <a class="back" href="phieuluu.html">← Chọn bản chơi khác</a>
+  </div>
+</div>
+
+<!-- Kết thúc từng màn -->
+<div class="over" id="lvend" hidden>
+  <div class="in">
+    <div class="logo"><img data-logo alt=""><span id="lvlabel"></span></div>
+    <div class="medal" id="lvmedal">🏅</div>
+    <h1 class="big center" id="lvtitle"></h1>
+    <div class="card"><b>Nhận xét</b><p id="lveval"></p></div>
+    <div class="stats" id="lvstats"></div>
+    <div class="card" id="lvnext"><b id="lvnextt"></b><p id="lvnextp"></p></div>
+    <button class="go" id="lvgo" type="button">Đi tiếp ➜</button>
+    <button class="go alt" id="lvstop" type="button">Dừng ở đây, xem kết quả</button>
+  </div>
+</div>
+
+<!-- Bản tin tối 10/10 -->
+<div class="over night" id="tvv" hidden>
+  <div class="in">
+    <p class="center">Trời tối, bạn về nhà, mở TV xem bản tin…</p>
+    <div class="tv"><div class="scr">
+      <div class="live">● TRỰC TIẾP · BẢN TIN TỐI 10/10</div>
+      <div class="hd">Phường Gia Định rộn ràng Ngày Chuyển đổi số quốc gia</div>
+      <p id="tvtxt"></p>
+      <div class="ticker"><span id="tvtick"></span></div>
+    </div><div class="leg"></div></div>
+    <button class="go" id="tvok" type="button">Xem kết quả ➜</button>
+  </div>
+</div>
+
+<!-- Kết quả -->
+<div class="over" id="end" hidden>
+  <div class="in">
+    <div class="logo"><img data-logo alt="">Kết quả Hành trình Công dân số</div>
+    <div id="endok">
+      <h1 class="big center" id="etitle"></h1>
+      <p class="center" id="emsg" style="margin:8px 0 12px"></p>
+      <canvas id="ccv" width="1200" height="840" hidden></canvas>
+      <img class="cert" id="cert" alt="Giấy chứng nhận Hành trình Công dân số">
+    </div>
+    <div id="endsad" hidden style="display:grid;gap:12px">
+      <canvas id="sad" width="160" height="120"></canvas>
+      <h1 class="big center" id="sadt">Bạn vô tâm quá…</h1>
+      <p class="center" id="sadm">Cả phường đang vui mà! Chơi lại nhé?</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px" id="sadbtns"><button class="go" id="sadyes" type="button">Có</button><button class="go alt" id="sadno" type="button">Không</button></div>
+    </div>
+    <button class="go" id="share" type="button">📤 Chia sẻ giấy chứng nhận</button>
+    <button class="go alt" id="save" type="button">⬇ Lưu ảnh về máy</button>
+    <button class="go blue" id="lbshow" type="button">🏆 Bảng xếp hạng</button>
+    <button class="go alt" id="again" type="button">Chơi lại</button>
+  </div>
+</div>
+
+<!-- Bảng xếp hạng -->
+<div class="over" id="lbv" hidden>
+  <div class="in">
+    <div class="logo"><img data-logo alt="">Bảng xếp hạng Công dân số</div>
+    <h1 class="big center">🏆 Top người chơi</h1>
+    <p class="center" id="lbnote" style="font-size:14px"></p>
+    <div class="lb" id="lblist"></div>
+    <button class="go alt" id="lbclose" type="button">Đóng</button>
+  </div>
+</div>
+
+<!-- Hướng dẫn (nút ?) -->
+<div class="over" id="helpv" hidden>
+  <div class="in">
+    <h1 class="big">Hướng dẫn</h1>
+    <div class="card howto">
+      <p><b>➜ Đi tiếp</b>: nhân vật tự đi tới người cần gặp, tới nơi tự nói chuyện.</p>
+      <p><b>💬 Nói chuyện</b>: nói chuyện với người đang đứng cạnh (nút sáng lên khi đứng gần).</p>
+      <p><b>▲ ◀ ▶ ▼</b>: tự đi dạo quanh bản đồ (không bắt buộc). Chạm vào chỗ nào trên bản đồ, nhân vật cũng tự đi tới đó.</p>
+      <p><b>?</b> vàng trên đầu: người đang cần bạn giúp. Giúp xong hiện <b>mặt cười</b>.</p>
+      <p><b>!</b> xanh: việc cần làm tiếp theo (gặp đoàn viên, lấy số…).</p>
+      <p><b>💡 Gợi ý</b>: bỏ bớt 1 đáp án sai. Trả lời sai không bị trừ điểm.</p>
+      <p><b>A− / A+</b>: chữ nhỏ lại, to lên. <b>🔊</b>: điện thoại đọc to lời thoại.</p>
+      <p>Mỗi màn có 7 câu, đúng từ 4 câu là nhận phần thưởng của màn đó.</p>
+    </div>
+    <button class="go" id="helpok" type="button">Đã hiểu</button>
+    <button class="go alt" id="helpreset" type="button">Xem lại hướng dẫn từng bước</button>
+  </div>
+</div>
+
+<!-- Thứ tự nạp: logo → cấu hình → nội dung → bản đồ màn 1 → động cơ bản dễ → màn 2 → màn 2 (luật bản dễ) → màn 3 → kết thúc -->
+<script src="chung/logo.js?v=20261008"></script>
+<script src="chung/cau-hinh.js?v=20261008"></script>
+<script src="chung/noi-dung.js?v=20261008"></script>
+<script src="phieuluu/js/man1.js?v=20261008"></script>
+<script src="dechoi/js/dong-co.js?v=20261008"></script>
+<script src="phieuluu/js/man2.js?v=20261008"></script>
+<script src="dechoi/js/man2.js?v=20261008"></script>
+<script src="dechoi/js/man3.js?v=20261008"></script>
+<script src="dechoi/js/ket-thuc.js?v=20261008"></script>
+</body>
+</html>
