@@ -1,5 +1,7 @@
-/* ĐỘNG CƠ BẢN DỄ CHƠI: nút Đi tiếp tự đi, nút Nói chuyện, hội thoại chữ to, đọc to, hướng dẫn từng bước.
-   Bản đồ, nhân vật, câu hỏi dùng chung với Bản Phiêu lưu (phieuluu/js, chung/). */
+/* ĐỘNG CƠ GAME DÙNG CHUNG CHO 2 BẢN.
+   GAME_MODE (đặt trong file .html): "de" = Bản Dễ chơi (nút Đi tiếp, hướng dẫn từng bước, sai không trừ điểm)
+                                     "tre" = Bản Phiêu lưu (tay cầm joystick, sai −5 ★, xoay ngang bản đồ rộng ra) */
+const MODE=window.GAME_MODE||"de",BAN=MODE==="de"?"de":"phieuluu";
 
 /* ===== TRẠNG THÁI ===== */
 let S=null;const npcs=[];
@@ -97,7 +99,7 @@ function giveHint(why){
 let D={res:null,choices:null};
 const whoName=n=>typeof n==="string"?n:n.name;
 const nl=t=>esc(t).replace(/\n/g,"<br>");
-function openDlg(){if($("dlg").hidden){$("ctrl").hidden=true;$("dlg").hidden=false;fitStage()}held=null;stopPath()}
+function openDlg(){if($("dlg").hidden){$("ctrl").hidden=true;$("dlg").hidden=false;fitStage()}held=null;stopPath();resetJoy()}
 function closeDlg(){if(!$("dlg").hidden){$("dlg").hidden=true;$("dhint").hidden=true;$("ctrl").hidden=false;fitStage()}hush()}
 async function say(n,text,html){
   openDlg();$("dwho").textContent=whoName(n);$("dch").innerHTML="";D.choices=null;$("dhint").hidden=true;
@@ -134,12 +136,12 @@ $("dtxt").addEventListener("click",()=>{if(!D.choices)advance()});
 async function quiz(n,qz,pre){
   const opts=shuffle([qz.a,...qz.w]);const correct=opts.indexOf(qz.a);
   const pr=ask(n,(pre?pre+"\n":"")+qz.q,opts,{correct});D.correctText=qz.a;
-  if(!store.get("dc_tut2",false))tutQuiz();
+  if(MODE==="de"&&!store.get("dc_tut2",false))tutQuiz();
   const k=await pr;coachOff();
   const ok=k===correct;S.answered++;
-  if(ok){S.correct++;addScore(10);sfx("ok");vib(40)}else{sfx("no");vib(80)}
+  if(ok){S.correct++;addScore(10);sfx("ok");vib(40)}else{sfx("no");vib(80);if(MODE==="tre")addScore(-5)}
   updHud();
-  const html=`<div class="res ${ok?"ok":"no"}">${ok?"✔ ĐÚNG RỒI! +10 ★":"✘ CHƯA ĐÚNG"}</div>`+
+  const html=`<div class="res ${ok?"ok":"no"}">${ok?"✔ ĐÚNG RỒI! +10 ★":MODE==="tre"?"✘ CHƯA ĐÚNG −5 ★":"✘ CHƯA ĐÚNG"}</div>`+
     (ok?"":`<p class="ans">Đáp án đúng: <b>${esc(qz.a)}</b></p>`)+`<p>${esc(qz.ex)}</p>`+
     (qz.law?`<div class="law"><b>📘 Căn cứ:</b> ${esc(qz.law)}</div>`:"");
   await say(n,(ok?"Đúng rồi! ":"Chưa đúng. Đáp án đúng là: "+qz.a+". ")+qz.ex+(qz.law?" Căn cứ: "+qz.law:""),html);
@@ -221,7 +223,7 @@ function goNext(){
   if(!t.exit&&!S.p.moving&&canTalkFrom(S.p.x,S.p.y,t)){talkTo(t);return}
   goTo(t);
 }
-$("go").addEventListener("click",e=>{e.preventDefault();ac();goNext()});
+if($("go"))$("go").addEventListener("click",e=>{e.preventDefault();ac();goNext()});
 
 /* ===== ĐIỀU KHIỂN: nút mũi tên, bàn phím, chạm bản đồ ===== */
 let held=null;
@@ -243,6 +245,21 @@ document.querySelectorAll(".dpad button").forEach(b=>{
   ["pointerup","pointercancel","lostpointercapture"].forEach(t=>b.addEventListener(t,up));
 });
 $("fbtn").addEventListener("click",e=>{e.preventDefault();action()});
+/* tay cầm joystick (Bản Phiêu lưu): kéo nút tròn xanh để đi, có nút đổi sang 4 phím mũi tên */
+const joy=$("joy"),knob=$("knob");let joyId=null;
+function resetJoy(){if(!joy)return;joyId=null;knob.style.transform="";if($("dpad")&&!$("dpad").hidden)return;held=null}
+if(joy){
+  const joyMove=e=>{const r=joy.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
+    let dx=e.clientX-cx,dy=e.clientY-cy;const m=Math.hypot(dx,dy),max=r.width/2-14;
+    if(m>max){dx*=max/m;dy*=max/m}knob.style.transform=`translate(${dx}px,${dy}px)`;
+    if(m<12){held=null;return}held=Math.abs(dx)>Math.abs(dy)?(dx<0?1:2):(dy<0?3:0);stopPath()};
+  joy.addEventListener("pointerdown",e=>{e.preventDefault();joyId=e.pointerId;joy.setPointerCapture(e.pointerId);joyMove(e)});
+  joy.addEventListener("pointermove",e=>{if(e.pointerId===joyId)joyMove(e)});
+  ["pointerup","pointercancel","lostpointercapture"].forEach(t=>joy.addEventListener(t,e=>{if(e.pointerId===joyId){joyId=null;held=null;knob.style.transform=""}}));
+  const setPad=kind=>{joy.hidden=kind==="dpad";$("dpad").hidden=kind!=="dpad";store.set("pl_pad",kind);held=null};
+  setPad(store.get("pl_pad","joy"));
+  $("swap").onclick=()=>setPad($("dpad").hidden?"dpad":"joy");
+}
 /* chạm vào bản đồ: đi tới chỗ đó; chạm vào người: đi tới và nói chuyện */
 $("cv").addEventListener("pointerdown",e=>{
   if(!S||S.busy||S.ended||!$("dlg").hidden)return;
@@ -270,7 +287,7 @@ async function talkTo(n){
   if(!S||S.busy||S.ended)return;
   S.busy=true;held=null;stopPath();if(!n.obj)face(n,S.p);
   const pdx=n.x-S.p.x,pdy=n.y-S.p.y;S.p.dir=Math.abs(pdx)>Math.abs(pdy)?(pdx<0?1:2):(pdy<0?3:0);
-  try{await LV.talk(n)}finally{closeDlg();if(!n.temp)n.dir=n.home;if(S){S.busy=false;updHud()}}
+  try{await LV.talk(n)}finally{closeDlg();if(!n.temp)n.dir=n.home;if(S){S.busy=false;updHud();saveGame()}}
 }
 function action(){
   if(!S)return;
@@ -346,7 +363,7 @@ async function runEvent(ev){
     }
     await evQuiz(ev.who,ev);
   }
-  }finally{if(S)S.busy=false;closeDlg();updHud()}
+  }finally{if(S)S.busy=false;closeDlg();updHud();saveGame()}
 }
 /* khuôn mặt giả mạo: giật hình, môi lệch, nền nhòe */
 function drawFace(c,f){
@@ -364,7 +381,9 @@ function drawFace(c,f){
 const cv=$("cv"),ctx=cv.getContext("2d");
 function fitStage(){
   const r=$("stage").getBoundingClientRect();if(!r.width||!r.height)return;
-  VH=Math.max(4,Math.min(20,Math.round(VW*r.height/r.width)));
+  /* Bản Phiêu lưu: xoay ngang thì bản đồ tự mở rộng sang hai bên */
+  if(MODE==="tre"&&r.width>r.height){VH=11;VW=Math.max(11,Math.min(26,Math.round(11*r.width/r.height)))}
+  else{VW=11;VH=Math.max(MODE==="tre"?8:4,Math.min(20,Math.round(VW*r.height/r.width)))}
   if(cv.height!==VH*TS)cv.height=VH*TS;if(cv.width!==VW*TS)cv.width=VW*TS;ctx.imageSmoothingEnabled=false;
   if(coachEl)coachEl.place();
 }
@@ -393,7 +412,7 @@ function update(){
   if(LV.tick)LV.tick();
   if(S.alert)S.alert--;
   const near=free?nearNpc():null;$("fbtn").classList.toggle("near",!!near);$("fbtn").disabled=!near;
-  $("go").classList.toggle("walking",!!S.path);
+  if($("go"))$("go").classList.toggle("walking",!!S.path);
 }
 /* dấu trên đầu: ? vàng (cần giúp), mặt cười (đã giúp), ! xanh (việc tiếp theo) */
 function drawQ(x,y,col){
@@ -531,7 +550,7 @@ $("pname").value=store.get("pl_name","");canStart();
 $("pname").addEventListener("keydown",e=>{if(e.key==="Enter"&&!$("start").disabled)$("start").click()});
 $("start").onclick=async()=>{
   const nm=$("pname").value.trim().replace(/[<>]/g,"").slice(0,20);store.set("pl_name",nm);
-  newGame(nm);$("title").hidden=true;ac();sfx("win");music(true);pts();fitStage();
+  clearSave();newGame(nm);$("title").hidden=true;ac();sfx("win");music(true);pts();fitStage();
   await intro();
 };
 async function intro(){
@@ -549,7 +568,43 @@ async function intro(){
   S.dovui=true;S.joined.add("dovui");updHud();
   await say(n,"Giỏi lắm! Giờ nhờ bạn đi giúp bà con trong hẻm: có 4 người đang cần giúp, ai có dấu ? vàng trên đầu là đang chờ bạn đó. Giúp xong, dấu ? sẽ thành mặt cười.");
   await say(n,"Giúp đủ 4 người rồi ra đầu hẻm bên phải để lên phường. Đường đi có thể gặp chiêu lừa đảo, cẩn thận nha!");
+  if(MODE==="tre")await say("Hướng dẫn","Kéo nút tròn xanh để đi. Đứng cạnh ai đó thì bấm nút Nói chuyện (hoặc chạm thẳng vào người đó). Mũi tên vàng chỉ đường tới người cần gặp.");
   await ask(n,"Bạn sẵn sàng chưa?",["▶ Bắt đầu chơi"]);
   closeDlg();n.dir=n.home;S.busy=false;updHud();
-  if(!store.get("dc_tut1",false)){store.set("dc_tut1",true);coach("#go","<b>Hướng dẫn 3/3.</b> Bấm nút <b>Đi tiếp</b>, nhân vật sẽ tự đi tới người cần gặp và nói chuyện.")}
+  saveGame();
+  if(MODE==="de"&&!store.get("dc_tut1",false)){store.set("dc_tut1",true);coach("#go","<b>Hướng dẫn 3/3.</b> Bấm nút <b>Đi tiếp</b>, nhân vật sẽ tự đi tới người cần gặp và nói chuyện.")}
 }
+
+/* ===== LƯU TIẾN ĐỘ: tự lưu sau mỗi lần nói chuyện, mở lại được chơi tiếp ===== */
+const SAVE_KEY="pl_save_"+BAN;
+function clearSave(){store.set(SAVE_KEY,null)}
+function saveGame(after){
+  if(!S)return;
+  if(!after&&(S.ended||!LV||(LV.id===1&&!S.dovui)))return;
+  store.set(SAVE_KEY,{v:1,t:Date.now(),name:S.name,score:S.score,hints:S.hints,items:S.items,slog:S.slog,evTypes:S.evTypes,res:S.res,rw:S.rw,lv:LV.id,after:after||0,
+    st:after?null:{done:[...S.done],correct:S.correct,answered:S.answered,joined:[...S.joined],quiz:S.quiz,evDone:S.evDone,events:S.events,helped:S.helped,dovui:S.dovui,m2:S.m2,m3:S.m3,lvScore0:S.lvScore0,x:S.p.x,y:S.p.y,dir:S.p.dir}});
+}
+function getSave(){const v=store.get(SAVE_KEY,null);return v&&v.v===1&&v.name?v:null}
+function showResume(){
+  const v=getSave(),b=$("resume");if(!b)return;b.hidden=!v;
+  if(v)b.innerHTML=`▶ Chơi tiếp: <b>${esc(v.name)}</b> · ${v.after?"vào Màn "+(v.after+1):"Màn "+v.lv} · ${v.score} ★`;
+}
+async function resumeGame(){
+  const v=getSave();if(!v)return;
+  S={name:v.name,score:v.score,hints:v.hints,slog:v.slog,items:v.items,evTypes:v.evTypes,pending:null,busy:true,ended:false,arrowAng:0,res:v.res||{},rw:v.rw||{},path:null,
+     p:{x:0,y:0,px:0,py:0,dir:0,frame:0,moving:null,walk:0,pal:PAL.me}};
+  $("title").hidden=true;ac();pts();
+  if(v.after===1){startM2();return}
+  if(v.after===2){startM3();return}
+  const L={1:L1,2:L2,3:L3}[v.lv];
+  const rest=v.evTypes.slice();loadLevel(L);S.evTypes=rest;
+  const t=v.st;S.events=t.events;S.evDone=t.evDone;S.quiz=t.quiz;S.done=new Set(t.done);S.joined=new Set(t.joined);
+  S.correct=t.correct;S.answered=t.answered;S.helped=t.helped;S.dovui=t.dovui;S.lvScore0=t.lvScore0;
+  if(t.m2)S.m2=t.m2;if(t.m3)S.m3=t.m3;
+  Object.assign(S.p,{x:t.x,y:t.y,px:t.x*TS,py:t.y*TS,dir:t.dir});
+  music(true);updHud();
+  await say("Hướng dẫn",`Chào mừng ${S.name} quay lại! Bạn đang ở Màn ${v.lv}, ${S.score} ★. Chơi tiếp nào!`);closeDlg();
+  S.busy=false;updHud();
+}
+if($("resume"))$("resume").onclick=()=>resumeGame();
+showResume();

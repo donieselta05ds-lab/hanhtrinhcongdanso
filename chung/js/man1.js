@@ -1,7 +1,7 @@
 /* MÀN 1 · Khu phố: bản đồ, nhà cửa, nhân vật, hội thoại hóng chuyện */
 
 /* ===== BẢN ĐỒ MÀN 1: HẺM KHU PHỐ ===== */
-const TS=16,VW=11;let MW=36,MH=26,VH=14;let LV=null;
+const TS=16;let VW=11;let MW=36,MH=26,VH=14;let LV=null;
 const G=0,R=1,TREE=2,PAVE=3,BLD=4,FENCE=5,BUSH=6,FLOW=7,POT=8,DECO=9,ROAD=10;
 let map=new Uint8Array(MW*MH);
 const at=(x,y)=>(x<0||y<0||x>=MW||y>=MH)?TREE:map[y*MW+x];

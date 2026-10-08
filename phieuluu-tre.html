@@ -3,35 +3,52 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
-<title>Phiêu lưu Công dân số</title>
+<title>Phiêu lưu Công dân số · Bản Phiêu lưu</title>
 <link rel="icon" id="favicon" href="">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;700;800&display=swap">
-<link rel="stylesheet" href="phieuluu/css/game.css?v=20261008">
-
+<link rel="stylesheet" href="chung/css/game.css?v=20261008b">
+<link rel="stylesheet" href="chung/css/giao-dien.css?v=20261008b">
 </head>
-<body>
-<div id="stage">
-  <canvas id="cv" width="176" height="224" aria-label="Bản đồ trò chơi"></canvas>
-  <div class="hud" id="hud">
-    <div class="quest" id="quest" role="button" tabindex="0" aria-label="Nhiệm vụ, bấm để xem thêm">…</div>
-    <div class="chip hint" id="hintc" title="Số lượt gợi ý">💡 0</div>
-    <div class="chip" id="pts">★ 0</div>
-    <button class="iconbtn" id="snd" type="button" aria-label="Bật/tắt nhạc">♪</button>
-  </div>
-  <div class="ctrl" id="ctrl">
-    <div class="joy" id="joy"><div class="knob" id="knob"></div></div>
-    <div class="dpad" id="dpad" hidden>
-      <button class="u" data-d="3" aria-label="Lên">▲</button>
-      <button class="l" data-d="1" aria-label="Trái">◀</button>
-      <button class="r" data-d="2" aria-label="Phải">▶</button>
-      <button class="d" data-d="0" aria-label="Xuống">▼</button>
+<body class="tre">
+<div id="app">
+  <header id="top">
+    <div class="row1">
+      <span class="chip" id="pts" title="Điểm">★ 0</span>
+      <span class="chip hint" id="hintc" title="Số lượt gợi ý">💡 0</span>
+      <span class="sp"></span>
+      <button class="iconbtn" id="help" type="button" aria-label="Xem hướng dẫn">?</button>
+      <button class="iconbtn" id="fsm" type="button" aria-label="Chữ nhỏ lại">A−</button>
+      <button class="iconbtn" id="fsp" type="button" aria-label="Chữ to lên">A+</button>
+      <button class="iconbtn" id="tts" type="button" aria-label="Bật/tắt đọc to">🔇</button>
+      <button class="iconbtn" id="snd" type="button" aria-label="Bật/tắt nhạc">♪</button>
     </div>
-    <button class="iconbtn swap" id="swap" type="button" aria-label="Đổi kiểu tay cầm">⇄ Tay cầm</button>
-    <button class="fbtn" id="fbtn" type="button" aria-label="Nói chuyện (phím F)">F<small>Nói chuyện</small></button>
+    <div class="quest" id="quest">Chào bạn!</div>
+  </header>
+  <div id="stage"><canvas id="cv" width="176" height="224" aria-label="Bản đồ trò chơi"></canvas></div>
+  <div id="panel">
+    <div class="ctrl tre" id="ctrl">
+      <div class="padbox">
+        <div class="joy" id="joy"><div class="knob" id="knob"></div></div>
+        <div class="dpad" id="dpad" hidden>
+          <button class="u" data-d="3" type="button" aria-label="Lên">▲</button>
+          <button class="l" data-d="1" type="button" aria-label="Trái">◀</button>
+          <button class="r" data-d="2" type="button" aria-label="Phải">▶</button>
+          <button class="d" data-d="0" type="button" aria-label="Xuống">▼</button>
+        </div>
+        <button class="swap" id="swap" type="button">⇄ Đổi tay cầm</button>
+      </div>
+      <button class="talk" id="fbtn" type="button">💬<span>Nói chuyện</span></button>
+    </div>
+    <div class="dlg" id="dlg" hidden>
+      <span class="who" id="dwho"></span>
+      <div class="txt" id="dtxt"></div>
+      <div class="choices" id="dch"></div>
+      <button class="hintbtn" id="dhint" type="button" hidden>💡 Gợi ý</button>
+      <button class="next" id="dnext" type="button">Tiếp tục ➜</button>
+    </div>
   </div>
-  <div class="dlg" id="dlg" hidden><span class="who" id="dwho"></span><div class="txt" id="dtxt"></div><div class="choices" id="dch"></div><button class="hintbtn" id="dhint" type="button" hidden>💡 Dùng gợi ý</button><span class="more" id="dmore">▼</span></div>
   <div class="phonebox" id="phonebox" hidden><div class="phone" id="phone"><div class="pscreen" id="pscreen"></div></div></div>
 </div>
 
@@ -40,48 +57,50 @@
   <div class="in">
     <div class="logo"><img data-logo alt="Logo phường Gia Định">UBND phường Gia Định · Ngày Chuyển đổi số 10/10</div>
     <h1 class="big">Phiêu lưu<br>Công dân số</h1>
-    <p>Sáng nay khu phố bỗng rộn ràng lạ thường. Bước ra khỏi nhà, giúp bà con trong hẻm, né những cái bẫy lừa đảo và lên phường dự Ngày hội Chuyển đổi số 10/10!</p>
+    <p class="tag">Bản Phiêu lưu · tự điều khiển nhân vật</p>
+    <p>Sáng 10/10, khu phố rộn ràng hưởng ứng Ngày Chuyển đổi số quốc gia. Cùng giúp bà con trong hẻm, lên phường làm thủ tục và đi Ngày hội Chuyển đổi số!</p>
     <label class="field">Tên của bạn (hiện trên bảng xếp hạng)
       <input id="pname" maxlength="20" placeholder="Ví dụ: An Gia Định" autocomplete="off">
     </label>
-    <div class="card" style="grid-template-columns:64px 1fr;align-items:center"><canvas id="pav" width="16" height="16" style="width:64px;height:64px;image-rendering:pixelated;background:#8FD16A;border:3px solid var(--line);border-radius:8px"></canvas><div><b>Người dân phường Gia Định</b><br><span style="font-size:13px;color:var(--muted)">Nhân vật của bạn trong game</span></div></div>
-    <button class="go" id="start" type="button" disabled>Vào game</button>
+    <div class="card howto">
+      <b>Cách chơi</b>
+      <p>🕹 Kéo <b>nút tròn xanh</b> để đi (đổi được sang 4 phím mũi tên). Máy tính: phím mũi tên hoặc W A S D.</p>
+      <p>💬 Đứng cạnh ai đó, bấm <b>Nói chuyện</b> (máy tính bấm F) hoặc chạm thẳng vào người đó.</p>
+      <p>❓ Người có dấu <b>?</b> vàng đang cần giúp; mũi tên vàng chỉ đường. Đúng +10 ★, sai −5 ★.</p>
+      <p>📱 Xoay ngang điện thoại để bản đồ rộng hơn.</p>
+    </div>
+    <button class="go resume" id="resume" type="button" hidden>▶ Chơi tiếp</button>
+    <button class="go" id="start" type="button" disabled>Vào game (chơi mới)</button>
     <button class="go alt" id="lbopen" type="button">🏆 Bảng xếp hạng</button>
-    <p class="center" style="font-size:12.5px">Điện thoại: kéo nút tròn xanh để đi, bấm <b>F</b> để nói chuyện.<br>Máy tính: phím mũi tên hoặc W A S D, bấm <b>F</b> để nói chuyện.</p>
+    <a class="back" href="phieuluu.html">← Chọn bản chơi khác</a>
   </div>
 </div>
 
-<!-- Kết thúc màn 1 -->
-<div class="over" id="m1end" hidden>
+<!-- Kết thúc từng màn -->
+<div class="over" id="lvend" hidden>
   <div class="in">
-    <div class="logo"><img data-logo alt="">Hoàn thành Màn 1 · Khu phố rộn ràng</div>
-    <div class="medal" id="m1medal">🏅</div>
-    <h1 class="big center" id="m1title"></h1>
-    <div class="card"><b>Đánh giá của khu phố</b><p id="m1eval"></p></div>
-    <div class="stats">
-      <div class="stat"><b id="m1ok">0/10</b><span>câu trả lời đúng</span></div>
-      <div class="stat"><b id="m1pts">0</b><span>điểm</span></div>
-      <div class="stat"><b id="m1join">0/10</b><span>lần tham gia trò chuyện</span></div>
-    </div>
-    <div class="card"><b>Tiếp theo · Màn 2: Trung tâm Phục vụ hành chính công</b><p>Lên phường làm thủ tục, lấy số thứ tự và giúp bà con trong lúc chờ.</p></div>
-    <button class="go" id="tom2" type="button">Vào Màn 2 ➜</button>
-    <button class="go alt" id="toresult" type="button">Dừng ở đây, xem kết quả</button>
+    <div class="logo"><img data-logo alt=""><span id="lvlabel"></span></div>
+    <div class="medal" id="lvmedal">🏅</div>
+    <h1 class="big center" id="lvtitle"></h1>
+    <div class="card"><b>Nhận xét</b><p id="lveval"></p></div>
+    <div class="stats" id="lvstats"></div>
+    <div class="card" id="lvnext"><b id="lvnextt"></b><p id="lvnextp"></p></div>
+    <button class="go" id="lvgo" type="button">Đi tiếp ➜</button>
+    <button class="go alt" id="lvstop" type="button">Dừng ở đây, xem kết quả</button>
   </div>
 </div>
 
-<!-- Kết thúc màn 2 -->
-<div class="over" id="m2end" hidden>
+<!-- Bản tin tối 10/10 -->
+<div class="over night" id="tvv" hidden>
   <div class="in">
-    <div class="logo"><img data-logo alt="">Hoàn thành Màn 2 · Trung tâm Phục vụ hành chính công</div>
-    <div class="medal" id="m2medal">🏅</div>
-    <h1 class="big center" id="m2title"></h1>
-    <div class="card"><b>Nhận xét</b><p id="m2eval"></p></div>
-    <div class="stats" style="grid-template-columns:1fr 1fr">
-      <div class="stat"><b id="m2ok">0/10</b><span>câu trả lời đúng</span></div>
-      <div class="stat"><b id="m2pts">0</b><span>điểm ở màn 2</span></div>
-    </div>
-    <div class="card"><b>Màn 3 · Ngày hội Chuyển đổi số</b><p>Màn 3 đang được hoàn thiện, hẹn bạn quay lại sớm nhé!</p></div>
-    <button class="go" id="toresult2" type="button">Xem kết quả</button>
+    <p class="center">Trời tối, bạn về nhà, mở TV xem bản tin…</p>
+    <div class="tv"><div class="scr">
+      <div class="live">● TRỰC TIẾP · BẢN TIN TỐI 10/10</div>
+      <div class="hd">Phường Gia Định rộn ràng Ngày Chuyển đổi số quốc gia</div>
+      <p id="tvtxt"></p>
+      <div class="ticker"><span id="tvtick"></span></div>
+    </div><div class="leg"></div></div>
+    <button class="go" id="tvok" type="button">Xem kết quả ➜</button>
   </div>
 </div>
 
@@ -94,15 +113,15 @@
       <p class="center" id="emsg" style="margin:8px 0 12px"></p>
       <canvas id="ccv" width="1200" height="840" hidden></canvas>
       <img class="cert" id="cert" alt="Giấy chứng nhận Hành trình Công dân số">
-      <p class="center" style="font-size:13px;margin-top:8px">Nhấn giữ ảnh để lưu rồi khoe lên Facebook kèm #CongDanSoGiaDinh</p>
     </div>
     <div id="endsad" hidden style="display:grid;gap:12px">
       <canvas id="sad" width="160" height="120"></canvas>
       <h1 class="big center" id="sadt">Bạn vô tâm quá…</h1>
-      <p class="center" id="sadm">Cả phường đang vui mà! Chơi lại không?</p>
+      <p class="center" id="sadm">Cả phường đang vui mà! Chơi lại nhé?</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px" id="sadbtns"><button class="go" id="sadyes" type="button">Có</button><button class="go alt" id="sadno" type="button">Không</button></div>
     </div>
-    <button class="go" id="save" type="button">Lưu ảnh chứng nhận</button>
+    <button class="go" id="share" type="button">📤 Chia sẻ giấy chứng nhận</button>
+    <button class="go alt" id="save" type="button">⬇ Lưu ảnh về máy</button>
     <button class="go blue" id="lbshow" type="button">🏆 Bảng xếp hạng</button>
     <button class="go alt" id="again" type="button">Chơi lại</button>
   </div>
@@ -112,20 +131,40 @@
 <div class="over" id="lbv" hidden>
   <div class="in">
     <div class="logo"><img data-logo alt="">Bảng xếp hạng Công dân số</div>
-    <h1 class="big center">🏆 Top người chơi</h1>
-    <p class="center" id="lbnote" style="font-size:12.5px"></p>
+    <h1 class="big center" id="lbtitle">🏆 Top người chơi</h1>
+    <p class="center" id="lbnote" style="font-size:14px"></p>
     <div class="lb" id="lblist"></div>
     <button class="go alt" id="lbclose" type="button">Đóng</button>
   </div>
 </div>
 
-<!-- Thứ tự nạp: logo → cấu hình → nội dung → màn 1 → động cơ → màn 2 → kết thúc -->
-<script src="chung/logo.js?v=20261008"></script>
-<script src="chung/cau-hinh.js?v=20261008"></script>
-<script src="chung/noi-dung.js?v=20261008"></script>
-<script src="phieuluu/js/man1.js?v=20261008"></script>
-<script src="phieuluu/js/dong-co.js?v=20261008"></script>
-<script src="phieuluu/js/man2.js?v=20261008"></script>
-<script src="phieuluu/js/ket-thuc.js?v=20261008"></script>
+<!-- Hướng dẫn (nút ?) -->
+<div class="over" id="helpv" hidden>
+  <div class="in">
+    <h1 class="big">Hướng dẫn</h1>
+    <div class="card howto">
+      <p><b>🕹 Nút tròn xanh</b>: kéo để đi. Bấm <b>⇄ Đổi tay cầm</b> để dùng 4 phím mũi tên.</p>
+      <p><b>💬 Nói chuyện</b>: nói chuyện với người đứng cạnh (nút sáng lên khi đứng gần). Chạm vào người trên bản đồ, nhân vật cũng tự đi tới.</p>
+      <p><b>?</b> vàng trên đầu: người đang cần bạn giúp. Giúp xong hiện <b>mặt cười</b>. <b>!</b> xanh: việc cần làm tiếp.</p>
+      <p><b>Mũi tên vàng</b> ở rìa bản đồ chỉ hướng người cần gặp tiếp theo.</p>
+      <p><b>💡 Gợi ý</b>: bỏ bớt 1 đáp án sai. Đúng +10 ★, sai −5 ★.</p>
+      <p>Mỗi màn có 7 câu, đúng từ 4 câu là nhận phần thưởng. Xoay ngang điện thoại để bản đồ rộng hơn.</p>
+    </div>
+
+    <button class="go" id="helpok" type="button">Đã hiểu</button>
+      </div>
+</div>
+
+<!-- Thứ tự nạp: chọn bản → logo → cấu hình → nội dung → bản đồ màn 1 → động cơ → bản đồ màn 2 → luật màn 2 → màn 3 → kết thúc -->
+<script>window.GAME_MODE="tre";</script>
+<script src="chung/js/logo.js?v=20261008b"></script>
+<script src="chung/js/cau-hinh.js?v=20261008b"></script>
+<script src="chung/js/noi-dung.js?v=20261008b"></script>
+<script src="chung/js/man1.js?v=20261008b"></script>
+<script src="chung/js/dong-co.js?v=20261008b"></script>
+<script src="chung/js/man2-bando.js?v=20261008b"></script>
+<script src="chung/js/man2.js?v=20261008b"></script>
+<script src="chung/js/man3.js?v=20261008b"></script>
+<script src="chung/js/ket-thuc.js?v=20261008b"></script>
 </body>
 </html>

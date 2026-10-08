@@ -1,4 +1,4 @@
-/* KẾT THÚC (Bản Dễ chơi): tổng kết từng màn, bản tin tối, giấy chứng nhận, chia sẻ, bảng xếp hạng, khởi động */
+/* KẾT THÚC (dùng cho cả 2 bản): tổng kết từng màn, bản tin tối, giấy chứng nhận, chia sẻ, bảng xếp hạng, khởi động */
 const LVNAME={1:"Màn 1 · Khu phố rộn ràng",2:"Màn 2 · Trung tâm Phục vụ hành chính công",3:"Màn 3 · Ngày hội Chuyển đổi số"};
 const BADGE={1:"Huy hiệu “Hàng xóm số”",2:"Huy hiệu “Thủ tục nhanh gọn”",3:"Quà Ngày hội Chuyển đổi số"};
 let lvGo=null;
@@ -17,6 +17,7 @@ function showLvEnd(lv){
   const nx={1:["Tiếp theo · Màn 2: Trung tâm Phục vụ hành chính công","Lên phường làm thủ tục, lấy số thứ tự và giúp bà con trong lúc chờ."],2:["Tiếp theo · Màn 3: Ngày hội Chuyển đổi số","Tham quan 4 gian trưng bày và giao lưu với sân khấu Ngày hội."]}[lv];
   $("lvnextt").textContent=nx[0];$("lvnextp").textContent=nx[1];
   $("lvgo").textContent=`Vào Màn ${lv+1} ➜`;lvGo=lv===1?startM2:startM3;
+  saveGame(lv);
   $("lvend").hidden=false;$("lvend").scrollTop=0;closeDlg();speak(LVNAME[lv]+". "+$("lvtitle").textContent+". "+ev);
 }
 $("lvgo").onclick=()=>{hush();lvGo&&lvGo()};
@@ -36,7 +37,7 @@ async function showEnd(){
   $("endok").hidden=rewards===0;$("endsad").hidden=rewards>0;$("save").hidden=rewards===0;$("share").hidden=rewards===0;
   $("sadbtns").hidden=false;$("again").hidden=rewards===0;$("lbshow").hidden=rewards===0;
   $("sadt").textContent="Bạn vô tâm quá…";$("sadm").textContent="Cả phường đang vui mà! Chơi lại nhé?";
-  submitScore();
+  submitScore();clearSave();
   if(rewards>0){
     $("etitle").textContent=rewards>=3?"Đại sứ Công dân số":"Đã tham gia Hành trình Công dân số";
     $("emsg").textContent=`${S.score} điểm · ${[1,2,3].filter(i=>S.res[i]).map(i=>`Màn ${i}: ${S.res[i].correct}/${QTOTAL} câu đúng`).join(" · ")} · nhận ${rewards}/3 phần thưởng.`;
@@ -57,7 +58,7 @@ function sadAnim(cry){
     if(cry&&f%10<5){c.fillStyle="#5DADEC";c.fillRect(66,62,4,8);c.fillRect(90,62,4,8)}
   },70);
 }
-function restart(){clearInterval(sadT);hush();["end","lvend","tvv"].forEach(id=>$(id).hidden=true);S=null;closeDlg();coachOff();$("title").hidden=false;$("title").scrollTop=0;music(false)}
+function restart(){clearInterval(sadT);hush();["end","lvend","tvv"].forEach(id=>$(id).hidden=true);S=null;closeDlg();coachOff();$("title").hidden=false;$("title").scrollTop=0;music(false);showResume()}
 $("again").onclick=restart;
 async function drawCert(rewards){
   try{await document.fonts.ready}catch(e){}
@@ -97,22 +98,23 @@ $("share").onclick=async()=>{
 function toastOver(t){const d=document.createElement("div");d.className="toast";d.style.position="fixed";d.style.whiteSpace="normal";d.style.width="86%";d.style.zIndex=40;d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),3000)}
 
 /* ===== BẢNG XẾP HẠNG (chỉ tên và điểm) ===== */
-function localBoard(){return store.get("pl_board",[])}
+const BAN_NAME={de:"Bản Dễ chơi",phieuluu:"Bản Phiêu lưu"}[BAN];
+function localBoard(){return store.get("pl_board_"+BAN,[])}
 async function submitScore(){
   if(!S||S.submitted)return;S.submitted=true;
   const rec={name:S.name,score:S.score};
-  const b=localBoard();b.push(rec);b.sort((a,c)=>c.score-a.score);store.set("pl_board",b.slice(0,50));
-  if(LB_URL){try{await fetch(LB_URL,{method:"POST",body:JSON.stringify({...rec,ban:"Dễ chơi"})})}catch(e){}}
+  const b=localBoard();b.push(rec);b.sort((a,c)=>c.score-a.score);store.set("pl_board_"+BAN,b.slice(0,50));
+  if(LB_URL){try{await fetch(LB_URL,{method:"POST",body:JSON.stringify({...rec,ban:BAN})})}catch(e){}}
 }
 async function loadBoard(){
-  if(LB_URL){try{const r=await fetch(LB_URL+(LB_URL.includes("?")?"&":"?")+"t="+Date.now());const j=await r.json();if(j&&Array.isArray(j.top))return {list:j.top,online:true}}catch(e){}}
+  if(LB_URL){try{const r=await fetch(LB_URL+(LB_URL.includes("?")?"&":"?")+"ban="+BAN+"&t="+Date.now());const j=await r.json();if(j&&Array.isArray(j.top))return {list:j.top,online:true,split:j.ban===BAN}}catch(e){}}
   const best={};localBoard().forEach(r=>{if(!best[r.name]||best[r.name]<r.score)best[r.name]=r.score});
   return {list:Object.entries(best).map(([name,score])=>({name,score})).sort((a,b)=>b.score-a.score).slice(0,20),online:false};
 }
 async function openBoard(){
   $("lbv").hidden=false;$("lbv").scrollTop=0;$("lblist").innerHTML='<p class="center">Đang tải…</p>';
-  const {list,online}=await loadBoard();
-  $("lbnote").textContent=online?"Bảng xếp hạng chung của mọi người chơi.":"Đang hiển thị điểm lưu trên máy này.";
+  const {list,online,split}=await loadBoard();
+  $("lbnote").textContent=(online?(split?"Bảng xếp hạng "+BAN_NAME+".":"Bảng xếp hạng chung (máy chủ chưa tách 2 bản)."):"Đang hiển thị điểm lưu trên máy này ("+BAN_NAME+").");$("lbtitle")&&($("lbtitle").textContent="🏆 Top "+BAN_NAME);
   const me=S?S.name:store.get("pl_name","");
   const crowns=["👑","🥈","🥉"];
   $("lblist").innerHTML=list.length?list.map((r,i)=>`<div class="lbrow ${r.name===me?"me":""}"><span class="rk ${i<3?"c":""}">${i<3?crowns[i]:i+1}</span><span>${esc(r.name)}</span><b>${r.score|0} ★</b></div>`).join(""):'<p class="center">Chưa có ai trên bảng. Bạn là người đầu tiên nhé!</p>';
@@ -128,7 +130,7 @@ $("lbopen").onclick=openBoard;$("lbshow").onclick=openBoard;$("lbclose").onclick
 /* ===== NÚT ? (xem lại hướng dẫn) ===== */
 $("help").onclick=()=>{$("helpv").hidden=false;$("helpv").scrollTop=0;speak($("helpv").querySelector(".howto").textContent)};
 $("helpok").onclick=()=>{hush();$("helpv").hidden=true};
-$("helpreset").onclick=()=>{hush();store.set("dc_tut1",false);store.set("dc_tut2",false);$("helpv").hidden=true;
+if($("helpreset"))$("helpreset").onclick=()=>{hush();store.set("dc_tut1",false);store.set("dc_tut2",false);$("helpv").hidden=true;
   if(S&&!S.busy&&$("dlg").hidden){store.set("dc_tut1",true);coach("#go","Bấm nút <b>Đi tiếp</b>, nhân vật sẽ tự đi tới người cần gặp và nói chuyện.")}};
 
 LV=L1;buildMap();renderMap();loop();

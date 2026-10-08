@@ -8,10 +8,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;700;800&display=swap">
-<link rel="stylesheet" href="phieuluu/css/game.css?v=20261008">
-<link rel="stylesheet" href="dechoi/css/dechoi.css?v=20261008">
+<link rel="stylesheet" href="chung/css/game.css?v=20261008b">
+<link rel="stylesheet" href="chung/css/giao-dien.css?v=20261008b">
 </head>
-<body>
+<body class="de">
 <div id="app">
   <header id="top">
     <div class="row1">
@@ -66,7 +66,8 @@
       <p>💡 Câu khó thì bấm <b>Gợi ý</b> để bỏ bớt 1 đáp án sai.</p>
       <p>🔊 Bấm nút loa ở trên cùng để điện thoại đọc to giùm bạn.</p>
     </div>
-    <button class="go" id="start" type="button" disabled>Vào game</button>
+    <button class="go resume" id="resume" type="button" hidden>▶ Chơi tiếp</button>
+    <button class="go" id="start" type="button" disabled>Vào game (chơi mới)</button>
     <button class="go alt" id="lbopen" type="button">🏆 Bảng xếp hạng</button>
     <a class="back" href="phieuluu.html">← Chọn bản chơi khác</a>
   </div>
@@ -127,7 +128,7 @@
 <div class="over" id="lbv" hidden>
   <div class="in">
     <div class="logo"><img data-logo alt="">Bảng xếp hạng Công dân số</div>
-    <h1 class="big center">🏆 Top người chơi</h1>
+    <h1 class="big center" id="lbtitle">🏆 Top người chơi</h1>
     <p class="center" id="lbnote" style="font-size:14px"></p>
     <div class="lb" id="lblist"></div>
     <button class="go alt" id="lbclose" type="button">Đóng</button>
@@ -153,15 +154,16 @@
   </div>
 </div>
 
-<!-- Thứ tự nạp: logo → cấu hình → nội dung → bản đồ màn 1 → động cơ bản dễ → màn 2 → màn 2 (luật bản dễ) → màn 3 → kết thúc -->
-<script src="chung/logo.js?v=20261008"></script>
-<script src="chung/cau-hinh.js?v=20261008"></script>
-<script src="chung/noi-dung.js?v=20261008"></script>
-<script src="phieuluu/js/man1.js?v=20261008"></script>
-<script src="dechoi/js/dong-co.js?v=20261008"></script>
-<script src="phieuluu/js/man2.js?v=20261008"></script>
-<script src="dechoi/js/man2.js?v=20261008"></script>
-<script src="dechoi/js/man3.js?v=20261008"></script>
-<script src="dechoi/js/ket-thuc.js?v=20261008"></script>
+<!-- Thứ tự nạp: chọn bản → logo → cấu hình → nội dung → bản đồ màn 1 → động cơ → bản đồ màn 2 → luật màn 2 → màn 3 → kết thúc -->
+<script>window.GAME_MODE="de";</script>
+<script src="chung/js/logo.js?v=20261008b"></script>
+<script src="chung/js/cau-hinh.js?v=20261008b"></script>
+<script src="chung/js/noi-dung.js?v=20261008b"></script>
+<script src="chung/js/man1.js?v=20261008b"></script>
+<script src="chung/js/dong-co.js?v=20261008b"></script>
+<script src="chung/js/man2-bando.js?v=20261008b"></script>
+<script src="chung/js/man2.js?v=20261008b"></script>
+<script src="chung/js/man3.js?v=20261008b"></script>
+<script src="chung/js/ket-thuc.js?v=20261008b"></script>
 </body>
 </html>

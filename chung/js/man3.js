@@ -1,4 +1,4 @@
-/* MÀN 3 · Ngày hội Chuyển đổi số 10/10 · bản đồ quảng trường, 4 gian trưng bày, sân khấu (Bản Dễ chơi)
+/* MÀN 3 · Ngày hội Chuyển đổi số 10/10 · bản đồ quảng trường, 4 gian trưng bày, sân khấu (dùng cho cả 2 bản)
    7 câu: 4 gian x 1 câu + sân khấu 1 câu + 2 sự kiện */
 const STAGE=40,CHAIR=41,TENT=42,CARPET=43,SPK=44,LAMP=45,ARCH=46;
 const BOOTHS=[
@@ -178,7 +178,7 @@ async function startM3(){
   $("lvend").hidden=true;S.busy=true;loadLevel(L3);music(true);
   await say("Hướng dẫn","Màn 3 · Ngày hội Chuyển đổi số 10/10 của phường Gia Định. Quảng trường đông vui quá!");
   await say(S.name,"Ghé hết 4 gian trưng bày và sân khấu (có dấu ? vàng) rồi mới về nha!");
-  closeDlg();S.busy=false;updHud();
+  closeDlg();S.busy=false;updHud();saveGame();
 }
 async function endM3(){
   S.ended=true;S.busy=true;held=null;music(false);sfx("win");

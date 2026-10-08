@@ -1,4 +1,4 @@
-/* GIAO DIỆN BẢN DỄ CHƠI: chữ to, nút lớn, bản đồ ở trên, lời thoại và nút ở dưới.
+/* GIAO DIỆN DÙNG CHUNG 2 BẢN (Dễ chơi, Phiêu lưu): chữ to, nút lớn, bản đồ ở trên, lời thoại và nút ở dưới.
    Dùng chung phieuluu/css/game.css, file này chỉ ghi đè. --fs là hệ số cỡ chữ (nút A− / A+). */
 :root{--fs:1;--orange:#E8833A}
 body{display:block;min-height:100dvh}
@@ -88,4 +88,25 @@ body{display:block;min-height:100dvh}
   #panel{grid-column:2;grid-row:2;max-height:none;justify-content:flex-end;min-height:0}
   #app .ctrl{grid-template-columns:auto 1fr;grid-template-rows:auto auto}
   #app .ctrl .gonext{grid-column:1/-1;min-height:64px}
+}
+/* tay cầm Bản Phiêu lưu */
+#app .ctrl.tre{grid-template-columns:auto 1fr;align-items:center}
+.padbox{display:grid;justify-items:center;gap:4px}
+#app .joy{position:relative;left:auto;bottom:auto;width:118px;height:118px}
+#app .padbox .dpad{grid-template-columns:repeat(3,42px);grid-template-rows:repeat(3,42px)}
+#app .swap{position:static;width:auto;height:30px;font-size:12.5px;padding:0 10px;border-radius:8px;border:2px solid var(--line);background:var(--paper);font-weight:800;box-shadow:2px 2px 0 var(--line);color:var(--ink)}
+#app .ctrl.tre .talk{min-height:110px}
+.go.resume{background:var(--blue)}
+@media (orientation:landscape) and (max-height:560px){
+  #app .ctrl.tre{grid-template-columns:auto 1fr;grid-template-rows:auto}
+  #app .joy{width:104px;height:104px}
+}
+/* hộp thoại: các phần xếp dọc, không chồng lên nhau khi khung thấp */
+#app .dlg{display:flex;flex-direction:column}
+#app .dlg>*{flex-shrink:0}
+#app .dlg .who,#app .dlg .hintbtn{align-self:flex-start}
+#app .dlg .hintbtn{align-self:stretch}
+#app .choices{display:flex;flex-direction:column;gap:8px}
+@media (orientation:landscape) and (max-height:560px){
+  body.tre #app{grid-template-columns:1fr minmax(260px,36%)}
 }

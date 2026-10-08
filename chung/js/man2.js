@@ -1,5 +1,5 @@
-/* MÀN 2 · Trung tâm Phục vụ hành chính công · luật chơi Bản Dễ chơi
-   (bản đồ, nhân vật lấy từ phieuluu/js/man2.js; ở đây chỉ đổi số câu và cách chơi)
+/* MÀN 2 · Trung tâm Phục vụ hành chính công · luật chơi (dùng cho cả 2 bản)
+   (bản đồ, nhân vật lấy từ chung/js/man2-bando.js; ở đây chỉ đổi số câu và cách chơi)
    7 câu: 4 câu giúp bà con + 2 câu về thủ tục + 1 sự kiện */
 L2.nEv=1;
 const G2=["g1","g2","g3","g4"];
@@ -15,6 +15,12 @@ L2.init=()=>{
   npcs.forEach(n=>{if(n.kind!=="gen")return;if(G2.includes(n.id))S.quiz[n.id]=qs[i++];else{n.kind="idle";n.line=TIP2[n.id]}});
 };
 L2.quest=()=>{const m=S.m2,P=PROC[m.proc];return "Màn 2 · "+({arrive:"Gặp <b>bạn đoàn viên</b> ở cửa",ticket:"Lấy <b>số thứ tự</b> ở kiosk",police:"Sang <b>Công an phường</b> theo bảng chỉ dẫn",gen:`Trong lúc chờ, giúp bà con có dấu <b>?</b>: <b>${m.gen}/4</b>`,called:`Mời số <b>${m.ticket}</b> đến <b>${P.place}</b>`,done:"Xong thủ tục! Bấm <b>Đi tiếp</b> để ra <b>cổng</b>"}[m.phase])};
+L2.taskNpc=()=>{const m=S.m2;
+  if(m.phase==="arrive")return npcs.find(n=>n.id==="doan2");
+  if(m.phase==="ticket")return npcs.find(n=>n.id==="k1");
+  if(m.phase==="police")return npcs.find(n=>n.id==="sign");
+  if(m.phase==="called")return npcs.find(n=>n.kind==="counter"&&n.quay===m.quay);
+  return null};
 L2.target=()=>{const m=S.m2,t=L2.taskNpc();if(t)return t;
   if(m.phase==="gen"){const p=S.p;let best=null,bd=1e9;npcs.forEach(n=>{if(n.kind!=="gen"||S.done.has(n.id))return;const d=Math.hypot(n.x-p.x,n.y-p.y);if(d<bd){bd=d;best=n}});if(best)return best}
   return {x:14,y:29,px:14.5*TS,py:29*TS,exit:true}};
@@ -109,7 +115,7 @@ async function startM2(){
   $("lvend").hidden=true;S.busy=true;loadLevel(L2);music(true);
   await say("Hướng dẫn","Màn 2 · Trung tâm Phục vụ hành chính công phường Gia Định. Bạn gửi xe xong, đi lên sân trước Trung tâm…");
   await say(S.name,"Hôm nay mình phải làm thủ tục "+PROC[S.m2.proc].name.toLowerCase()+". Hỏi bạn đoàn viên ở cửa trước đã!");
-  closeDlg();S.busy=false;updHud();
+  closeDlg();S.busy=false;updHud();saveGame();
 }
 async function endM2(){
   S.ended=true;S.busy=true;held=null;music(false);sfx("win");
